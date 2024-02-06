@@ -8,9 +8,9 @@ import java.awt.Graphics;
 
 import math.Vector2D;
 
-public class WhiteHorseRight extends GameObject {
+public class WhitePawn3 extends GameObject {
 
-	public WhiteHorseRight(Vector2D posicion, BufferedImage textura) {
+	public WhitePawn3(Vector2D posicion, BufferedImage textura) {
 		super(posicion, textura);
 	}
 
@@ -21,7 +21,7 @@ public class WhiteHorseRight extends GameObject {
 		//posicion.setY(0);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.whr && Mouse.mousePressed) {
+		if(Mouse.wp3 && Mouse.mousePressed) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - 60/2);
 			posicion.setY(Mouse.mouseYOnApp - 60/2);
@@ -30,14 +30,14 @@ public class WhiteHorseRight extends GameObject {
 			//System.out.println("uwu -1");
 			
 		} else {
-			if(Mouse.lastPiece == 6 && Mouse.mouseRealesed) {
+			if(Mouse.lastPiece == 11 && Mouse.mouseRealesed) {
 				int newX = getZ(Mouse.mouseXOnApp);
 				int newY = getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !allyCell(newX, newY) && ObjectPosition.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
 					posicion.setX(getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(getFromCell(Mouse.mouseYOnApp));
-					ObjectPosition.piecePosition[6] = new Vector2D(newX*60, newY*60);
+					ObjectPosition.piecePosition[11] = new Vector2D(newX*60, newY*60);
 					
 				} else {
 					if(Mouse.originalPos != null) {
@@ -81,7 +81,7 @@ public class WhiteHorseRight extends GameObject {
 		return -1;
 	}
 
-	private void deallowCells(Vector2D originalPos) {
+private void deallowCells(Vector2D originalPos) {
 		
 		int i = getI(originalPos);
 		int j = getJ(originalPos);
@@ -89,36 +89,8 @@ public class WhiteHorseRight extends GameObject {
 		//System.out.println(i);
 		//System.out.println(j);
 		
-		if (i - 1 >= 0 && j - 2 >= 0) {
-			ObjectPosition.allowedCellsBool[i - 1][j - 2] = false;
-		}
-
-		if (i + 1 <= 7 && j - 2 >= 0) {
-		    ObjectPosition.allowedCellsBool[i + 1][j - 2] = false;
-		}
-
-		if (i - 2 >= 0 && j - 1 >= 0) {
-		    ObjectPosition.allowedCellsBool[i - 2][j - 1] = false;
-		}
-
-		if (i - 2 >= 0 && j + 1 <= 7) {
-		    ObjectPosition.allowedCellsBool[i - 2][j + 1] = false;
-		}
-
-		if (i - 1 >= 0 && j + 2 <= 7) {
-		    ObjectPosition.allowedCellsBool[i - 1][j + 2] = false;
-		}
-
-		if (i + 1 <= 7 && j + 2 <= 7) {
-		    ObjectPosition.allowedCellsBool[i + 1][j + 2] = false;
-		}
-
-		if (i + 2 <= 7 && j - 1 >= 0) {
-		    ObjectPosition.allowedCellsBool[i + 2][j - 1] = false;
-		}
-
-		if (i + 2 <= 7 && j + 1 <= 7) {
-		    ObjectPosition.allowedCellsBool[i + 2][j + 1] = false;
+		if (j + 1 <= 7) {
+			ObjectPosition.allowedCellsBool[i][j - 1] = false;
 		}
 		
 	}
@@ -131,36 +103,8 @@ public class WhiteHorseRight extends GameObject {
 		//System.out.println(i);
 		//System.out.println(j);
 		
-		if (i - 1 >= 0 && j - 2 >= 0 && !allyCell(i-1,j-2)) {
-			ObjectPosition.allowedCellsBool[i - 1][j - 2] = true;
-		}
-
-		if (i + 1 <= 7 && j - 2 >= 0 && !allyCell(i+1,j-2)) {
-		    ObjectPosition.allowedCellsBool[i + 1][j - 2] = true;
-		}
-
-		if (i - 2 >= 0 && j - 1 >= 0 && !allyCell(i-2,j-1)) {
-		    ObjectPosition.allowedCellsBool[i - 2][j - 1] = true;
-		}
-
-		if (i - 2 >= 0 && j + 1 <= 7 && !allyCell(i-2,j+1)) {
-		    ObjectPosition.allowedCellsBool[i - 2][j + 1] = true;
-		}
-
-		if (i - 1 >= 0 && j + 2 <= 7 && !allyCell(i-1,j+2)) {
-		    ObjectPosition.allowedCellsBool[i - 1][j + 2] = true;
-		}
-
-		if (i + 1 <= 7 && j + 2 <= 7 && !allyCell(i+1,j+2)) {
-		    ObjectPosition.allowedCellsBool[i + 1][j + 2] = true;
-		}
-
-		if (i + 2 <= 7 && j - 1 >= 0 && !allyCell(i+2,j-1)) {
-		    ObjectPosition.allowedCellsBool[i + 2][j - 1] = true;
-		}
-
-		if (i + 2 <= 7 && j + 1 <= 7 && !allyCell(i+2,j+1)) {
-		    ObjectPosition.allowedCellsBool[i + 2][j + 1] = true;
+		if (j+1 <= 7 && !allyCell(i,j+1)) {
+			ObjectPosition.allowedCellsBool[i][j - 1] = true;
 		}
 
 		
@@ -170,22 +114,22 @@ public class WhiteHorseRight extends GameObject {
 		
 		//System.out.println("ObjectPosition.posicionesDelTablero["+i+"]["+j+"]: "+ObjectPosition.posicionesDelTablero[i][j]);
 		
-		if(ObjectPosition.posicionesDelTablero[i][j] == 0) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 1) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 2) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 3) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 4) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 5) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 6) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 7) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 8) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 9) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 10) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 11) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 12) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 13) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 14) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 15) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 16) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 17) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 18) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 19) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 20) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 21) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 22) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 23) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 24) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 25) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 26) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 27) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 28) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 29) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 30) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 31) return true;
 		
 		return false;
 	}
@@ -282,6 +226,8 @@ public class WhiteHorseRight extends GameObject {
 		return -1;
 	        	
 	}
+
+
 
 	@Override
 	public void draw(Graphics g) {

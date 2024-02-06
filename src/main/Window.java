@@ -35,8 +35,6 @@ public class Window extends JFrame implements Runnable {
 	
 	private BufferStrategy bs;
 	private Graphics g;
-	private boolean tableroGenerado = false;
-	private boolean piezasPosicionadas = false;
 	
 	private GameState gameState;
 	
@@ -99,34 +97,6 @@ public class Window extends JFrame implements Runnable {
 	    }
 	}
 
-	
-	private void iniciarTablero() {
-		
-		
-		for(int i = 0; i < 8; i++) {
-			for(int j = 0; j < 8; j++) {
-				field[i][j] = new JPanel();
-				field[i][j].setBounds(cellSize*i, cellSize*j, cellSize, cellSize);
-				field[i][j].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
-				if(j % 2 == 0) {
-					if(i % 2 == 0) {
-						field[i][j].setBackground(new Color(210, 180, 140));
-					} else {
-						field[i][j].setBackground(Color.BLACK);
-					}
-				} else {
-					if(i % 2 == 0) {
-						field[i][j].setBackground(Color.BLACK);
-					} else {
-						field[i][j].setBackground(Color.WHITE);
-					}
-				}
-				add(field[i][j]);
-			}
-		}
-		
-	}
-
 	private void update() {
 		mouse.update();
 		gameState.update();
@@ -144,22 +114,6 @@ public class Window extends JFrame implements Runnable {
 		
 		// dibujo arranca aqui
 		generarTablero();
-		/*
-		if(!tableroGenerado ) {
-			tableroGenerado = true;
-			generarTablero();
-		}
-		*/
-		/*
-		if(!piezasPosicionadas) {
-			piezasPosicionadas  = true;
-			generarPiezas();
-		}
-		*/
-		
-		//g.setColor(Color.BLACK);
-		//g.drawString(""+AVARAGEFPS, 100, 100);
-		//System.out.println("FPS: "+AVARAGEFPS);
 
 		gameState.draw(g);
         
@@ -167,34 +121,6 @@ public class Window extends JFrame implements Runnable {
 		
 		g.dispose();
 		bs.show();
-	}
-
-	private void generarPiezas() {
-		
-		g.drawImage(Assets.whiteKing, cellSize*4, cellSize*7 , null);
-		g.drawImage(Assets.whiteQueen, cellSize*3, cellSize*7, null);
-		g.drawImage(Assets.whiteHorse, cellSize*1, cellSize*7, null);
-		g.drawImage(Assets.whiteHorse, cellSize*6, cellSize*7, null);
-		g.drawImage(Assets.whiteTower, cellSize*0, cellSize*7, null);
-		g.drawImage(Assets.whiteTower, cellSize*7, cellSize*7, null);
-		g.drawImage(Assets.whiteBishop, cellSize*2, cellSize*7, null);
-		g.drawImage(Assets.whiteBishop, cellSize*5, cellSize*7, null);
-		for(int i = 0; i < 8; i++) {
-			g.drawImage(Assets.whitePawn, cellSize*i, cellSize*6, null);
-		}
-		
-		g.drawImage(Assets.blackKing, cellSize*4, cellSize*0 , null);
-		g.drawImage(Assets.blackQueen, cellSize*3, cellSize*0, null);
-		g.drawImage(Assets.blackHorse, cellSize*1, cellSize*0, null);
-		g.drawImage(Assets.blackHorse, cellSize*6, cellSize*0, null);
-		g.drawImage(Assets.blackTower, cellSize*0, cellSize*0, null);
-		g.drawImage(Assets.blackTower, cellSize*7, cellSize*0, null);
-		g.drawImage(Assets.blackBishop, cellSize*2, cellSize*0, null);
-		g.drawImage(Assets.blackBishop, cellSize*5, cellSize*0, null);
-		for(int i = 0; i < 8; i++) {
-			g.drawImage(Assets.blackPawn, cellSize*i, cellSize*1, null);
-		}
-		
 	}
 
 	@Override

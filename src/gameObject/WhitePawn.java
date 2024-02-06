@@ -21,7 +21,7 @@ public class WhitePawn extends GameObject {
 		//posicion.setY(0);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-	    
+		
 	}
 
 

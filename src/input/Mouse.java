@@ -147,7 +147,9 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		
 		int pieceId = ObjectPosition.piece(mouseXOnApp, mouseYOnApp);
 		lastPiece = pieceId;
+		
 		System.out.println(pieceId);
+		
 		if(pieceId != -1) {
 			originalPos = ObjectPosition.getCell(pieceId);
 			mousePressed = true;
@@ -162,13 +164,20 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		
 		//Si el lugar donde estas dejando la pieza es valido dejarla ahi y actualizar datos.
 		//si no, volverla a poner donde estaba
-		System.out.println("MOUSE RELEASED");
+		//System.out.println("MOUSE RELEASED");
+		
+		
 		if(lastPiece != -1) {
 			piece[lastPiece]=false;
 		}
 		mousePressed = false;
 		
 		mouseRealesed  = true;
+		
+		mouseXOnApp = e.getX();
+		mouseYOnApp = e.getY();
+		
+		
 		
 		
 		
@@ -191,7 +200,7 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		if(mousePressed) {
 			mouseXOnApp = e.getX();
 		    mouseYOnApp = e.getY();
-		    System.out.println("x: "+e.getX()+" y: "+e.getY());
+		    //System.out.println("x: "+e.getX()+" y: "+e.getY());
 		}
 		
 	}

@@ -17,6 +17,7 @@ public class Assets {
 	public static BufferedImage blackTower;
 	public static BufferedImage blackBishop;
 	public static BufferedImage blackPawn;
+	public static BufferedImage allowedCell;
 	
 	public static void init() {
 		
@@ -33,6 +34,8 @@ public class Assets {
 		blackTower = Loader.ImageLoader("/pieces/black tower-1.png");
 		blackBishop = Loader.ImageLoader("/pieces/black bishop-1.png");
 		blackPawn = Loader.ImageLoader("/pieces/black pawn-1.png");
+		
+		allowedCell = Loader.ImageLoader("/pieces/allowedcell.png");
 		
 	}
 
