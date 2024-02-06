@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import gameObject.ObjectPosition;
+import math.Vector2D;
 
 public class Mouse implements MouseListener, MouseMotionListener {
 	
@@ -50,7 +51,9 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	public static boolean bp6;
 	public static boolean bp7;
 	public static boolean mousePressed;
-	private int lastPiece;
+	public static int lastPiece;
+	public static Vector2D originalPos;
+	public static boolean mouseRealesed = false;
 	
 	
 	public Mouse() {
@@ -142,12 +145,11 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		mouseXOnApp = e.getX();
 		mouseYOnApp = e.getY();
 		
-		//Si al dar click en el canvas, hay una pieza, identificar que pieza es y moverla con el mouse.
-		//System.out.println("x: "+e.getX()+" y: "+e.getY());
-		int pieceId = ObjectPosition.piece(e.getX(), e.getY());
+		int pieceId = ObjectPosition.piece(mouseXOnApp, mouseYOnApp);
 		lastPiece = pieceId;
 		System.out.println(pieceId);
 		if(pieceId != -1) {
+			originalPos = ObjectPosition.getCell(pieceId);
 			mousePressed = true;
 			piece[pieceId] = true;
 		}
@@ -165,6 +167,10 @@ public class Mouse implements MouseListener, MouseMotionListener {
 			piece[lastPiece]=false;
 		}
 		mousePressed = false;
+		
+		mouseRealesed  = true;
+		
+		
 		
 	}
 

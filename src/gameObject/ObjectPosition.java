@@ -7,7 +7,15 @@ public class ObjectPosition {
     private static Vector2D[] piecePosition = new Vector2D[32];
     private static int[] pieceNumbers = new int[32];
     
-    static {
+    public static Vector2D[] getPiecePosition() {
+		return piecePosition;
+	}
+
+	public static void setPiecePosition(Vector2D[] piecePosition) {
+		ObjectPosition.piecePosition = piecePosition;
+	}
+
+	static {
         Vector2D[] allPositions = {
             new Vector2D(60 * 4, 60 * 7),  // wkPos
             new Vector2D(60 * 3, 60 * 7),  // wqPos
@@ -93,7 +101,14 @@ public class ObjectPosition {
                 return pieceNumbers[i];
             }
         }
-        return -1; // Devuelve 0 si no se encuentra ninguna pieza en las coordenadas especificadas
+        return -1; // Devuelve -1 si no se encuentra ninguna pieza en las coordenadas especificadas
     }
+
+	public static Vector2D getCell(int pieceId) {
+		if(pieceId != -1) {
+			return piecePosition[pieceId];
+		}
+		return null;
+	}
 
 }

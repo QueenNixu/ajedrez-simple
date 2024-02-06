@@ -21,6 +21,12 @@ public class WhiteKing extends GameObject {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - 60/2);
 			posicion.setY(Mouse.mouseYOnApp - 60/2);
+		} else {
+			if(Mouse.lastPiece == 0 && Mouse.mouseRealesed && Mouse.originalPos != null) {
+				posicion.setX(Mouse.originalPos.getX());
+				posicion.setY(Mouse.originalPos.getY());
+				Mouse.mouseRealesed = false;
+			}
 		}
 	    
 	}

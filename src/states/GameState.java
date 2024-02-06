@@ -2,17 +2,23 @@ package states;
 
 import java.awt.Graphics;
 
-import gameObject.BlackBishop;
-import gameObject.BlackHorse;
+import gameObject.BlackBishopRight;
+import gameObject.BlackBishopLeft;
+import gameObject.BlackHorseRight;
+import gameObject.BlackHorseLeft;
 import gameObject.BlackKing;
 import gameObject.BlackPawn;
 import gameObject.BlackQueen;
-import gameObject.BlackTower;
-import gameObject.WhiteBishop;
-import gameObject.WhiteHorse;
+import gameObject.BlackTowerLeft;
+import gameObject.BlackTowerRight;
+import gameObject.WhiteBishopLeft;
+import gameObject.WhiteBishopRight;
+import gameObject.WhiteHorseLeft;
+import gameObject.WhiteHorseRight;
 import gameObject.WhiteKing;
 import gameObject.WhiteQueen;
-import gameObject.WhiteTower;
+import gameObject.WhiteTowerLeft;
+import gameObject.WhiteTowerRight;
 import gameObject.WhitePawn;
 import graphics.Assets;
 import math.Vector2D;
@@ -53,34 +59,34 @@ public class GameState {
     // Definición de las piezas
     private WhiteKing whiteKing;
     private WhiteQueen whiteQueen;
-    private WhiteBishop whiteBishopLeft;
-    private WhiteHorse whiteHorseLeft;
-    private WhiteTower whiteTowerLeft;
-    private WhiteBishop whiteBishopRight;
-    private WhiteHorse whiteHorseRight;
-    private WhiteTower whiteTowerRight;
+    private WhiteBishopLeft whiteBishopLeft;
+    private WhiteHorseLeft whiteHorseLeft;
+    private WhiteTowerLeft whiteTowerLeft;
+    private WhiteBishopRight whiteBishopRight;
+    private WhiteHorseRight whiteHorseRight;
+    private WhiteTowerRight whiteTowerRight;
     private WhitePawn[] whitePawns = new WhitePawn[8];
 
     private BlackKing blackKing;
     private BlackQueen blackQueen;
-    private BlackBishop blackBishopLeft;
-    private BlackHorse blackHorseLeft;
-    private BlackTower blackTowerLeft;
-    private BlackBishop blackBishopRight;
-    private BlackHorse blackHorseRight;
-    private BlackTower blackTowerRight;
+    private BlackBishopLeft blackBishopLeft;
+    private BlackHorseLeft blackHorseLeft;
+    private BlackTowerLeft blackTowerLeft;
+    private BlackBishopRight blackBishopRight;
+    private BlackHorseRight blackHorseRight;
+    private BlackTowerRight blackTowerRight;
     private BlackPawn[] blackPawns = new BlackPawn[8];
 
     public GameState() {
         // Inicialización de las piezas blancas
         whiteKing = new WhiteKing(wkPos, Assets.whiteKing);
         whiteQueen = new WhiteQueen(wqPos, Assets.whiteQueen);
-        whiteBishopLeft = new WhiteBishop(wblPos, Assets.whiteBishop);
-        whiteHorseLeft = new WhiteHorse(whlPos, Assets.whiteHorse);
-        whiteTowerLeft = new WhiteTower(wtlPos, Assets.whiteTower);
-        whiteBishopRight = new WhiteBishop(wbrPos, Assets.whiteBishop);
-        whiteHorseRight = new WhiteHorse(whrPos, Assets.whiteHorse);
-        whiteTowerRight = new WhiteTower(wtrPos, Assets.whiteTower);
+        whiteBishopLeft = new WhiteBishopLeft(wblPos, Assets.whiteBishop);
+        whiteHorseLeft = new WhiteHorseLeft(whlPos, Assets.whiteHorse);
+        whiteTowerLeft = new WhiteTowerLeft(wtlPos, Assets.whiteTower);
+        whiteBishopRight = new WhiteBishopRight(wbrPos, Assets.whiteBishop);
+        whiteHorseRight = new WhiteHorseRight(whrPos, Assets.whiteHorse);
+        whiteTowerRight = new WhiteTowerRight(wtrPos, Assets.whiteTower);
         for (int i = 0; i < 8; i++) {
             whitePawns[i] = new WhitePawn(wpPos[i], Assets.whitePawn);
         }
@@ -88,12 +94,12 @@ public class GameState {
         // Inicialización de las piezas negras
         blackKing = new BlackKing(bkPos, Assets.blackKing);
         blackQueen = new BlackQueen(bqPos, Assets.blackQueen);
-        blackBishopLeft = new BlackBishop(bblPos, Assets.blackBishop);
-        blackHorseLeft = new BlackHorse(bhlPos, Assets.blackHorse);
-        blackTowerLeft = new BlackTower(btlPos, Assets.blackTower);
-        blackBishopRight = new BlackBishop(bbrPos, Assets.blackBishop);
-        blackHorseRight = new BlackHorse(bhrPos, Assets.blackHorse);
-        blackTowerRight = new BlackTower(btrPos, Assets.blackTower);
+        blackBishopLeft = new BlackBishopLeft(bblPos, Assets.blackBishop);
+        blackHorseLeft = new BlackHorseLeft(bhlPos, Assets.blackHorse);
+        blackTowerLeft = new BlackTowerLeft(btlPos, Assets.blackTower);
+        blackBishopRight = new BlackBishopRight(bbrPos, Assets.blackBishop);
+        blackHorseRight = new BlackHorseRight(bhrPos, Assets.blackHorse);
+        blackTowerRight = new BlackTowerRight(btrPos, Assets.blackTower);
         for (int i = 0; i < 8; i++) {
             blackPawns[i] = new BlackPawn(bpPos[i], Assets.blackPawn);
         }

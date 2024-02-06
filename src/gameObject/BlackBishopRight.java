@@ -8,9 +8,9 @@ import java.awt.Graphics;
 
 import math.Vector2D;
 
-public class BlackQueen extends GameObject {
+public class BlackBishopRight extends GameObject {
 
-	public BlackQueen(Vector2D posicion, BufferedImage textura) {
+	public BlackBishopRight(Vector2D posicion, BufferedImage textura) {
 		super(posicion, textura);
 	}
 
@@ -21,18 +21,17 @@ public class BlackQueen extends GameObject {
 		//posicion.setY(0);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.bq && Mouse.mousePressed) {
+		if(Mouse.bbr && Mouse.mousePressed) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - 60/2);
 			posicion.setY(Mouse.mouseYOnApp - 60/2);
 		} else {
-			if(Mouse.lastPiece == 17 && Mouse.mouseRealesed && Mouse.originalPos != null) {
+			if(Mouse.lastPiece == 21 && Mouse.mouseRealesed && Mouse.originalPos != null) {
 				posicion.setX(Mouse.originalPos.getX());
 				posicion.setY(Mouse.originalPos.getY());
 				Mouse.mouseRealesed = false;
 			}
 		}
-	    
 	}
 
 
