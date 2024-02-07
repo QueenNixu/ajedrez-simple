@@ -194,6 +194,7 @@ public class GameState {
         		ObjectPosition.allowedCellsBool[i][j] = false;
         	}
         }
+        
     }
 
     // Métodos de actualización y dibujo
@@ -323,6 +324,7 @@ public class GameState {
             }
             
         }
+        
         
     }
 }

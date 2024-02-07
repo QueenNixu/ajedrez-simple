@@ -9,9 +9,12 @@ import java.awt.Graphics;
 import math.Vector2D;
 
 public class WhiteHorseRight extends GameObject {
+	
+	private Vector2D oriPos;
 
 	public WhiteHorseRight(Vector2D posicion, BufferedImage textura) {
 		super(posicion, textura);
+		oriPos = posicion;
 	}
 
 	@Override
@@ -35,6 +38,17 @@ public class WhiteHorseRight extends GameObject {
 				int newY = getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !allyCell(newX, newY) && ObjectPosition.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
+					
+					ObjectPosition.posicionesDelTablero[getZ((int)Mouse.oriPosX)][getZ((int)Mouse.oriPosY)] = -1;
+					
+					//ObjectPosition.posicionesDelTablero[getZ((int)posicion.getX())][getZ((int)posicion.getY())] = -1;
+					/*
+					System.out.println("posicion.getX(): "+oriPos.getX());
+					System.out.println("posicion.getY(): "+oriPos.getY());
+					System.out.println("getZ((int)posicion.getX()): "+getZ((int)oriPos.getX()));
+					System.out.println("getZ((int)posicion.getY()): "+getZ((int)oriPos.getY()));
+					*/
+					
 					posicion.setX(getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(getFromCell(Mouse.mouseYOnApp));
 					ObjectPosition.piecePosition[6] = new Vector2D(newX*60, newY*60);

@@ -140,14 +140,6 @@ public class ObjectPosition {
 		}
 		return null;
 	}
-
-	public Boolean[][] getAllowedCellsBool() {
-		return allowedCellsBool;
-	}
-
-	public void setAllowedCellsBool(Boolean[][] allowedCellsBool) {
-		this.allowedCellsBool = allowedCellsBool;
-	}
 	
 	
 	

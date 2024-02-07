@@ -54,6 +54,8 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	public static int lastPiece;
 	public static Vector2D originalPos;
 	public static boolean mouseRealesed = false;
+	public static int oriPosX;
+	public static int oriPosY;
 	
 	
 	public Mouse() {
@@ -144,6 +146,8 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		
 		mouseXOnApp = e.getX();
 		mouseYOnApp = e.getY();
+		oriPosX = e.getX();
+		oriPosY = e.getY();
 		
 		int pieceId = ObjectPosition.piece(mouseXOnApp, mouseYOnApp);
 		lastPiece = pieceId;

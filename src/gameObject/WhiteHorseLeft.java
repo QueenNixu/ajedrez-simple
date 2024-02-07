@@ -35,6 +35,8 @@ public class WhiteHorseLeft extends GameObject {
 				int newY = getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !allyCell(newX, newY) && ObjectPosition.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
+					
+					ObjectPosition.posicionesDelTablero[getZ((int)Mouse.oriPosX)][getZ((int)Mouse.oriPosY)] = -1;
 					posicion.setX(getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(getFromCell(Mouse.mouseYOnApp));
 					ObjectPosition.piecePosition[3] = new Vector2D(newX*60, newY*60);
