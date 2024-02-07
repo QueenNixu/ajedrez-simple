@@ -40,6 +40,7 @@ public class WhiteHorseRight extends GameObject {
 					System.out.println("Valida");
 					
 					ObjectPosition.posicionesDelTablero[getZ((int)Mouse.oriPosX)][getZ((int)Mouse.oriPosY)] = -1;
+					ObjectPosition.posicionesDelTablero[newX][newY] = 6;
 					
 					//ObjectPosition.posicionesDelTablero[getZ((int)posicion.getX())][getZ((int)posicion.getY())] = -1;
 					/*

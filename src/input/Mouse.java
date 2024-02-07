@@ -144,21 +144,23 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
-		mouseXOnApp = e.getX();
-		mouseYOnApp = e.getY();
-		oriPosX = e.getX();
-		oriPosY = e.getY();
-		
-		int pieceId = ObjectPosition.piece(mouseXOnApp, mouseYOnApp);
-		lastPiece = pieceId;
-		
-		System.out.println(pieceId);
-		
-		if(pieceId != -1) {
-			originalPos = ObjectPosition.getCell(pieceId);
-			mousePressed = true;
-			piece[pieceId] = true;
-		}
+		if (e.getButton() == MouseEvent.BUTTON1) {
+	        mouseXOnApp = e.getX();
+	        mouseYOnApp = e.getY();
+	        oriPosX = e.getX();
+	        oriPosY = e.getY();
+	        
+	        int pieceId = ObjectPosition.piece(mouseXOnApp, mouseYOnApp);
+	        lastPiece = pieceId;
+	        
+	        System.out.println(pieceId);
+	        
+	        if(pieceId != -1) {
+	            originalPos = ObjectPosition.getCell(pieceId);
+	            mousePressed = true;
+	            piece[pieceId] = true;
+	        }
+	    }
 		
 
 	}
@@ -170,16 +172,17 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		//si no, volverla a poner donde estaba
 		//System.out.println("MOUSE RELEASED");
 		
-		
-		if(lastPiece != -1) {
-			piece[lastPiece]=false;
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			if(lastPiece != -1) {
+				piece[lastPiece]=false;
+			}
+			mousePressed = false;
+			
+			mouseRealesed  = true;
+			
+			mouseXOnApp = e.getX();
+			mouseYOnApp = e.getY();
 		}
-		mousePressed = false;
-		
-		mouseRealesed  = true;
-		
-		mouseXOnApp = e.getX();
-		mouseYOnApp = e.getY();
 		
 		
 		

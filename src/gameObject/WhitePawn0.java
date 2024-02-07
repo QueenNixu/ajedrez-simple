@@ -10,6 +10,10 @@ import math.Vector2D;
 
 public class WhitePawn0 extends GameObject {
 
+	private boolean firstMove = true;
+
+
+
 	public WhitePawn0(Vector2D posicion, BufferedImage textura) {
 		super(posicion, textura);
 	}
@@ -36,6 +40,7 @@ public class WhitePawn0 extends GameObject {
 				if(newX >= 0 && newY >= 0 && !allyCell(newX, newY) && ObjectPosition.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
 					ObjectPosition.posicionesDelTablero[getZ((int)Mouse.oriPosX)][getZ((int)Mouse.oriPosY)] = -1;
+					ObjectPosition.posicionesDelTablero[newX][newY] = 8;
 					posicion.setX(getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(getFromCell(Mouse.mouseYOnApp));
 					ObjectPosition.piecePosition[8] = new Vector2D(newX*60, newY*60);
@@ -82,7 +87,7 @@ public class WhitePawn0 extends GameObject {
 		return -1;
 	}
 
-private void deallowCells(Vector2D originalPos) {
+	private void deallowCells(Vector2D originalPos) {
 		
 		int i = getI(originalPos);
 		int j = getJ(originalPos);
@@ -90,7 +95,7 @@ private void deallowCells(Vector2D originalPos) {
 		//System.out.println(i);
 		//System.out.println(j);
 		
-		if (j + 1 <= 7) {
+		if (j - 1 >= 0) {
 			ObjectPosition.allowedCellsBool[i][j - 1] = false;
 		}
 		
@@ -104,8 +109,14 @@ private void deallowCells(Vector2D originalPos) {
 		//System.out.println(i);
 		//System.out.println(j);
 		
-		if (j+1 <= 7 && !allyCell(i,j+1)) {
+		if (j-1 >= 0 && !allyCell(i,j-1)) {
 			ObjectPosition.allowedCellsBool[i][j - 1] = true;
+			/*
+			if(firstMove) {
+				ObjectPosition.allowedCellsBool[i][j - 2] = true;
+				//firstMove = false;
+			}
+			*/
 		}
 
 		
@@ -115,22 +126,22 @@ private void deallowCells(Vector2D originalPos) {
 		
 		//System.out.println("ObjectPosition.posicionesDelTablero["+i+"]["+j+"]: "+ObjectPosition.posicionesDelTablero[i][j]);
 		
-		if(ObjectPosition.posicionesDelTablero[i][j] == 16) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 17) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 18) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 19) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 20) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 21) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 22) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 23) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 24) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 25) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 26) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 27) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 28) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 29) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 30) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == 31) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 0) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 1) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 2) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 3) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 4) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 5) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 6) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 7) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 8) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 9) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 10) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 11) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 12) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 13) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 14) return true;
+		if(ObjectPosition.posicionesDelTablero[i][j] == 15) return true;
 		
 		return false;
 	}
@@ -168,7 +179,7 @@ private void deallowCells(Vector2D originalPos) {
 	private int getZ(int originalPos) {
 		
 		if(originalPos >= 0 && originalPos < 60) {
-			System.out.println("UWU");
+			//System.out.println("UWU");
 			return 0;
 		}
 		if(originalPos >= 60 && originalPos < 120) {
