@@ -4,7 +4,7 @@ import math.Vector2D;
 
 public class ObjectPosition {
 	
-	static int[][] posicionesDelTablero = new int[8][8];
+	public static int[][] posicionesDelTablero = new int[8][8];
     
     public static Vector2D[] piecePosition = new Vector2D[32];
     public static int[] pieceNumbers = new int[32];
@@ -140,6 +140,8 @@ public class ObjectPosition {
 		}
 		return null;
 	}
+	
+	
 	
 	
 	

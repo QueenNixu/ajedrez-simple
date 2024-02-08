@@ -6,20 +6,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import gameObject.Constants;
 import graphics.Assets;
 import input.Mouse;
 import states.GameState;
 
 public class Window extends JFrame implements Runnable {
-	
-	public static final int WIDTH = 496;
-	public static final int HEIGHT = 519;
-	
-	public static final int cellSize = 60;
 	
 	private final int FPS = 60;
 	private double TARGETTIME = 1000000000/FPS;
@@ -47,7 +42,7 @@ public class Window extends JFrame implements Runnable {
 	public Window() {
 		
 		setTitle("Ajedrez");
-		setSize(WIDTH, HEIGHT);
+		setSize(Constants.WIDTH, Constants.HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -55,9 +50,9 @@ public class Window extends JFrame implements Runnable {
 		setVisible(true);
 		
 		canvas = new Canvas();
-		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
-		canvas.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+		canvas.setPreferredSize(new Dimension(Constants.WIDTH, Constants.HEIGHT));
+		canvas.setMaximumSize(new Dimension(Constants.WIDTH, Constants.HEIGHT));
+		canvas.setMinimumSize(new Dimension(Constants.WIDTH, Constants.HEIGHT));
 		canvas.setFocusable(true);
 		
 		add(canvas);
@@ -73,7 +68,6 @@ public class Window extends JFrame implements Runnable {
 	}
 	
 	private void generarTablero() {
-	    int cellSize = 60;
 	    for (int i = 0; i < 8; i++) {
 	        for (int j = 0; j < 8; j++) {
 	            // Establece el color antes de dibujar el rectángulo
@@ -92,7 +86,7 @@ public class Window extends JFrame implements Runnable {
 	            }
 	            
 	            // Dibuja el rectángulo
-	            g.fillRect(cellSize * i, cellSize * j, cellSize, cellSize);
+	            g.fillRect(Constants.CELLSIZE * i, Constants.CELLSIZE * j, Constants.CELLSIZE, Constants.CELLSIZE);
 	        }
 	    }
 	}

@@ -28,7 +28,6 @@ import gameObject.WhiteKing;
 import gameObject.WhiteQueen;
 import gameObject.WhiteTowerLeft;
 import gameObject.WhiteTowerRight;
-import gameObject.WhitePawn;
 import gameObject.WhitePawn0;
 import gameObject.WhitePawn1;
 import gameObject.WhitePawn2;
@@ -103,7 +102,6 @@ public class GameState {
     private WhiteBishopRight whiteBishopRight;
     private WhiteHorseRight whiteHorseRight;
     private WhiteTowerRight whiteTowerRight;
-    private WhitePawn[] whitePawns = new WhitePawn[8];
     
     private WhitePawn0 whitePawn0;
 	private WhitePawn1 whitePawn1;
