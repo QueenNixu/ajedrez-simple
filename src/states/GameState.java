@@ -19,6 +19,7 @@ import gameObject.BlackPawn7;
 import gameObject.BlackQueen;
 import gameObject.BlackTowerLeft;
 import gameObject.BlackTowerRight;
+import gameObject.Constants;
 import gameObject.ObjectPosition;
 import gameObject.WhiteBishopLeft;
 import gameObject.WhiteBishopRight;
@@ -60,13 +61,14 @@ public class GameState {
     private Vector2D wp5Pos = new Vector2D(60 * 5, 60 * 6);
     private Vector2D wp6Pos = new Vector2D(60 * 6, 60 * 6);
     private Vector2D wp7Pos = new Vector2D(60 * 7, 60 * 6);
-    
+    /*
     private Vector2D[] wpPos = {
         new Vector2D(60 * 4, 60 * 6), new Vector2D(60 * 3, 60 * 6),
         new Vector2D(60 * 2, 60 * 6), new Vector2D(60 * 1, 60 * 6),
         new Vector2D(60 * 0, 60 * 6), new Vector2D(60 * 5, 60 * 6),
         new Vector2D(60 * 6, 60 * 6), new Vector2D(60 * 7, 60 * 6)
     };
+    */
 
     private Vector2D bkPos = new Vector2D(60 * 4, 60 * 0);
     private Vector2D bqPos = new Vector2D(60 * 3, 60 * 0);
@@ -120,7 +122,6 @@ public class GameState {
     private BlackBishopRight blackBishopRight;
     private BlackHorseRight blackHorseRight;
     private BlackTowerRight blackTowerRight;
-    private BlackPawn0[] blackPawns = new BlackPawn0[8];
     
     private AllowedCells[][] allowedCells = new AllowedCells[8][8];
 	private BlackPawn0 blackPawn0;
@@ -181,14 +182,14 @@ public class GameState {
             blackPawns[i] = new BlackPawn0(bpPos[i], Assets.blackPawn);
         }
         */
-        for (int i = 0; i < 8; i++) {
-        	for (int j = 0; j < 8; j++) {
-        		allowedCells[i][j] = new AllowedCells(new Vector2D(60*i,60*j), Assets.allowedCell);
+        for (int i = 0; i <= 7; i++) {
+        	for (int j = 0; j <= 7; j++) {
+        		allowedCells[i][j] = new AllowedCells(new Vector2D(Constants.CELLSIZE*i,Constants.CELLSIZE*j), Assets.allowedCell);
         	}
         }
         
-        for (int i = 0; i < 8; i++) {
-        	for (int j = 0; j < 8; j++) {
+        for (int i = 0; i <= 7; i++) {
+        	for (int j = 0; j <= 7; j++) {
         		ObjectPosition.allowedCellsBool[i][j] = false;
         	}
         }
@@ -247,8 +248,8 @@ public class GameState {
         */
         
         if(Mouse.mousePressed) {
-        	for (int i = 0; i < 8; i++) {
-            	for (int j = 0; j < 8; j++) {
+        	for (int i = 0; i <= 7; i++) {
+            	for (int j = 0; j <= 7; j++) {
             		if(ObjectPosition.allowedCellsBool[i][j]) {
             			allowedCells[i][j].update();;
             		}
@@ -313,8 +314,8 @@ public class GameState {
         
         if(Mouse.mousePressed) {
 
-        	for (int i = 0; i < 8; i++) {
-            	for (int j = 0; j < 8; j++) {
+        	for (int i = 0; i <= 7; i++) {
+            	for (int j = 0; j <= 7; j++) {
             		if(ObjectPosition.allowedCellsBool[i][j]) {
             			allowedCells[i][j].draw(g);
             		}

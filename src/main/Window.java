@@ -68,8 +68,8 @@ public class Window extends JFrame implements Runnable {
 	}
 	
 	private void generarTablero() {
-	    for (int i = 0; i < 8; i++) {
-	        for (int j = 0; j < 8; j++) {
+	    for (int i = 0; i <= 7; i++) {
+	        for (int j = 0; j <= 7; j++) {
 	            // Establece el color antes de dibujar el rectángulo
 	            if (j % 2 == 0) {
 	                if (i % 2 == 0) {
