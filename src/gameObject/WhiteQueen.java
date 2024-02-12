@@ -37,7 +37,7 @@ public class WhiteQueen extends MovingObject {
 			if(Mouse.lastPiece == Constants.wqId && Mouse.mouseRealesed) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
-				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wqId, Constants.BLACKSTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
+				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wqId, Constants.WHITESTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
 					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
 					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];

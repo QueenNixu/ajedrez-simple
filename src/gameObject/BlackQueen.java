@@ -56,6 +56,7 @@ public class BlackQueen extends MovingObject {
 						posicion.setY(Mouse.originalPos.getY());
 					}
 				}
+				
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
 				Cell.deAllowCells(originalPos, Constants.bqId);
@@ -63,9 +64,7 @@ public class BlackQueen extends MovingObject {
 		}
 	    
 	}
-
-
-
+	
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(textura, (int)posicion.getX(), (int)posicion.getY(), null);

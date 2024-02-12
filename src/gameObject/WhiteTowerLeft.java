@@ -37,10 +37,11 @@ public class WhiteTowerLeft extends MovingObject {
 			if(Mouse.lastPiece == Constants.wtlId && Mouse.mouseRealesed) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
-				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wtlId, Constants.BLACKSTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
+				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wtlId, Constants.WHITESTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
 					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
 					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];
+					System.out.println("x e y: "+pieceOnCellId);
 					if(pieceOnCellId >= 16 && pieceOnCellId <= 31) {
 						System.out.println("COLISION CON PIEZA NEGRA: "+pieceOnCellId);
 						gameState.getMovingObject(pieceOnCellId).destroy();
