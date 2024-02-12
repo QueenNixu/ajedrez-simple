@@ -4,16 +4,15 @@ import math.Vector2D;
 
 public class ObjectPosition {
 	
+	//-1 = vacio
+	//0-15 blancas
+	//16-31 negras
 	public static int[][] posicionesDelTablero = new int[8][8];
     
+	//la posicion de cada pieza
     public static Vector2D[] piecePosition = new Vector2D[32];
-    public static int[] pieceNumbers = new int[32];
     
     public static Boolean[][] allowedCellsBool = new Boolean[8][8];
-    
-    public static Vector2D[] getPiecePosition() {
-		return piecePosition;
-	}
 
 	public static void setPiecePosition(Vector2D[] piecePosition) {
 		ObjectPosition.piecePosition = piecePosition;
@@ -54,41 +53,6 @@ public class ObjectPosition {
             new Vector2D(60 * 6, 60 * 1),  // bpPos[6]
             new Vector2D(60 * 7, 60 * 1)   // bpPos[7]
         };
-        
-        int[] allPieceNumbers = {
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                10,
-                11,
-                12,
-                13,
-                14,
-                15,
-                16,
-                17,
-                18,
-                19,
-                20,
-                21,
-                22,
-                23,
-                24,
-                25,
-                26,
-                27,
-                28,
-                29,
-                30,
-                31,
-            };
         int[][] posicionesDelTableroAux = {
                 {20, 24, -1, -1, -1, -1, 8, 4}, // Primera fila
                 {19, 25, -1, -1, -1, -1, 9, 3}, // Segunda fila
@@ -100,7 +64,7 @@ public class ObjectPosition {
                 {23, 31, -1, -1, -1, -1, 15, 7}  // Octava fila
         };
         System.arraycopy(allPositions, 0, piecePosition, 0, allPositions.length);
-        System.arraycopy(allPieceNumbers, 0, pieceNumbers, 0, allPieceNumbers.length);
+        //System.arraycopy(allPieceNumbers, 0, pieceNumbers, 0, allPieceNumbers.length);
         for (int i = 0; i < 8; i++) {
             System.arraycopy(posicionesDelTableroAux[i], 0, posicionesDelTablero[i], 0, 8);
             //System.out.print(posicionesDelTablero[i][i]);
@@ -109,9 +73,6 @@ public class ObjectPosition {
     }
     
     public ObjectPosition() {
-    	
-    	
-        
     }
     
     public static int piece(int x, int y) {
@@ -124,10 +85,9 @@ public class ObjectPosition {
             System.out.println("vecX: "+vec.getX()+"x: "+x);
             System.out.println("vecY: "+vec.getY()+"y: "+y);
             */
-            if (x > vec.getX() && x < vec.getX() + 60 && y > vec.getY() && y < vec.getY() + 60) {
+            if ( vec != null && x > vec.getX() && x < vec.getX() + 60 && y > vec.getY() && y < vec.getY() + 60) {
                 //System.out.println("pieceNumbers["+i+"]: "+pieceNumbers[i]);
-            	return pieceNumbers[i];
-            	
+            	return i;
             }
         }
         

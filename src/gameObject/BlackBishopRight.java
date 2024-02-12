@@ -8,11 +8,14 @@ import java.awt.Graphics;
 
 import math.Cell;
 import math.Vector2D;
+import states.GameState;
 
-public class BlackBishopRight extends GameObject {
+public class BlackBishopRight extends MovingObject {
 
-	public BlackBishopRight(Vector2D posicion, BufferedImage textura) {
-		super(posicion, textura);
+	private static final int id = Constants.bbrId;
+
+	public BlackBishopRight(Vector2D posicion, BufferedImage textura, GameState gameState) {
+		super(posicion, textura, gameState);
 	}
 
 	@Override
@@ -37,7 +40,13 @@ public void update() {
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.bbrId, Constants.BLACKSTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
 					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
+					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];
+					if(pieceOnCellId >= 0 && pieceOnCellId <= 15) {
+						System.out.println("COLISION CON PIEZA BLANCA: "+pieceOnCellId);
+						gameState.getMovingObject(pieceOnCellId).destroy();
+					}
 					ObjectPosition.posicionesDelTablero[newX][newY] = Constants.bbrId;
+					// llamar a object collision modificado para destruir enemigo
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
 					ObjectPosition.piecePosition[Constants.bbrId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
@@ -59,6 +68,17 @@ public void update() {
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(textura, (int)posicion.getX(), (int)posicion.getY(), null);
+	}
+
+	@Override
+	public void destroy() {
+			super.destroy();
+			ObjectPosition.piecePosition[id] = null;
+	}
+	
+	@Override
+	public int getId() {
+		return id;
 	}
 	
 	

@@ -19,14 +19,6 @@ public abstract class GameObject {
 	
 	public abstract void draw(Graphics g);
 
-	public BufferedImage getTextura() {
-		return textura;
-	}
-
-	public void setTextura(BufferedImage textura) {
-		this.textura = textura;
-	}
-
 	public Vector2D getPosicion() {
 		return posicion;
 	}

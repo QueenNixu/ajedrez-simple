@@ -8,11 +8,14 @@ import java.awt.Graphics;
 
 import math.Cell;
 import math.Vector2D;
+import states.GameState;
 
-public class BlackTowerRight extends GameObject {
+public class BlackTowerRight extends MovingObject {
+	
+	private static final int id = Constants.btrId;
 
-	public BlackTowerRight(Vector2D posicion, BufferedImage textura) {
-		super(posicion, textura);
+	public BlackTowerRight(Vector2D posicion, BufferedImage textura, GameState gameState) {
+		super(posicion, textura, gameState);
 	}
 
 	@Override
@@ -37,6 +40,11 @@ public class BlackTowerRight extends GameObject {
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.btrId, Constants.BLACKSTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
 					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
+					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];
+					if(pieceOnCellId >= 0 && pieceOnCellId <= 15) {
+						System.out.println("COLISION CON PIEZA BLANCA: "+pieceOnCellId);
+						gameState.getMovingObject(pieceOnCellId).destroy();
+					}
 					ObjectPosition.posicionesDelTablero[newX][newY] = Constants.btrId;
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
@@ -61,6 +69,17 @@ public class BlackTowerRight extends GameObject {
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(textura, (int)posicion.getX(), (int)posicion.getY(), null);
+	}
+	
+	@Override
+	public void destroy() {
+			super.destroy();
+			ObjectPosition.piecePosition[id] = null;
+	}
+
+	@Override
+	public int getId() {
+		return id;
 	}
 	
 	
