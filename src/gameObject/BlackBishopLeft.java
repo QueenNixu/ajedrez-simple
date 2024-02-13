@@ -29,7 +29,7 @@ public class BlackBishopLeft extends MovingObject {
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
 			Vector2D originalPos = Mouse.originalPos;
-			Cell.calcAllowedCells(originalPos, Constants.bblId);
+			Cell.calcAllowedCells(originalPos, Constants.bblId, false, gameState);
 			//System.out.println("uwu -1");
 			
 		} else {
@@ -58,7 +58,7 @@ public class BlackBishopLeft extends MovingObject {
 				}
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
-				Cell.deAllowCells(originalPos, Constants.bblId);
+				Cell.deAllowCells(originalPos, Constants.bblId, false, gameState);
 			}
 		}
 	    
@@ -78,6 +78,12 @@ public class BlackBishopLeft extends MovingObject {
 	@Override
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public boolean isFirstMove() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

@@ -30,7 +30,7 @@ public class WhiteBishopRight extends MovingObject {
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
 			Vector2D originalPos = Mouse.originalPos;
-			Cell.calcAllowedCells(originalPos, Constants.wbrId);
+			Cell.calcAllowedCells(originalPos, Constants.wbrId, false, gameState);
 			//System.out.println("uwu -1");
 			
 		} else {
@@ -58,7 +58,7 @@ public class WhiteBishopRight extends MovingObject {
 				}
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
-				Cell.deAllowCells(originalPos, Constants.wbrId);
+				Cell.deAllowCells(originalPos, Constants.wbrId, false, gameState);
 			}
 		}
 	    
@@ -80,6 +80,12 @@ public class WhiteBishopRight extends MovingObject {
 	@Override
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public boolean isFirstMove() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

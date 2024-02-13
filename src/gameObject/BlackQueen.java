@@ -30,7 +30,7 @@ public class BlackQueen extends MovingObject {
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
 			Vector2D originalPos = Mouse.originalPos;
-			Cell.calcAllowedCells(originalPos, Constants.bqId);
+			Cell.calcAllowedCells(originalPos, Constants.bqId, false, gameState);
 			//System.out.println("uwu -1");
 			
 		} else {
@@ -59,7 +59,7 @@ public class BlackQueen extends MovingObject {
 				
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
-				Cell.deAllowCells(originalPos, Constants.bqId);
+				Cell.deAllowCells(originalPos, Constants.bqId, false, gameState);
 			}
 		}
 	    
@@ -79,6 +79,12 @@ public class BlackQueen extends MovingObject {
 	@Override
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public boolean isFirstMove() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

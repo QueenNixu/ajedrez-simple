@@ -30,7 +30,7 @@ public class BlackHorseLeft extends MovingObject {
 			posicion.setX(Mouse.mouseXOnApp - 60/2);
 			posicion.setY(Mouse.mouseYOnApp - 60/2);
 			Vector2D originalPos = Mouse.originalPos;
-			Cell.calcAllowedCells(originalPos, Constants.bhlId);
+			Cell.calcAllowedCells(originalPos, Constants.bhlId, false, gameState);
 			//System.out.println("uwu -1");
 			
 		} else {
@@ -58,7 +58,7 @@ public class BlackHorseLeft extends MovingObject {
 				}
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
-				Cell.deAllowCells(originalPos, Constants.bhlId);
+				Cell.deAllowCells(originalPos, Constants.bhlId, false, gameState);
 			}
 		}
 	    
@@ -78,6 +78,12 @@ public class BlackHorseLeft extends MovingObject {
 	@Override
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public boolean isFirstMove() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

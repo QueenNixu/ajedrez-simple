@@ -30,7 +30,7 @@ public void update() {
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
 			Vector2D originalPos = Mouse.originalPos;
-			Cell.calcAllowedCells(originalPos, Constants.bbrId);
+			Cell.calcAllowedCells(originalPos, Constants.bbrId, false, gameState);
 			//System.out.println("uwu -1");
 			
 		} else {
@@ -59,7 +59,7 @@ public void update() {
 				}
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
-				Cell.deAllowCells(originalPos, Constants.bbrId);
+				Cell.deAllowCells(originalPos, Constants.bbrId, false, gameState);
 			}
 		}
 	    
@@ -79,6 +79,12 @@ public void update() {
 	@Override
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public boolean isFirstMove() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

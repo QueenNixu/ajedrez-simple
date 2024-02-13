@@ -13,6 +13,8 @@ import states.GameState;
 public class WhiteTowerRight extends MovingObject {
 
 	private static final int id = Constants.wtrId;
+	private boolean firstMove = true;
+	private boolean lastMoveWasFirstMove = false;
 	
 	public WhiteTowerRight(Vector2D posicion, BufferedImage textura, GameState gameState) {
 		super(posicion, textura, gameState);
@@ -30,15 +32,17 @@ public class WhiteTowerRight extends MovingObject {
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
 			Vector2D originalPos = Mouse.originalPos;
-			Cell.calcAllowedCells(originalPos, Constants.wtrId);
+			Cell.calcAllowedCells(originalPos, Constants.wtrId, firstMove, gameState);
 			//System.out.println("uwu -1");
 			
 		} else {
 			if(Mouse.lastPiece == Constants.wtrId && Mouse.mouseRealesed) {
+				boolean valida;
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wtrId, Constants.WHITESTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
+					valida = true;
 					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
 					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];
 					if(pieceOnCellId >= 16 && pieceOnCellId <= 31) {
@@ -51,6 +55,7 @@ public class WhiteTowerRight extends MovingObject {
 					ObjectPosition.piecePosition[Constants.wtrId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
 					
 				} else {
+					valida = false;
 					if(Mouse.originalPos != null) {
 						posicion.setX(Mouse.originalPos.getX());
 						posicion.setY(Mouse.originalPos.getY());
@@ -58,7 +63,13 @@ public class WhiteTowerRight extends MovingObject {
 				}
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
-				Cell.deAllowCells(originalPos, Constants.wtrId);
+				Cell.deAllowCells(originalPos, Constants.wtrId, firstMove, gameState);
+				if(valida && firstMove) {
+					lastMoveWasFirstMove = true;
+					firstMove = false;
+				} else {
+					lastMoveWasFirstMove = false;
+				}
 			}
 		}
 	    
@@ -80,6 +91,26 @@ public class WhiteTowerRight extends MovingObject {
 	@Override
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public boolean isFirstMove() {
+		return lastMoveWasFirstMove;
+	}
+
+	public boolean getFirstMove() {
+		return firstMove;
+	}
+
+	public void enroque() {
+		
+		ObjectPosition.posicionesDelTablero[Cell.getZ((int)posicion.getX())][Cell.getZ((int)posicion.getY())] = -1;
+		ObjectPosition.posicionesDelTablero[5][7] = Constants.wtrId;
+		posicion.setX(Cell.getFromCell(330));
+		//posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
+		ObjectPosition.piecePosition[Constants.wtrId] = new Vector2D(5*Constants.CELLSIZE, 7*Constants.CELLSIZE);
+		firstMove = false;
+		lastMoveWasFirstMove = true;
 	}
 	
 	

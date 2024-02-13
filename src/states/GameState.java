@@ -65,7 +65,7 @@ public class GameState {
     private Vector2D wp5Pos = new Vector2D(60 * 5, 60 * 6);
     private Vector2D wp6Pos = new Vector2D(60 * 6, 60 * 6);
     private Vector2D wp7Pos = new Vector2D(60 * 7, 60 * 6);
-
+    
     private Vector2D bkPos = new Vector2D(60 * 4, 60 * 0);
     private Vector2D bqPos = new Vector2D(60 * 3, 60 * 0);
     private Vector2D bblPos = new Vector2D(60 * 2, 60 * 0);

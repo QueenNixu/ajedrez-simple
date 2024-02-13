@@ -13,6 +13,8 @@ import states.GameState;
 public class BlackTowerLeft extends MovingObject {
 	
 	private static final int id = Constants.btlId;
+	private boolean firstMove = true;
+	private boolean lastMoveWasFirstMove = false;
 
 	public BlackTowerLeft(Vector2D posicion, BufferedImage textura, GameState gameState) {
 		super(posicion, textura, gameState);
@@ -30,15 +32,17 @@ public class BlackTowerLeft extends MovingObject {
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
 			Vector2D originalPos = Mouse.originalPos;
-			Cell.calcAllowedCells(originalPos, Constants.btlId);
+			Cell.calcAllowedCells(originalPos, Constants.btlId, firstMove, gameState);
 			//System.out.println("uwu -1");
 			
 		} else {
 			if(Mouse.lastPiece == Constants.btlId && Mouse.mouseRealesed) {
+				boolean valida;
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.btlId, Constants.BLACKSTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
+					valida = true;
 					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
 					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];
 					if(pieceOnCellId >= 0 && pieceOnCellId <= 15) {
@@ -51,6 +55,7 @@ public class BlackTowerLeft extends MovingObject {
 					ObjectPosition.piecePosition[Constants.btlId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
 					
 				} else {
+					valida = false;
 					if(Mouse.originalPos != null) {
 						posicion.setX(Mouse.originalPos.getX());
 						posicion.setY(Mouse.originalPos.getY());
@@ -58,7 +63,13 @@ public class BlackTowerLeft extends MovingObject {
 				}
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
-				Cell.deAllowCells(originalPos, Constants.btlId);
+				Cell.deAllowCells(originalPos, Constants.btlId, firstMove, gameState);
+				if(valida && firstMove) {
+					lastMoveWasFirstMove = true;
+					firstMove = false;
+				} else {
+					lastMoveWasFirstMove = false;
+				}
 			}
 		}
 	    
@@ -81,7 +92,14 @@ public class BlackTowerLeft extends MovingObject {
 	public int getId() {
 		return id;
 	}
+
+	@Override
+	public boolean isFirstMove() {
+		return lastMoveWasFirstMove;
+	}
 	
-	
+	public boolean getFirstMove() {
+		return firstMove;
+	}
 
 }

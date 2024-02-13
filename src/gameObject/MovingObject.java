@@ -65,5 +65,7 @@ public abstract class MovingObject extends GameObject{
 	public boolean isDead() {return Dead;}
 
 	public abstract int getId();
+
+	public abstract boolean isFirstMove();
 	
 }
