@@ -15,8 +15,6 @@ public class WhitePawn6 extends MovingObject {
 	private static final int id = Constants.wp6Id;
 	private boolean firstMove = true;
 	private boolean lastMoveWasFirstMove = false;
-	
-	private static GameState gameState;
 
 	public WhitePawn6(Vector2D posicion, BufferedImage textura, GameState gameState) {
 		super(posicion, textura, gameState);
@@ -42,7 +40,7 @@ public class WhitePawn6 extends MovingObject {
 				boolean valida;
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
-				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wp6Id, Constants.WHITESTART, null) && gameState.allowedCellsBool[newX][newY] ) {
+				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wp6Id, Constants.WHITESTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
 					valida = true;
 					gameState.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
