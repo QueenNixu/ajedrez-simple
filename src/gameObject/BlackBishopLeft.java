@@ -36,19 +36,19 @@ public class BlackBishopLeft extends MovingObject {
 			if(Mouse.lastPiece == Constants.bblId && Mouse.mouseRealesed) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
-				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.bblId, Constants.BLACKSTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
+				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.bblId, Constants.BLACKSTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
-					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
+					gameState.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
 					// llamar a object collision modificado para destruir enemigo
-					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];
+					int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
 					if(pieceOnCellId >= 0 && pieceOnCellId <= 15) {
 						System.out.println("COLISION CON PIEZA BLANCA: "+pieceOnCellId);
 						gameState.getMovingObject(pieceOnCellId).destroy();
 					}
-					ObjectPosition.posicionesDelTablero[newX][newY] = Constants.bblId;
+					gameState.posicionesDelTablero[newX][newY] = Constants.bblId;
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
-					ObjectPosition.piecePosition[Constants.bblId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
+					gameState.piecePosition[Constants.bblId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
 					
 				} else {
 					if(Mouse.originalPos != null) {
@@ -72,7 +72,7 @@ public class BlackBishopLeft extends MovingObject {
 	@Override
 	public void destroy() {
 			super.destroy();
-			ObjectPosition.piecePosition[id] = null;
+			gameState.piecePosition[id] = null;
 	}
 	
 	@Override

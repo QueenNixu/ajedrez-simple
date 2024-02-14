@@ -57,15 +57,14 @@ public class Window extends JFrame implements Runnable {
 		canvas.setFocusable(true);
 		
 		add(canvas);
-		
-		mouse = new Mouse();
-		canvas.addMouseListener(mouse);
-		canvas.addMouseMotionListener(mouse);
 	}
 	
 	private void init() {
 		Assets.init();
 		gameState = new GameState();
+		mouse = new Mouse(gameState);
+		canvas.addMouseListener(mouse);
+		canvas.addMouseMotionListener(mouse);
 	}
 	
 	private void generarTablero() {

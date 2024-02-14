@@ -1,7 +1,6 @@
 package math;
 
 import gameObject.Constants;
-import gameObject.ObjectPosition;
 import gameObject.WhiteTowerLeft;
 import gameObject.WhiteTowerRight;
 import states.GameState;
@@ -36,42 +35,42 @@ public class Cell {
 		return -1;
 	}
 
-	public static boolean allyCell(int i, int j, int exception, int allyStart) {
+	public static boolean allyCell(int i, int j, int exception, int allyStart, GameState gameState) {
 		
-		//System.out.println("ObjectPosition.posicionesDelTablero["+i+"]["+j+"]: "+ObjectPosition.posicionesDelTablero[i][j]);
+		//System.out.println("gameState.posicionesDelTablero["+i+"]["+j+"]: "+gameState.posicionesDelTablero[i][j]);
 		
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+1 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+2 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+3 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+4 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+5 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+6 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+7 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+8 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+9 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+10 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+11 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+12 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+13 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+14 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+15 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+1 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+2 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+3 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+4 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+5 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+6 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+7 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+8 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+9 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+10 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+11 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+12 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+13 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+14 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+15 && gameState.posicionesDelTablero[i][j] != exception) return true;
 		
 		return false;
 	}
 	
-	public static boolean peonCell(int i, int j, int exception, int allyStart) {
+	public static boolean peonCell(int i, int j, int exception, int allyStart, GameState gameState) {
 		
-		//System.out.println("ObjectPosition.posicionesDelTablero["+i+"]["+j+"]: "+ObjectPosition.posicionesDelTablero[i][j]);
+		//System.out.println("gameState.posicionesDelTablero["+i+"]["+j+"]: "+gameState.posicionesDelTablero[i][j]);
 		
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+8 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+9 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+10 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+11 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+12 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+13 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+14 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
-		if(ObjectPosition.posicionesDelTablero[i][j] == allyStart+15 && ObjectPosition.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+8 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+9 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+10 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+11 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+12 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+13 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+14 && gameState.posicionesDelTablero[i][j] != exception) return true;
+		if(gameState.posicionesDelTablero[i][j] == allyStart+15 && gameState.posicionesDelTablero[i][j] != exception) return true;
 		
 		return false;
 	}
@@ -111,50 +110,50 @@ public class Cell {
 		
 		switch (piece) {
 		case 0:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 1, firstMove);
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 1);
+			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 1, firstMove, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 1, gameState);
         	
         	WhiteTowerRight wtr = (WhiteTowerRight) gameState.getMovingObject(7);
         	if(firstMove && wtr.getFirstMove()
-        			&& !Cell.allyCell(6, 7, Constants.wtrId, Constants.WHITESTART)
-        			&& !Cell.allyCell(7, 7, Constants.wtrId, Constants.WHITESTART)
-        			&& !Cell.allyCell(6, 7, Constants.wtrId, Constants.BLACKSTART)
-        			&& !Cell.allyCell(7, 7, Constants.wtrId, Constants.BLACKSTART)) {
-        		ObjectPosition.allowedCellsBool[6][7] = true;
+        			&& !Cell.allyCell(6, 7, Constants.wtrId, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(7, 7, Constants.wtrId, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(6, 7, Constants.wtrId, Constants.BLACKSTART, gameState)
+        			&& !Cell.allyCell(7, 7, Constants.wtrId, Constants.BLACKSTART, gameState)) {
+        		gameState.allowedCellsBool[6][7] = true;
         	}
         	
         	WhiteTowerLeft wtl = (WhiteTowerLeft) gameState.getMovingObject(4);
         	if(firstMove && wtl.getFirstMove()
-        			&& !Cell.allyCell(1, 7, Constants.wtrId, Constants.WHITESTART)
-        			&& !Cell.allyCell(2, 7, Constants.wtrId, Constants.WHITESTART)
-        			&& !Cell.allyCell(3, 7, Constants.wtrId, Constants.WHITESTART)
-        			&& !Cell.allyCell(1, 7, Constants.wtrId, Constants.BLACKSTART)
-        			&& !Cell.allyCell(2, 7, Constants.wtrId, Constants.BLACKSTART)
-        			&& !Cell.allyCell(3, 7, Constants.wtrId, Constants.BLACKSTART)) {
-        		ObjectPosition.allowedCellsBool[2][7] = true;
+        			&& !Cell.allyCell(1, 7, Constants.wtrId, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(2, 7, Constants.wtrId, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(3, 7, Constants.wtrId, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(1, 7, Constants.wtrId, Constants.BLACKSTART, gameState)
+        			&& !Cell.allyCell(2, 7, Constants.wtrId, Constants.BLACKSTART, gameState)
+        			&& !Cell.allyCell(3, 7, Constants.wtrId, Constants.BLACKSTART, gameState)) {
+        		gameState.allowedCellsBool[2][7] = true;
         	}
             break;
 		case 1:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 7, firstMove);
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 7);
+			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 7, firstMove, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
             break;
 		case 2:
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 8);
+        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 8, gameState);
             break;
 		case 3:
-        	horseAllowedCells(originalPos, piece, Constants.WHITESTART);
+        	horseAllowedCells(originalPos, piece, Constants.WHITESTART, gameState);
             break;
 		case 4:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 7, firstMove);
+			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 7, firstMove, gameState);
             break;
 		case 5:
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 7);
+        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
             break;
 		case 6:
-        	horseAllowedCells(originalPos, piece, Constants.WHITESTART);
+        	horseAllowedCells(originalPos, piece, Constants.WHITESTART, gameState);
             break;
 		case 7:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 7, firstMove);
+			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 7, firstMove, gameState);
             break;
 		case 8:
 			pawnAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, firstMove, gameState);
@@ -181,30 +180,30 @@ public class Cell {
 			pawnAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, firstMove, gameState);
             break;
 		case 16:
-			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 1, firstMove);
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 1);
+			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 1, firstMove, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 1, gameState);
             break;
 		case 17:
-			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, firstMove);
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 7);
+			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, firstMove, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
             break;
         case 18:
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 7);
+        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
             break;
         case 19:
-        	horseAllowedCells(originalPos, piece, Constants.BLACKSTART);
+        	horseAllowedCells(originalPos, piece, Constants.BLACKSTART, gameState);
             break;
         case 20:
-        	towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, firstMove);
+        	towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, firstMove, gameState);
             break;
         case 21:
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 7);
+        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
             break;
         case 22:
-        	horseAllowedCells(originalPos, piece, Constants.BLACKSTART);
+        	horseAllowedCells(originalPos, piece, Constants.BLACKSTART, gameState);
             break;
         case 23:
-        	towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, firstMove);
+        	towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, firstMove, gameState);
             break;
         case 24:
         	pawnAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, firstMove, gameState);
@@ -238,135 +237,135 @@ public class Cell {
 		
 		switch (piece) {
 		case 0:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 1);
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 1);
+			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 1, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 1, gameState);
 			//WhiteTowerRight wtr = (WhiteTowerRight) gameState.getMovingObject(7);
 			if(firstMove) {
-        		ObjectPosition.allowedCellsBool[6][7] = false;
-        		ObjectPosition.allowedCellsBool[5][7] = false;
+        		gameState.allowedCellsBool[6][7] = false;
+        		gameState.allowedCellsBool[5][7] = false;
         	}
         	//WhiteTowerLeft wtl = (WhiteTowerLeft) gameState.getMovingObject(4);
         	if(firstMove) {
-        		ObjectPosition.allowedCellsBool[2][7] = false;
-        		ObjectPosition.allowedCellsBool[3][7] = false;
+        		gameState.allowedCellsBool[2][7] = false;
+        		gameState.allowedCellsBool[3][7] = false;
         	}
             break;
 		case 1:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 7);
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 7);
+			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
             break;
 		case 2:
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 7);
+			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
             break;
 		case 3:
-			horseDeallowCells(originalPos);
+			horseDeallowCells(originalPos, gameState);
             break;
 		case 4:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 7);
+			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
             break;
 		case 5:
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 7);
+			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
             break;
 		case 6:
-			horseDeallowCells(originalPos);
+			horseDeallowCells(originalPos, gameState);
             break;
 		case 7:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 7);
+			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
             break;
 		case 8:
-			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove);
+			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove, gameState);
             break;
 		case 9:
-			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove);
+			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove, gameState);
             break;
 		case 10:
-			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove);
+			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove, gameState);
             break;
 		case 11:
-			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove);
+			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove, gameState);
             break;
 		case 12:
-			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove);
+			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove, gameState);
             break;
 		case 13:
-			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove);
+			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove, gameState);
             break;
 		case 14:
-			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove);
+			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove, gameState);
             break;
 		case 15:
-			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove);
+			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove, gameState);
             break;
 		case 16:
-			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 1);
-			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 1);
+			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 1, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 1, gameState);
             break;
 		case 17:
-			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 7);
-			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 7);
+			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
             break;
         case 18:
-        	bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 7);
+        	bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
             break;
         case 19:
-        	horseDeallowCells(originalPos);
+        	horseDeallowCells(originalPos, gameState);
             break;
         case 20:
-        	towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 7);
+        	towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
             break;
         case 21:
-        	bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 7);
+        	bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
             break;
         case 22:
-        	horseDeallowCells(originalPos);
+        	horseDeallowCells(originalPos, gameState);
             break;
         case 23:
-        	towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 7);
+        	towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
             break;
         case 24:
-        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove);
+        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove, gameState);
             break;
         case 25:
-        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove);
+        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove, gameState);
             break;
         case 26:
-        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove);
+        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove, gameState);
             break;
         case 27:
-        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove);
+        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove, gameState);
             break;
         case 28:
-        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove);
+        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove, gameState);
             break;
         case 29:
-        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove);
+        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove, gameState);
             break;
         case 30:
-        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove);
+        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove, gameState);
             break;
         case 31:
-        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove);
+        	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove, gameState);
             break;
         default:
 		}
 	}
 	
 
-	private static void bishopAllowedCells(Vector2D originalPos, int exception, int allyStart, int end) {
+	private static void bishopAllowedCells(Vector2D originalPos, int exception, int allyStart, int end, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
 		
 		//System.out.println(i);
 		//System.out.println(j);
-		//ObjectPosition.allowedCellsBool[3][3] = true;
+		//gameState.allowedCellsBool[3][3] = true;
 		
 		int i = iAux;
 		int j = jAux;
 		int iter = 0;
-		while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, exception, allyStart) && iter < end) {
+		while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i-1)+","+(j-1));
-			ObjectPosition.allowedCellsBool[i-1][j - 1] = true;
+			gameState.allowedCellsBool[i-1][j - 1] = true;
 			j--;
 			i--;
 			iter++;
@@ -374,9 +373,9 @@ public class Cell {
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(i+1 <= 7 && j-1 >= 0&& !allyCell(i+1,j-1, exception, allyStart) && iter < end) {
+		while(i+1 <= 7 && j-1 >= 0&& !allyCell(i+1,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i+1)+","+(j-1));
-			ObjectPosition.allowedCellsBool[i+1][j-1] = true;
+			gameState.allowedCellsBool[i+1][j-1] = true;
 			i++;
 			j--;
 			iter++;
@@ -384,9 +383,9 @@ public class Cell {
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, exception, allyStart) && iter < end) {
+		while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i+1)+","+(j+1));
-			ObjectPosition.allowedCellsBool[i+1][j+1] = true;
+			gameState.allowedCellsBool[i+1][j+1] = true;
 			j++;
 			i++;
 			iter++;
@@ -394,9 +393,9 @@ public class Cell {
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, exception, allyStart) && iter < end) {
+		while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i-1)+","+(j+1));
-			ObjectPosition.allowedCellsBool[i-1][j+1] = true;
+			gameState.allowedCellsBool[i-1][j+1] = true;
 			i--;
 			j++;
 			iter++;
@@ -404,7 +403,7 @@ public class Cell {
 		
 	}
 
-	private static void bishopDeallowCells(Vector2D originalPos, int exception, int allyStart, int end) {
+	private static void bishopDeallowCells(Vector2D originalPos, int exception, int allyStart, int end, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
@@ -415,9 +414,9 @@ public class Cell {
 		int i = iAux;
 		int j = jAux;
 		int iter = 0;
-		while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, exception, allyStart) && iter < end) {
+		while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i-1)+","+(j-1));
-			ObjectPosition.allowedCellsBool[i-1][j - 1] = false;
+			gameState.allowedCellsBool[i-1][j - 1] = false;
 			j--;
 			i--;
 			iter++;
@@ -425,9 +424,9 @@ public class Cell {
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(i+1 <= 7 && j-1 >= 0&& !allyCell(i+1,j-1, exception, allyStart) && iter < end) {
+		while(i+1 <= 7 && j-1 >= 0&& !allyCell(i+1,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i+1)+","+(j-1));
-			ObjectPosition.allowedCellsBool[i+1][j-1] = false;
+			gameState.allowedCellsBool[i+1][j-1] = false;
 			i++;
 			j--;
 			iter++;
@@ -435,9 +434,9 @@ public class Cell {
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, exception, allyStart) && iter < end) {
+		while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i+1)+","+(j+1));
-			ObjectPosition.allowedCellsBool[i+1][j+1] = false;
+			gameState.allowedCellsBool[i+1][j+1] = false;
 			j++;
 			i++;
 			iter++;
@@ -445,9 +444,9 @@ public class Cell {
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, exception, allyStart) && iter < end) {
+		while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i-1)+","+(j+1));
-			ObjectPosition.allowedCellsBool[i-1][j+1] = false;
+			gameState.allowedCellsBool[i-1][j+1] = false;
 			i--;
 			j++;
 			iter++;
@@ -455,7 +454,7 @@ public class Cell {
 		
 	}
 
-	private static void horseAllowedCells(Vector2D originalPos, int exception, int allyStart) {
+	private static void horseAllowedCells(Vector2D originalPos, int exception, int allyStart, GameState gameState) {
 		
 		int i = getZ((int)originalPos.getX());
 		int j = getZ((int)originalPos.getY());
@@ -463,42 +462,42 @@ public class Cell {
 		//System.out.println(i);
 		//System.out.println(j);
 		
-		if (i - 1 >= 0 && j - 2 >= 0 && !allyCell(i-1,j-2, exception, allyStart)) {
-			ObjectPosition.allowedCellsBool[i - 1][j - 2] = true;
+		if (i - 1 >= 0 && j - 2 >= 0 && !allyCell(i-1,j-2, exception, allyStart, gameState)) {
+			gameState.allowedCellsBool[i - 1][j - 2] = true;
 		}
 
-		if (i + 1 <= 7 && j - 2 >= 0 && !allyCell(i+1,j-2, exception, allyStart)) {
-		    ObjectPosition.allowedCellsBool[i + 1][j - 2] = true;
+		if (i + 1 <= 7 && j - 2 >= 0 && !allyCell(i+1,j-2, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i + 1][j - 2] = true;
 		}
 
-		if (i - 2 >= 0 && j - 1 >= 0 && !allyCell(i-2,j-1, exception, allyStart)) {
-		    ObjectPosition.allowedCellsBool[i - 2][j - 1] = true;
+		if (i - 2 >= 0 && j - 1 >= 0 && !allyCell(i-2,j-1, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i - 2][j - 1] = true;
 		}
 
-		if (i - 2 >= 0 && j + 1 <= 7 && !allyCell(i-2,j+1, exception, allyStart)) {
-		    ObjectPosition.allowedCellsBool[i - 2][j + 1] = true;
+		if (i - 2 >= 0 && j + 1 <= 7 && !allyCell(i-2,j+1, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i - 2][j + 1] = true;
 		}
 
-		if (i - 1 >= 0 && j + 2 <= 7 && !allyCell(i-1,j+2, exception, allyStart)) {
-		    ObjectPosition.allowedCellsBool[i - 1][j + 2] = true;
+		if (i - 1 >= 0 && j + 2 <= 7 && !allyCell(i-1,j+2, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i - 1][j + 2] = true;
 		}
 
-		if (i + 1 <= 7 && j + 2 <= 7 && !allyCell(i+1,j+2, exception, allyStart)) {
-		    ObjectPosition.allowedCellsBool[i + 1][j + 2] = true;
+		if (i + 1 <= 7 && j + 2 <= 7 && !allyCell(i+1,j+2, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i + 1][j + 2] = true;
 		}
 
-		if (i + 2 <= 7 && j - 1 >= 0 && !allyCell(i+2,j-1, exception, allyStart)) {
-		    ObjectPosition.allowedCellsBool[i + 2][j - 1] = true;
+		if (i + 2 <= 7 && j - 1 >= 0 && !allyCell(i+2,j-1, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i + 2][j - 1] = true;
 		}
 
-		if (i + 2 <= 7 && j + 1 <= 7 && !allyCell(i+2,j+1, exception, allyStart)) {
-		    ObjectPosition.allowedCellsBool[i + 2][j + 1] = true;
+		if (i + 2 <= 7 && j + 1 <= 7 && !allyCell(i+2,j+1, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i + 2][j + 1] = true;
 		}
 
 		
 	}
 
-	private static void horseDeallowCells(Vector2D originalPos) {
+	private static void horseDeallowCells(Vector2D originalPos, GameState gameState) {
 		
 		int i = Cell.getZ((int)originalPos.getX());
 		int j = Cell.getZ((int)originalPos.getY());
@@ -507,40 +506,40 @@ public class Cell {
 		//System.out.println(j);
 		
 		if (i - 1 >= 0 && j - 2 >= 0) {
-			ObjectPosition.allowedCellsBool[i - 1][j - 2] = false;
+			gameState.allowedCellsBool[i - 1][j - 2] = false;
 		}
 
 		if (i + 1 <= 7 && j - 2 >= 0) {
-		    ObjectPosition.allowedCellsBool[i + 1][j - 2] = false;
+		    gameState.allowedCellsBool[i + 1][j - 2] = false;
 		}
 
 		if (i - 2 >= 0 && j - 1 >= 0) {
-		    ObjectPosition.allowedCellsBool[i - 2][j - 1] = false;
+		    gameState.allowedCellsBool[i - 2][j - 1] = false;
 		}
 
 		if (i - 2 >= 0 && j + 1 <= 7) {
-		    ObjectPosition.allowedCellsBool[i - 2][j + 1] = false;
+		    gameState.allowedCellsBool[i - 2][j + 1] = false;
 		}
 
 		if (i - 1 >= 0 && j + 2 <= 7) {
-		    ObjectPosition.allowedCellsBool[i - 1][j + 2] = false;
+		    gameState.allowedCellsBool[i - 1][j + 2] = false;
 		}
 
 		if (i + 1 <= 7 && j + 2 <= 7) {
-		    ObjectPosition.allowedCellsBool[i + 1][j + 2] = false;
+		    gameState.allowedCellsBool[i + 1][j + 2] = false;
 		}
 
 		if (i + 2 <= 7 && j - 1 >= 0) {
-		    ObjectPosition.allowedCellsBool[i + 2][j - 1] = false;
+		    gameState.allowedCellsBool[i + 2][j - 1] = false;
 		}
 
 		if (i + 2 <= 7 && j + 1 <= 7) {
-		    ObjectPosition.allowedCellsBool[i + 2][j + 1] = false;
+		    gameState.allowedCellsBool[i + 2][j + 1] = false;
 		}
 		
 	}
 
-	private static void towerAllowedCells(Vector2D originalPos, int exception, int allyStart, int end, boolean firstMove) {
+	private static void towerAllowedCells(Vector2D originalPos, int exception, int allyStart, int end, boolean firstMove, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
@@ -551,36 +550,36 @@ public class Cell {
 		int i = iAux;
 		int j = jAux;
 		int iter = 0;
-		while(j-1 >= 0 && !allyCell(i,j-1, exception, allyStart) && iter < end) {
+		while(j-1 >= 0 && !allyCell(i,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+i+","+(j-1));
-			ObjectPosition.allowedCellsBool[i][j - 1] = true;
+			gameState.allowedCellsBool[i][j - 1] = true;
 			j--;
 			iter++;
 		}
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(i+1 <= 7 && !allyCell(i+1,j, exception, allyStart) && iter < end) {
+		while(i+1 <= 7 && !allyCell(i+1,j, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i+1)+","+j);
-			ObjectPosition.allowedCellsBool[i+1][j] = true;
+			gameState.allowedCellsBool[i+1][j] = true;
 			i++;
 			iter++;
 		}
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(j+1 <= 7 && !allyCell(i,j+1, exception, allyStart) && iter < end) {
+		while(j+1 <= 7 && !allyCell(i,j+1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i)+","+(j+1));
-			ObjectPosition.allowedCellsBool[i][j+1] = true;
+			gameState.allowedCellsBool[i][j+1] = true;
 			j++;
 			iter++;
 		}
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(i-1 >= 0 && !allyCell(i-1,j, exception, allyStart) && iter < end) {
+		while(i-1 >= 0 && !allyCell(i-1,j, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i-1)+","+j);
-			ObjectPosition.allowedCellsBool[i-1][j] = true;
+			gameState.allowedCellsBool[i-1][j] = true;
 			i--;
 			iter++;
 		}
@@ -588,7 +587,7 @@ public class Cell {
 		
 	}
 
-	private static void towerDeallowCells(Vector2D originalPos, int exception, int allyStart, int end) {
+	private static void towerDeallowCells(Vector2D originalPos, int exception, int allyStart, int end, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
@@ -599,36 +598,36 @@ public class Cell {
 		int i = iAux;
 		int j = jAux;
 		int iter = 0;
-		while(j-1 >= 0 && !allyCell(i,j-1, exception, allyStart) && iter < end) {
+		while(j-1 >= 0 && !allyCell(i,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+i+","+(j-1));
-			ObjectPosition.allowedCellsBool[i][j - 1] = false;
+			gameState.allowedCellsBool[i][j - 1] = false;
 			j--;
 			iter++;
 		}
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(i+1 <= 7 && !allyCell(i+1,j, exception, allyStart) && iter < end) {
+		while(i+1 <= 7 && !allyCell(i+1,j, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i+1)+","+j);
-			ObjectPosition.allowedCellsBool[i+1][j] = false;
+			gameState.allowedCellsBool[i+1][j] = false;
 			i++;
 			iter++;
 		}
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(j+1 <= 7 && !allyCell(i,j+1, exception, allyStart) && iter < end) {
+		while(j+1 <= 7 && !allyCell(i,j+1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i)+","+(j+1));
-			ObjectPosition.allowedCellsBool[i][j+1] = false;
+			gameState.allowedCellsBool[i][j+1] = false;
 			j++;
 			iter++;
 		}
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(i-1 >= 0 && !allyCell(i-1,j, exception, allyStart) && iter < end) {
+		while(i-1 >= 0 && !allyCell(i-1,j, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i-1)+","+j);
-			ObjectPosition.allowedCellsBool[i-1][j] = false;
+			gameState.allowedCellsBool[i-1][j] = false;
 			i--;
 			iter++;
 		}
@@ -645,58 +644,58 @@ public class Cell {
 		
 		switch(allyStart) {
 			case 0:
-				if (j-1 >= 0 && !allyCell(i,j-1,exception, allyStart) && !allyCell(i,j-1,exception, enemyStart)) {
-					ObjectPosition.allowedCellsBool[i][j - 1] = true;
+				if (j-1 >= 0 && !allyCell(i,j-1,exception, allyStart, gameState) && !allyCell(i,j-1,exception, enemyStart, gameState)) {
+					gameState.allowedCellsBool[i][j - 1] = true;
 					if(firstMove) {
-						ObjectPosition.allowedCellsBool[i][j - 2] = true;
+						gameState.allowedCellsBool[i][j - 2] = true;
 						//firstMove = false;
 					}
 				}
-				if(j-1 >= 0 && i-1 >= 0 && allyCell(i-1,j-1,exception, enemyStart)) {
-					ObjectPosition.allowedCellsBool[i-1][j - 1] = true;
+				if(j-1 >= 0 && i-1 >= 0 && allyCell(i-1,j-1,exception, enemyStart, gameState)) {
+					gameState.allowedCellsBool[i-1][j - 1] = true;
 				}
-				if(j-1 >= 0 && i+1 <= 7 && allyCell(i+1,j-1,exception, enemyStart)) {
-					ObjectPosition.allowedCellsBool[i+1][j - 1] = true;
+				if(j-1 >= 0 && i+1 <= 7 && allyCell(i+1,j-1,exception, enemyStart, gameState)) {
+					gameState.allowedCellsBool[i+1][j - 1] = true;
 				}
-				if(i-1 >= 0 && peonCell(i-1, j, exception, enemyStart)) {
-					if(gameState.getMovingObject(ObjectPosition.posicionesDelTablero[i-1][j]).isFirstMove()) {
+				if(i-1 >= 0 && peonCell(i-1, j, exception, enemyStart, gameState)) {
+					if(gameState.getMovingObject(gameState.posicionesDelTablero[i-1][j]).isFirstMove()) {
 						//System.out.println("ENEMY PAWN");
-						ObjectPosition.allowedCellsBool[i-1][j - 1] = true;
+						gameState.allowedCellsBool[i-1][j - 1] = true;
 					}
 					
 				}
-				if(i+1 <= 7 && peonCell(i+1, j, exception, enemyStart)) {
-					if(gameState.getMovingObject(ObjectPosition.posicionesDelTablero[i+1][j]).isFirstMove()) {
+				if(i+1 <= 7 && peonCell(i+1, j, exception, enemyStart, gameState)) {
+					if(gameState.getMovingObject(gameState.posicionesDelTablero[i+1][j]).isFirstMove()) {
 						//System.out.println("ENEMY PAWN");
-						ObjectPosition.allowedCellsBool[i+1][j - 1] = true;
+						gameState.allowedCellsBool[i+1][j - 1] = true;
 					}
 				}
 				break;
 			case 16:
-				if (j+1 <= 7 && !allyCell(i,j+1,exception, allyStart) && !allyCell(i,j+1,exception, enemyStart)) {
-					ObjectPosition.allowedCellsBool[i][j + 1] = true;
+				if (j+1 <= 7 && !allyCell(i,j+1,exception, allyStart, gameState) && !allyCell(i,j+1,exception, enemyStart, gameState)) {
+					gameState.allowedCellsBool[i][j + 1] = true;
 					if(firstMove) {
-						ObjectPosition.allowedCellsBool[i][j + 2] = true;
+						gameState.allowedCellsBool[i][j + 2] = true;
 						//firstMove = false;
 					}
 				}
-				if(j+1 <= 7 && i-1 >= 0 && allyCell(i-1,j+1,exception, enemyStart)) {
-					ObjectPosition.allowedCellsBool[i-1][j + 1] = true;
+				if(j+1 <= 7 && i-1 >= 0 && allyCell(i-1,j+1,exception, enemyStart, gameState)) {
+					gameState.allowedCellsBool[i-1][j + 1] = true;
 				}
-				if(j+1 <= 7 && i+1 <= 7 && allyCell(i+1,j+1,exception, enemyStart)) {
-					ObjectPosition.allowedCellsBool[i+1][j + 1] = true;
+				if(j+1 <= 7 && i+1 <= 7 && allyCell(i+1,j+1,exception, enemyStart, gameState)) {
+					gameState.allowedCellsBool[i+1][j + 1] = true;
 				}
-				if(i-1 >= 0 && peonCell(i-1, j, exception, enemyStart)) {
-					if(gameState.getMovingObject(ObjectPosition.posicionesDelTablero[i-1][j]).isFirstMove()) {
-						ObjectPosition.allowedCellsBool[i-1][j + 1] = true;
+				if(i-1 >= 0 && peonCell(i-1, j, exception, enemyStart, gameState)) {
+					if(gameState.getMovingObject(gameState.posicionesDelTablero[i-1][j]).isFirstMove()) {
+						gameState.allowedCellsBool[i-1][j + 1] = true;
 						//System.out.println("ENEMY PAWN");
 					}
 					
 				}
-				if(i+1 <= 7 && peonCell(i+1, j, exception, enemyStart)) {
-					//System.out.println(gameState.getMovingObject(ObjectPosition.posicionesDelTablero[i+1][j]).isFirstMove());
-					if(gameState.getMovingObject(ObjectPosition.posicionesDelTablero[i+1][j]).isFirstMove()) {
-						ObjectPosition.allowedCellsBool[i+1][j + 1] = true;
+				if(i+1 <= 7 && peonCell(i+1, j, exception, enemyStart, gameState)) {
+					//System.out.println(gameState.getMovingObject(gameState.posicionesDelTablero[i+1][j]).isFirstMove());
+					if(gameState.getMovingObject(gameState.posicionesDelTablero[i+1][j]).isFirstMove()) {
+						gameState.allowedCellsBool[i+1][j + 1] = true;
 						//System.out.println("ENEMY PAWN");
 					}
 				}
@@ -706,7 +705,7 @@ public class Cell {
 		
 	}
 	
-	private static void pawnDeallowCells(Vector2D originalPos, int allyStart, boolean firstMove) {
+	private static void pawnDeallowCells(Vector2D originalPos, int allyStart, boolean firstMove, GameState gameState) {
 		
 		int i = getZ((int)originalPos.getX());
 		int j = getZ((int)originalPos.getY());
@@ -717,30 +716,30 @@ public class Cell {
 		switch(allyStart) {
 		case 0:
 			if (j-1 >= 0) {
-				ObjectPosition.allowedCellsBool[i][j - 1] = false;
+				gameState.allowedCellsBool[i][j - 1] = false;
 				if(firstMove) {
-					ObjectPosition.allowedCellsBool[i][j - 2] = false;
+					gameState.allowedCellsBool[i][j - 2] = false;
 				}
 			}
 			if(j-1 >= 0 && i-1 >= 0) {
-				ObjectPosition.allowedCellsBool[i-1][j - 1] = false;
+				gameState.allowedCellsBool[i-1][j - 1] = false;
 			}
 			if(j-1 >= 0 && i+1 <= 7) {
-				ObjectPosition.allowedCellsBool[i+1][j - 1] = false;
+				gameState.allowedCellsBool[i+1][j - 1] = false;
 			}
 			break;
 		case 16:
 			if (j+1 <= 7) {
-				ObjectPosition.allowedCellsBool[i][j + 1] = false;
+				gameState.allowedCellsBool[i][j + 1] = false;
 				if(firstMove) {
-					ObjectPosition.allowedCellsBool[i][j + 2] = false;
+					gameState.allowedCellsBool[i][j + 2] = false;
 				}
 			}
 			if(j+1 <= 7 && i-1 >= 0) {
-				ObjectPosition.allowedCellsBool[i-1][j + 1] = false;
+				gameState.allowedCellsBool[i-1][j + 1] = false;
 			}
 			if(j+1 <= 7 && i+1 <= 7) {
-				ObjectPosition.allowedCellsBool[i+1][j + 1] = false;
+				gameState.allowedCellsBool[i+1][j + 1] = false;
 			}
 			break;
 		default:

@@ -37,18 +37,18 @@ public class BlackHorseRight extends MovingObject {
 			if(Mouse.lastPiece == Constants.bhrId && Mouse.mouseRealesed) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
-				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.bhrId, Constants.BLACKSTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
+				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.bhrId, Constants.BLACKSTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
-					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
-					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];
+					gameState.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
+					int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
 					if(pieceOnCellId >= 0 && pieceOnCellId <= 15) {
 						System.out.println("COLISION CON PIEZA BLANCA: "+pieceOnCellId);
 						gameState.getMovingObject(pieceOnCellId).destroy();
 					}
-					ObjectPosition.posicionesDelTablero[newX][newY] = Constants.bhrId;
+					gameState.posicionesDelTablero[newX][newY] = Constants.bhrId;
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
-					ObjectPosition.piecePosition[Constants.bhrId] = new Vector2D(newX*60, newY*60);
+					gameState.piecePosition[Constants.bhrId] = new Vector2D(newX*60, newY*60);
 					
 				} else {
 					if(Mouse.originalPos != null) {
@@ -72,7 +72,7 @@ public class BlackHorseRight extends MovingObject {
 	@Override
 	public void destroy() {
 			super.destroy();
-			ObjectPosition.piecePosition[id] = null;
+			gameState.piecePosition[id] = null;
 	}
 	
 

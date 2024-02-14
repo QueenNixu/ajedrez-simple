@@ -44,20 +44,6 @@ public abstract class MovingObject extends GameObject{
 		}
 	}
 	
-	private void objectCollision(MovingObject a, MovingObject b) {
-		/*
-		if(a instanceof Meteor && b instanceof Meteor)
-			return;
-		
-		if(!(a instanceof PowerUp || b instanceof PowerUp)){
-			a.Destroy();
-			b.Destroy();
-			return;
-		}
-		*/
-		
-	}
-	
 	protected void destroy(){
 		Dead = true;
 	}

@@ -4,8 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import gameObject.ObjectPosition;
 import math.Vector2D;
+import states.GameState;
 
 public class Mouse implements MouseListener, MouseMotionListener {
 	
@@ -56,9 +56,11 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	public static boolean mouseRealesed = false;
 	public static int oriPosX;
 	public static int oriPosY;
+	protected GameState gameState;
 	
 	
-	public Mouse() {
+	public Mouse(GameState gameState) {
+		this.gameState = gameState;
 		for(int i = 0; i < piece.length; i++) {
 	        piece[i] = false;
 	    }
@@ -150,13 +152,13 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	        oriPosX = e.getX();
 	        oriPosY = e.getY();
 	        
-	        int pieceId = ObjectPosition.piece(mouseXOnApp, mouseYOnApp);
+	        int pieceId = gameState.piece(mouseXOnApp, mouseYOnApp);
 	        lastPiece = pieceId;
 	        
 	        System.out.println(pieceId);
 	        
 	        if(pieceId != -1) {
-	            originalPos = ObjectPosition.getCell(pieceId);
+	            originalPos = gameState.getCell(pieceId);
 	            mousePressed = true;
 	            piece[pieceId] = true;
 	        }

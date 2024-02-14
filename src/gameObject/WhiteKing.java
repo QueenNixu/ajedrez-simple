@@ -40,16 +40,16 @@ public class WhiteKing extends MovingObject {
 				boolean valida;
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
-				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wkId, Constants.WHITESTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
+				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wkId, Constants.WHITESTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
 					valida = true;
-					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
-					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];
+					gameState.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
+					int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
 					if(pieceOnCellId >= 16 && pieceOnCellId <= 31) {
 						System.out.println("COLISION CON PIEZA NEGRA: "+pieceOnCellId);
 						gameState.getMovingObject(pieceOnCellId).destroy();
 					}
-					ObjectPosition.posicionesDelTablero[newX][newY] = Constants.wkId;
+					gameState.posicionesDelTablero[newX][newY] = Constants.wkId;
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
 					if(firstMove && Cell.getZ((int)posicion.getX()) == 6) {
@@ -59,7 +59,7 @@ public class WhiteKing extends MovingObject {
 							((WhiteTowerLeft)gameState.getMovingObject(4)).enroque();
 						}
 					}
-					ObjectPosition.piecePosition[Constants.wkId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
+					gameState.piecePosition[Constants.wkId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
 					
 				} else {
 					valida = false;
@@ -92,7 +92,7 @@ public class WhiteKing extends MovingObject {
 	@Override
 	public void destroy() {
 			super.destroy();
-			ObjectPosition.piecePosition[id] = null;
+			gameState.piecePosition[id] = null;
 	}
 	
 	@Override

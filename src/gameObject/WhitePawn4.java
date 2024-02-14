@@ -40,24 +40,24 @@ public class WhitePawn4 extends MovingObject {
 				boolean valida;
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
-				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wp4Id, Constants.WHITESTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
+				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wp4Id, Constants.WHITESTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
 					valida = true;
-					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
-					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];
+					gameState.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
+					int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
 					if(pieceOnCellId >= 16 && pieceOnCellId <= 31) {
 						System.out.println("COLISION CON PIEZA NEGRA: "+pieceOnCellId);
 						gameState.getMovingObject(pieceOnCellId).destroy();
 					}
-					ObjectPosition.posicionesDelTablero[newX][newY] = Constants.wp4Id;
+					gameState.posicionesDelTablero[newX][newY] = Constants.wp4Id;
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
-					pieceOnCellId = ObjectPosition.posicionesDelTablero[Cell.getZ((int)posicion.getX())][Cell.getZ((int)posicion.getY())+1];
+					pieceOnCellId = gameState.posicionesDelTablero[Cell.getZ((int)posicion.getX())][Cell.getZ((int)posicion.getY())+1];
 					if(pieceOnCellId >= 24 && pieceOnCellId <= 31) {
 						//System.out.println("pieceOnCellId: "+pieceOnCellId);
 						gameState.getMovingObject(pieceOnCellId).destroy();
 					}
-					ObjectPosition.piecePosition[Constants.wp4Id] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
+					gameState.piecePosition[Constants.wp4Id] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
 					
 				} else {
 					valida = false;
@@ -90,7 +90,7 @@ public class WhitePawn4 extends MovingObject {
 	@Override
 	public void destroy() {
 			super.destroy();
-			ObjectPosition.piecePosition[id] = null;
+			gameState.piecePosition[id] = null;
 	}
 	
 	@Override

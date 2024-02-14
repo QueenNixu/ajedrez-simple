@@ -19,7 +19,7 @@ public class BlackBishopRight extends MovingObject {
 	}
 
 	@Override
-public void update() {
+	public void update() {
 		
 		//posicion.setX(0);
 		//posicion.setY(0);
@@ -37,19 +37,19 @@ public void update() {
 			if(Mouse.lastPiece == Constants.bbrId && Mouse.mouseRealesed) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
-				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.bbrId, Constants.BLACKSTART) && ObjectPosition.allowedCellsBool[newX][newY] ) {
+				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.bbrId, Constants.BLACKSTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
-					ObjectPosition.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
-					int pieceOnCellId = ObjectPosition.posicionesDelTablero[newX][newY];
+					gameState.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
+					int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
 					if(pieceOnCellId >= 0 && pieceOnCellId <= 15) {
 						System.out.println("COLISION CON PIEZA BLANCA: "+pieceOnCellId);
 						gameState.getMovingObject(pieceOnCellId).destroy();
 					}
-					ObjectPosition.posicionesDelTablero[newX][newY] = Constants.bbrId;
+					gameState.posicionesDelTablero[newX][newY] = Constants.bbrId;
 					// llamar a object collision modificado para destruir enemigo
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
-					ObjectPosition.piecePosition[Constants.bbrId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
+					gameState.piecePosition[Constants.bbrId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
 					
 				} else {
 					if(Mouse.originalPos != null) {
@@ -73,7 +73,7 @@ public void update() {
 	@Override
 	public void destroy() {
 			super.destroy();
-			ObjectPosition.piecePosition[id] = null;
+			gameState.piecePosition[id] = null;
 	}
 	
 	@Override
