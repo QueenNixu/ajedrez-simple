@@ -25,7 +25,7 @@ public class BlackQueen extends MovingObject {
 		//posicion.setY(0);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.bq && Mouse.mousePressed) {
+		if(Mouse.bq && Mouse.mousePressed && gameState.blackTurn) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
@@ -34,7 +34,7 @@ public class BlackQueen extends MovingObject {
 			//System.out.println("uwu -1");
 			
 		} else {
-			if(Mouse.lastPiece == Constants.bqId && Mouse.mouseRealesed) {
+			if(Mouse.lastPiece == Constants.bqId && Mouse.mouseRealesed && gameState.blackTurn) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.bqId, Constants.BLACKSTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
@@ -49,7 +49,9 @@ public class BlackQueen extends MovingObject {
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
 					gameState.piecePosition[Constants.bqId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
-					
+
+					gameState.nextTurn();
+						
 				} else {
 					if(Mouse.originalPos != null) {
 						posicion.setX(Mouse.originalPos.getX());

@@ -40,6 +40,7 @@ import gameObject.WhitePawn6;
 import gameObject.WhitePawn7;
 import graphics.Assets;
 import input.Mouse;
+import math.Cell;
 import math.Vector2D;
 
 public class GameState {
@@ -61,8 +62,18 @@ public class GameState {
 	public Vector2D[] piecePosition = new Vector2D[32];
 	
 	public Boolean[][] allowedCellsBool = new Boolean[8][8];
+	
+	public int turn;
+
+	private boolean turnPlayed;
+
+	public boolean whiteTurn;
+	public boolean blackTurn;
 
     public GameState() {
+    	
+    	whiteTurn = true;
+    	blackTurn = false;
     	
         // Inicialización de las piezas blancas
     	movingObjects.add(new WhiteKing(Constants.wkPos, Assets.whiteKing, this));
@@ -160,6 +171,9 @@ public class GameState {
             for (int i = 0; i < 8; i++) {
                 System.arraycopy(posicionesDelTableroAux[i], 0, posicionesDelTablero[i], 0, 8);
             }
+            
+            turn = 1;
+            turnPlayed = false;
         
     }
 
@@ -186,6 +200,13 @@ public class GameState {
             		}
             	}
             }
+        }
+        
+        if(turnPlayed) {
+        	turn++;
+        	whiteTurn = !whiteTurn;
+        	blackTurn = !blackTurn;
+        	turnPlayed = false;
         }
         
         
@@ -249,6 +270,15 @@ public class GameState {
 			return piecePosition[pieceId];
 		}
 		return null;
+	}
+	
+	public void nextTurn() {
+		System.out.println("NEXT TURN");
+		turnPlayed = true;
+	}
+	
+	public void setPosicionEnElTablero(int i, int j, int id) {
+		posicionesDelTablero[i][j] = id;
 	}
 	
 }

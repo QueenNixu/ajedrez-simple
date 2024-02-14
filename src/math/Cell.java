@@ -659,14 +659,14 @@ public class Cell {
 				}
 				if(i-1 >= 0 && peonCell(i-1, j, exception, enemyStart, gameState)) {
 					if(gameState.getMovingObject(gameState.posicionesDelTablero[i-1][j]).isFirstMove()) {
-						//System.out.println("ENEMY PAWN");
+						System.out.println("ENEMY PAWN");
 						gameState.allowedCellsBool[i-1][j - 1] = true;
 					}
 					
 				}
 				if(i+1 <= 7 && peonCell(i+1, j, exception, enemyStart, gameState)) {
 					if(gameState.getMovingObject(gameState.posicionesDelTablero[i+1][j]).isFirstMove()) {
-						//System.out.println("ENEMY PAWN");
+						System.out.println("ENEMY PAWN");
 						gameState.allowedCellsBool[i+1][j - 1] = true;
 					}
 				}

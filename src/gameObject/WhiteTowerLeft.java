@@ -27,7 +27,7 @@ public class WhiteTowerLeft extends MovingObject {
 		//posicion.setY(0);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.wtl && Mouse.mousePressed) {
+		if(Mouse.wtl && Mouse.mousePressed && gameState.whiteTurn) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
@@ -36,7 +36,7 @@ public class WhiteTowerLeft extends MovingObject {
 			//System.out.println("uwu -1");
 			
 		} else {
-			if(Mouse.lastPiece == Constants.wtlId && Mouse.mouseRealesed) {
+			if(Mouse.lastPiece == Constants.wtlId && Mouse.mouseRealesed && gameState.whiteTurn) {
 				boolean valida;
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
@@ -65,12 +65,16 @@ public class WhiteTowerLeft extends MovingObject {
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
 				Cell.deAllowCells(originalPos, Constants.wtlId, firstMove, gameState);
-				if(valida && firstMove) {
-					lastMoveWasFirstMove = true;
-					firstMove = false;
-				} else {
-					lastMoveWasFirstMove = false;
+				if(valida) {
+					gameState.nextTurn();
+					if(firstMove) {
+						lastMoveWasFirstMove = true;
+						firstMove = false;
+					} else {
+						lastMoveWasFirstMove = false;
+					}
 				}
+				//System.out.println("lastMoveWasFirstMove = "+lastMoveWasFirstMove);
 			}
 		}
 	    

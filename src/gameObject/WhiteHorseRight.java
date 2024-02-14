@@ -25,7 +25,7 @@ public void update() {
 		//posicion.setY(0);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.whr && Mouse.mousePressed) {
+		if(Mouse.whr && Mouse.mousePressed && gameState.whiteTurn) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
@@ -34,7 +34,7 @@ public void update() {
 			//System.out.println("uwu -1");
 			
 		} else {
-			if(Mouse.lastPiece == Constants.whrId && Mouse.mouseRealesed) {
+			if(Mouse.lastPiece == Constants.whrId && Mouse.mouseRealesed && gameState.whiteTurn) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.whrId, Constants.WHITESTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
@@ -49,7 +49,7 @@ public void update() {
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
 					gameState.piecePosition[Constants.whrId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
-					
+					gameState.nextTurn();
 				} else {
 					if(Mouse.originalPos != null) {
 						posicion.setX(Mouse.originalPos.getX());

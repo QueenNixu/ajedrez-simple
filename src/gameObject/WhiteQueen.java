@@ -25,7 +25,7 @@ public class WhiteQueen extends MovingObject {
 		//posicion.setY(0);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.wq && Mouse.mousePressed) {
+		if(Mouse.wq && Mouse.mousePressed && gameState.whiteTurn) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
@@ -34,7 +34,7 @@ public class WhiteQueen extends MovingObject {
 			//System.out.println("uwu -Constants.wqId");
 			
 		} else {
-			if(Mouse.lastPiece == Constants.wqId && Mouse.mouseRealesed) {
+			if(Mouse.lastPiece == Constants.wqId && Mouse.mouseRealesed && gameState.whiteTurn) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wqId, Constants.WHITESTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
@@ -49,7 +49,7 @@ public class WhiteQueen extends MovingObject {
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
 					gameState.piecePosition[Constants.wqId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
-					
+					gameState.nextTurn();
 				} else {
 					if(Mouse.originalPos != null) {
 						posicion.setX(Mouse.originalPos.getX());

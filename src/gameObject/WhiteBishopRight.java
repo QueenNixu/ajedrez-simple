@@ -25,7 +25,7 @@ public class WhiteBishopRight extends MovingObject {
 		//posicion.setY(0);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.wbr && Mouse.mousePressed) {
+		if(Mouse.wbr && Mouse.mousePressed && gameState.whiteTurn) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
@@ -34,7 +34,7 @@ public class WhiteBishopRight extends MovingObject {
 			//System.out.println("uwu -1");
 			
 		} else {
-			if(Mouse.lastPiece == Constants.wbrId && Mouse.mouseRealesed) {
+			if(Mouse.lastPiece == Constants.wbrId && Mouse.mouseRealesed && gameState.whiteTurn) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wbrId, Constants.WHITESTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
@@ -49,7 +49,7 @@ public class WhiteBishopRight extends MovingObject {
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
 					gameState.piecePosition[Constants.wbrId] = new Vector2D(newX*60, newY*60);
-					
+					gameState.nextTurn();
 				} else {
 					if(Mouse.originalPos != null) {
 						posicion.setX(Mouse.originalPos.getX());

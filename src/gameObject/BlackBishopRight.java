@@ -25,7 +25,7 @@ public class BlackBishopRight extends MovingObject {
 		//posicion.setY(0);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.bbr && Mouse.mousePressed) {
+		if(Mouse.bbr && Mouse.mousePressed && gameState.blackTurn) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
@@ -34,7 +34,7 @@ public class BlackBishopRight extends MovingObject {
 			//System.out.println("uwu -1");
 			
 		} else {
-			if(Mouse.lastPiece == Constants.bbrId && Mouse.mouseRealesed) {
+			if(Mouse.lastPiece == Constants.bbrId && Mouse.mouseRealesed && gameState.blackTurn) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.bbrId, Constants.BLACKSTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
@@ -50,7 +50,7 @@ public class BlackBishopRight extends MovingObject {
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
 					gameState.piecePosition[Constants.bbrId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
-					
+					gameState.nextTurn();
 				} else {
 					if(Mouse.originalPos != null) {
 						posicion.setX(Mouse.originalPos.getX());

@@ -155,7 +155,15 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	        int pieceId = gameState.piece(mouseXOnApp, mouseYOnApp);
 	        lastPiece = pieceId;
 	        
-	        System.out.println(pieceId);
+	        System.out.println("pieceId: "+pieceId);
+	        /*
+	        System.out.print("Turno: "+gameState.turn+" | juega: ");
+	        if(gameState.turn % 2 != 0) {
+	        	System.out.println("blanco");
+	        } else {
+	        	System.out.println("negro");
+	        }
+	        /piece[pieceId] = true;*/
 	        
 	        if(pieceId != -1) {
 	            originalPos = gameState.getCell(pieceId);

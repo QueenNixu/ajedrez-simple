@@ -27,7 +27,7 @@ public class BlackKing extends MovingObject {
 		//posicion.setY(0);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.bk && Mouse.mousePressed) {
+		if(Mouse.bk && Mouse.mousePressed && gameState.blackTurn) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
@@ -36,7 +36,7 @@ public class BlackKing extends MovingObject {
 			//System.out.println("uwu -1");
 			
 		} else {
-			if(Mouse.lastPiece == Constants.bkId && Mouse.mouseRealesed) {
+			if(Mouse.lastPiece == Constants.bkId && Mouse.mouseRealesed && gameState.blackTurn) {
 				boolean valida;
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
@@ -64,12 +64,16 @@ public class BlackKing extends MovingObject {
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
 				Cell.deAllowCells(originalPos, Constants.bkId, firstMove, gameState);
-				if(valida && firstMove) {
-					lastMoveWasFirstMove = true;
-					firstMove = false;
-				} else {
-					lastMoveWasFirstMove = false;
+				if(valida) {
+					gameState.nextTurn();
+					if(firstMove) {
+						lastMoveWasFirstMove = true;
+						firstMove = false;
+					} else {
+						lastMoveWasFirstMove = false;
+					}
 				}
+				//System.out.println("lastMoveWasFirstMove = "+lastMoveWasFirstMove);
 			}
 		}
 	    

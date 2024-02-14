@@ -17,14 +17,14 @@ public class BlackBishopLeft extends MovingObject {
 	public BlackBishopLeft(Vector2D posicion, BufferedImage textura, GameState gameState) {
 		super(posicion, textura, gameState);
 	}
-
+	
 	@Override
 	public void update() {
 		
 		//posicion.setX(0);
 		//posicion.setY(0);
 		
-		if(Mouse.bbl && Mouse.mousePressed) {
+		if(Mouse.bbl && Mouse.mousePressed && gameState.blackTurn) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
@@ -33,7 +33,7 @@ public class BlackBishopLeft extends MovingObject {
 			//System.out.println("uwu -1");
 			
 		} else {
-			if(Mouse.lastPiece == Constants.bblId && Mouse.mouseRealesed) {
+			if(Mouse.lastPiece == Constants.bblId && Mouse.mouseRealesed && gameState.blackTurn) {
 				int newX = Cell.getZ(Mouse.mouseXOnApp);
 				int newY = Cell.getZ(Mouse.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.bblId, Constants.BLACKSTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
@@ -49,7 +49,7 @@ public class BlackBishopLeft extends MovingObject {
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
 					gameState.piecePosition[Constants.bblId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
-					
+					gameState.nextTurn();
 				} else {
 					if(Mouse.originalPos != null) {
 						posicion.setX(Mouse.originalPos.getX());
