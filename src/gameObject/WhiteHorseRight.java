@@ -20,7 +20,7 @@ public class WhiteHorseRight extends Horse {
 
 		@Override
 		public void update() {
-			if( (Mouse.bhr || Mouse.lastPiece == id) &&
+			if( (Mouse.whr || Mouse.lastPiece == id) &&
 				(Mouse.mousePressed || Mouse.mouseRealesed) &&
 				(gameState.whiteTurn)) super.update();
 		}
