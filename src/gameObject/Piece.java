@@ -5,11 +5,14 @@ import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 
 import math.Vector2D;
+import states.GameState;
 
-public class Piece extends GameObject {
+public class Piece extends MovingObject {
+	
+	private int id;
 
-	public Piece(Vector2D posicion, BufferedImage textura) {
-		super(posicion, textura);
+	public Piece(Vector2D posicion, BufferedImage textura, GameState gameState, int id) {
+		super(posicion, textura, gameState);
 	}
 
 	@Override
@@ -27,6 +30,23 @@ public class Piece extends GameObject {
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(textura, (int)posicion.getX(), (int)posicion.getY(), null);
+	}
+	
+	@Override
+	public void destroy() {
+			super.destroy();
+			gameState.piecePosition[id] = null;
+	}
+
+	@Override
+	public int getId() {
+		return id;
+	}
+
+	@Override
+	public boolean isFirstMove() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

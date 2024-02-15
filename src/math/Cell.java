@@ -110,8 +110,8 @@ public class Cell {
 		
 		switch (piece) {
 		case 0:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 1, firstMove, gameState);
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 1, gameState);
+			towerAllowedCells(originalPos, piece, Constants.WHITESTART,Constants.BLACKSTART, 1, firstMove, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 1, gameState);
         	
         	WhiteTowerRight wtr = (WhiteTowerRight) gameState.getMovingObject(7);
         	if(firstMove && wtr.getFirstMove()
@@ -134,26 +134,26 @@ public class Cell {
         	}
             break;
 		case 1:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 7, firstMove, gameState);
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
+			towerAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
             break;
 		case 2:
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 8, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 8, gameState);
             break;
 		case 3:
         	horseAllowedCells(originalPos, piece, Constants.WHITESTART, gameState);
             break;
 		case 4:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 7, firstMove, gameState);
+			towerAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState);
             break;
 		case 5:
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
             break;
 		case 6:
         	horseAllowedCells(originalPos, piece, Constants.WHITESTART, gameState);
             break;
 		case 7:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, 7, firstMove, gameState);
+			towerAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState);
             break;
 		case 8:
 			pawnAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, firstMove, gameState);
@@ -180,30 +180,30 @@ public class Cell {
 			pawnAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, firstMove, gameState);
             break;
 		case 16:
-			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 1, firstMove, gameState);
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 1, gameState);
+			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, firstMove, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, gameState);
             break;
 		case 17:
-			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, firstMove, gameState);
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
+			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
             break;
         case 18:
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
             break;
         case 19:
         	horseAllowedCells(originalPos, piece, Constants.BLACKSTART, gameState);
             break;
         case 20:
-        	towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, firstMove, gameState);
+        	towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState);
             break;
         case 21:
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
             break;
         case 22:
         	horseAllowedCells(originalPos, piece, Constants.BLACKSTART, gameState);
             break;
         case 23:
-        	towerAllowedCells(originalPos, piece, Constants.BLACKSTART, 7, firstMove, gameState);
+        	towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState);
             break;
         case 24:
         	pawnAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, firstMove, gameState);
@@ -237,8 +237,8 @@ public class Cell {
 		
 		switch (piece) {
 		case 0:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 1, gameState);
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 1, gameState);
+			towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 1, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 1, gameState);
 			//WhiteTowerRight wtr = (WhiteTowerRight) gameState.getMovingObject(7);
 			if(firstMove) {
         		gameState.allowedCellsBool[6][7] = false;
@@ -251,26 +251,26 @@ public class Cell {
         	}
             break;
 		case 1:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
+			towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
             break;
 		case 2:
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
             break;
 		case 3:
 			horseDeallowCells(originalPos, gameState);
             break;
 		case 4:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
+			towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
             break;
 		case 5:
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
             break;
 		case 6:
 			horseDeallowCells(originalPos, gameState);
             break;
 		case 7:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, 7, gameState);
+			towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
             break;
 		case 8:
 			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove, gameState);
@@ -297,30 +297,30 @@ public class Cell {
 			pawnDeallowCells(originalPos, Constants.WHITESTART, firstMove, gameState);
             break;
 		case 16:
-			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 1, gameState);
-			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 1, gameState);
+			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 1, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, gameState);
             break;
 		case 17:
-			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
-			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
+			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 7, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
             break;
         case 18:
-        	bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
+        	bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
             break;
         case 19:
         	horseDeallowCells(originalPos, gameState);
             break;
         case 20:
-        	towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
+        	towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 7, gameState);
             break;
         case 21:
-        	bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
+        	bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
             break;
         case 22:
         	horseDeallowCells(originalPos, gameState);
             break;
         case 23:
-        	towerDeallowCells(originalPos, piece, Constants.BLACKSTART, 7, gameState);
+        	towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 7, gameState);
             break;
         case 24:
         	pawnDeallowCells(originalPos, Constants.BLACKSTART, firstMove, gameState);
@@ -351,7 +351,7 @@ public class Cell {
 	}
 	
 
-	private static void bishopAllowedCells(Vector2D originalPos, int exception, int allyStart, int end, GameState gameState) {
+	private static void bishopAllowedCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
@@ -366,6 +366,9 @@ public class Cell {
 		while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i-1)+","+(j-1));
 			gameState.allowedCellsBool[i-1][j - 1] = true;
+			if(allyCell(i-1,j-1, exception, enemyStart, gameState)) {
+				break;
+			}
 			j--;
 			i--;
 			iter++;
@@ -373,9 +376,12 @@ public class Cell {
 		i = iAux;
 		j = jAux;
 		iter = 0;
-		while(i+1 <= 7 && j-1 >= 0&& !allyCell(i+1,j-1, exception, allyStart, gameState) && iter < end) {
+		while(i+1 <= 7 && j-1 >= 0 && !allyCell(i+1,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i+1)+","+(j-1));
 			gameState.allowedCellsBool[i+1][j-1] = true;
+			if(allyCell(i+1,j-1, exception, enemyStart, gameState)) {
+				break;
+			}
 			i++;
 			j--;
 			iter++;
@@ -386,6 +392,9 @@ public class Cell {
 		while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i+1)+","+(j+1));
 			gameState.allowedCellsBool[i+1][j+1] = true;
+			if(allyCell(i+1,j+1, exception, enemyStart, gameState)) {
+				break;
+			}
 			j++;
 			i++;
 			iter++;
@@ -396,6 +405,9 @@ public class Cell {
 		while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i-1)+","+(j+1));
 			gameState.allowedCellsBool[i-1][j+1] = true;
+			if(allyCell(i-1,j+1, exception, enemyStart, gameState)) {
+				break;
+			}
 			i--;
 			j++;
 			iter++;
@@ -403,7 +415,7 @@ public class Cell {
 		
 	}
 
-	private static void bishopDeallowCells(Vector2D originalPos, int exception, int allyStart, int end, GameState gameState) {
+	private static void bishopDeallowCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
@@ -417,6 +429,9 @@ public class Cell {
 		while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i-1)+","+(j-1));
 			gameState.allowedCellsBool[i-1][j - 1] = false;
+			if(allyCell(i-1,j-1, exception, enemyStart, gameState)) {
+				break;
+			}
 			j--;
 			i--;
 			iter++;
@@ -539,7 +554,7 @@ public class Cell {
 		
 	}
 
-	private static void towerAllowedCells(Vector2D originalPos, int exception, int allyStart, int end, boolean firstMove, GameState gameState) {
+	private static void towerAllowedCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, boolean firstMove, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
@@ -553,8 +568,12 @@ public class Cell {
 		while(j-1 >= 0 && !allyCell(i,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+i+","+(j-1));
 			gameState.allowedCellsBool[i][j - 1] = true;
+			if(allyCell(i,j-1, exception, enemyStart, gameState)) {
+				break;
+			}
 			j--;
 			iter++;
+			
 		}
 		i = iAux;
 		j = jAux;
@@ -562,6 +581,9 @@ public class Cell {
 		while(i+1 <= 7 && !allyCell(i+1,j, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i+1)+","+j);
 			gameState.allowedCellsBool[i+1][j] = true;
+			if(allyCell(i+1,j, exception, enemyStart, gameState)) {
+				break;
+			}
 			i++;
 			iter++;
 		}
@@ -571,6 +593,9 @@ public class Cell {
 		while(j+1 <= 7 && !allyCell(i,j+1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i)+","+(j+1));
 			gameState.allowedCellsBool[i][j+1] = true;
+			if(allyCell(i,j+1, exception, enemyStart, gameState)) {
+				break;
+			}
 			j++;
 			iter++;
 		}
@@ -580,6 +605,9 @@ public class Cell {
 		while(i-1 >= 0 && !allyCell(i-1,j, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("PINTANDO: "+(i-1)+","+j);
 			gameState.allowedCellsBool[i-1][j] = true;
+			if(allyCell(i-1,j, exception, enemyStart, gameState)) {
+				break;
+			}
 			i--;
 			iter++;
 		}
@@ -587,7 +615,7 @@ public class Cell {
 		
 	}
 
-	private static void towerDeallowCells(Vector2D originalPos, int exception, int allyStart, int end, GameState gameState) {
+	private static void towerDeallowCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
@@ -601,6 +629,9 @@ public class Cell {
 		while(j-1 >= 0 && !allyCell(i,j-1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+i+","+(j-1));
 			gameState.allowedCellsBool[i][j - 1] = false;
+			if(allyCell(i,j-1, exception, enemyStart, gameState)) {
+				break;
+			}
 			j--;
 			iter++;
 		}
@@ -610,6 +641,9 @@ public class Cell {
 		while(i+1 <= 7 && !allyCell(i+1,j, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i+1)+","+j);
 			gameState.allowedCellsBool[i+1][j] = false;
+			if(allyCell(i+1,j, exception, enemyStart, gameState)) {
+				break;
+			}
 			i++;
 			iter++;
 		}
@@ -619,6 +653,9 @@ public class Cell {
 		while(j+1 <= 7 && !allyCell(i,j+1, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i)+","+(j+1));
 			gameState.allowedCellsBool[i][j+1] = false;
+			if(allyCell(i,j+1, exception, enemyStart, gameState)) {
+				break;
+			}
 			j++;
 			iter++;
 		}
@@ -628,6 +665,9 @@ public class Cell {
 		while(i-1 >= 0 && !allyCell(i-1,j, exception, allyStart, gameState) && iter < end) {
 			//System.out.println("DESPINTANDO: "+(i-1)+","+j);
 			gameState.allowedCellsBool[i-1][j] = false;
+			if(allyCell(i-1,j, exception, enemyStart, gameState)) {
+				break;
+			}
 			i--;
 			iter++;
 		}
