@@ -1,5 +1,7 @@
 package math;
 
+import gameObject.BlackTowerLeft;
+import gameObject.BlackTowerRight;
 import gameObject.Constants;
 import gameObject.WhiteTowerLeft;
 import gameObject.WhiteTowerRight;
@@ -115,21 +117,21 @@ public class Cell {
         	
         	WhiteTowerRight wtr = (WhiteTowerRight) gameState.getMovingObject(7);
         	if(firstMove && wtr.getFirstMove()
-        			&& !Cell.allyCell(6, 7, Constants.wtrId, Constants.WHITESTART, gameState)
-        			&& !Cell.allyCell(7, 7, Constants.wtrId, Constants.WHITESTART, gameState)
-        			&& !Cell.allyCell(6, 7, Constants.wtrId, Constants.BLACKSTART, gameState)
-        			&& !Cell.allyCell(7, 7, Constants.wtrId, Constants.BLACKSTART, gameState)) {
+        			&& !Cell.allyCell(5, 7, piece, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(6, 7, piece, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(5, 7, piece, Constants.BLACKSTART, gameState)
+        			&& !Cell.allyCell(6, 7, piece, Constants.BLACKSTART, gameState)) {
         		gameState.allowedCellsBool[6][7] = true;
         	}
         	
         	WhiteTowerLeft wtl = (WhiteTowerLeft) gameState.getMovingObject(4);
         	if(firstMove && wtl.getFirstMove()
-        			&& !Cell.allyCell(1, 7, Constants.wtrId, Constants.WHITESTART, gameState)
-        			&& !Cell.allyCell(2, 7, Constants.wtrId, Constants.WHITESTART, gameState)
-        			&& !Cell.allyCell(3, 7, Constants.wtrId, Constants.WHITESTART, gameState)
-        			&& !Cell.allyCell(1, 7, Constants.wtrId, Constants.BLACKSTART, gameState)
-        			&& !Cell.allyCell(2, 7, Constants.wtrId, Constants.BLACKSTART, gameState)
-        			&& !Cell.allyCell(3, 7, Constants.wtrId, Constants.BLACKSTART, gameState)) {
+        			&& !Cell.allyCell(1, 7, piece, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(2, 7, piece, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(3, 7, piece, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(1, 7, piece, Constants.BLACKSTART, gameState)
+        			&& !Cell.allyCell(2, 7, piece, Constants.BLACKSTART, gameState)
+        			&& !Cell.allyCell(3, 7, piece, Constants.BLACKSTART, gameState)) {
         		gameState.allowedCellsBool[2][7] = true;
         	}
             break;
@@ -182,6 +184,27 @@ public class Cell {
 		case 16:
 			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, firstMove, gameState);
         	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, gameState);
+        	
+        	BlackTowerRight btr = (BlackTowerRight) gameState.getMovingObject(23);
+        	if(firstMove && btr.getFirstMove()
+        			&& !Cell.allyCell(5, 0, piece, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(6, 0, piece, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(5, 0, piece, Constants.BLACKSTART, gameState)
+        			&& !Cell.allyCell(6, 0, piece, Constants.BLACKSTART, gameState)) {
+        		gameState.allowedCellsBool[6][0] = true;
+        	}
+        	
+        	BlackTowerLeft btl = (BlackTowerLeft) gameState.getMovingObject(20);
+        	if(firstMove && btl.getFirstMove()
+        			&& !Cell.allyCell(1, 0, piece, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(2, 0, piece, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(3, 0, piece, Constants.WHITESTART, gameState)
+        			&& !Cell.allyCell(1, 0, piece, Constants.BLACKSTART, gameState)
+        			&& !Cell.allyCell(2, 0, piece, Constants.BLACKSTART, gameState)
+        			&& !Cell.allyCell(3, 0, piece, Constants.BLACKSTART, gameState)) {
+        		gameState.allowedCellsBool[2][0] = true;
+        	}
+        	
             break;
 		case 17:
 			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState);

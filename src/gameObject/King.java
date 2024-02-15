@@ -8,18 +8,24 @@ import math.Cell;
 import math.Vector2D;
 import states.GameState;
 
-public class Tower extends MovingObject {
+public class King extends MovingObject {
 	
 	private int id;
 	private boolean firstMove = true;
 	private boolean lastMoveWasFirstMove = false;
 	
-	public Tower(Vector2D position, BufferedImage texture, GameState gameState, int id) {
+	public King(Vector2D position, BufferedImage texture, GameState gameState, int id) {
 		super(position, texture, gameState);
 		this.id = id;
 	}
 
+	@Override
 	public void update() {
+		
+		//posicion.setX(id);
+		//posicion.setY(id);
+		
+	    // Según la pieza agarrada, permitir y prohibir posiciones
 		if(Mouse.mousePressed) {
 			//System.out.println("UWU");
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
@@ -46,6 +52,13 @@ public class Tower extends MovingObject {
 					gameState.posicionesDelTablero[newX][newY] = id;
 					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
 					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
+					if(firstMove && Cell.getZ((int)posicion.getX()) == 6) {
+						((Tower)gameState.getMovingObject(((id < 16) ? 7 : 23))).enroque(id);
+					} else {
+						if(firstMove && Cell.getZ((int)posicion.getX()) == 2) {
+							((Tower)gameState.getMovingObject(((id < 16) ? 4 : 20))).enroque(id);
+						}
+					}
 					gameState.piecePosition[id] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
 					
 				} else {
@@ -70,6 +83,7 @@ public class Tower extends MovingObject {
 				//System.out.println("lastMoveWasFirstMove = "+lastMoveWasFirstMove);
 			}
 		}
+	    
 	}
 
 
@@ -94,32 +108,13 @@ public class Tower extends MovingObject {
 		return lastMoveWasFirstMove;
 	}
 	
-	public void enroque(int id) {
+	public void enroque() {
 		
 		gameState.posicionesDelTablero[Cell.getZ((int)posicion.getX())][Cell.getZ((int)posicion.getY())] = -1;
-		if(id == 0) {
-			System.out.println("REy BLanco");
-			if(this.id == 7) {
-				gameState.posicionesDelTablero[5][7] = this.id;
-				posicion.setX(Cell.getFromCell(300));
-				gameState.piecePosition[this.id] = new Vector2D(5*Constants.CELLSIZE, 7*Constants.CELLSIZE);
-			} else {
-				gameState.posicionesDelTablero[3][7] = this.id;
-				posicion.setX(Cell.getFromCell(180));
-				gameState.piecePosition[this.id] = new Vector2D(3*Constants.CELLSIZE, 7*Constants.CELLSIZE);
-			}
-		} else {
-			System.out.println("REy Negro");
-			if(this.id == 23) {
-				gameState.posicionesDelTablero[5][1] = this.id;
-				posicion.setX(Cell.getFromCell(300));
-				gameState.piecePosition[this.id] = new Vector2D(5*Constants.CELLSIZE, 1*Constants.CELLSIZE);
-			} else {
-				gameState.posicionesDelTablero[3][1] = this.id;
-				posicion.setX(Cell.getFromCell(180));
-				gameState.piecePosition[this.id] = new Vector2D(3*Constants.CELLSIZE, 1*Constants.CELLSIZE);
-			}
-		}
+		gameState.posicionesDelTablero[5][7] = Constants.wtrId;
+		posicion.setX(Cell.getFromCell(330));
+		//posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
+		gameState.piecePosition[Constants.wtrId] = new Vector2D(5*Constants.CELLSIZE, 7*Constants.CELLSIZE);
 		firstMove = false;
 		lastMoveWasFirstMove = true;
 	}

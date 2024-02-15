@@ -10,80 +10,20 @@ import math.Cell;
 import math.Vector2D;
 import states.GameState;
 
-public class WhiteKing extends MovingObject {
+public class WhiteKing extends King {
 	
 	private static final int id = Constants.wkId;
-	private boolean firstMove = true;
 	private boolean lastMoveWasFirstMove = false;
 
 	public WhiteKing(Vector2D posicion, BufferedImage textura, GameState gameState) {
-		super(posicion, textura, gameState);
+		super(posicion, textura, gameState, id);
 	}
 
 	@Override
 	public void update() {
-		
-		//posicion.setX(Constants.wkId);
-		//posicion.setY(Constants.wkId);
-		
-	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.wk && Mouse.mousePressed && gameState.whiteTurn) {
-			//System.out.println("UWU");
-			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
-			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
-			Vector2D originalPos = Mouse.originalPos;
-			Cell.calcAllowedCells(originalPos, Constants.wkId, firstMove, gameState);
-			//System.out.println("uwu -1");
-			
-		} else {
-			if(Mouse.lastPiece == Constants.wkId && Mouse.mouseRealesed && gameState.whiteTurn) {
-				boolean valida;
-				int newX = Cell.getZ(Mouse.mouseXOnApp);
-				int newY = Cell.getZ(Mouse.mouseYOnApp);
-				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, Constants.wkId, Constants.WHITESTART, gameState) && gameState.allowedCellsBool[newX][newY] ) {
-					System.out.println("Valida");
-					valida = true;
-					gameState.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
-					int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
-					if(pieceOnCellId >= 16 && pieceOnCellId <= 31) {
-						System.out.println("COLISION CON PIEZA NEGRA: "+pieceOnCellId);
-						gameState.getMovingObject(pieceOnCellId).destroy();
-					}
-					gameState.posicionesDelTablero[newX][newY] = Constants.wkId;
-					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
-					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
-					if(firstMove && Cell.getZ((int)posicion.getX()) == 6) {
-						((WhiteTowerRight)gameState.getMovingObject(7)).enroque();
-					} else {
-						if(firstMove && Cell.getZ((int)posicion.getX()) == 2) {
-							((WhiteTowerLeft)gameState.getMovingObject(4)).enroque();
-						}
-					}
-					gameState.piecePosition[Constants.wkId] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
-					
-				} else {
-					valida = false;
-					if(Mouse.originalPos != null) {
-						posicion.setX(Mouse.originalPos.getX());
-						posicion.setY(Mouse.originalPos.getY());
-					}
-				}
-				Mouse.mouseRealesed = false;
-				Vector2D originalPos = Mouse.originalPos;
-				Cell.deAllowCells(originalPos, Constants.wkId, firstMove, gameState);
-				if(valida) {
-					gameState.nextTurn();
-					if(firstMove) {
-						lastMoveWasFirstMove = true;
-						firstMove = false;
-					} else {
-						lastMoveWasFirstMove = false;
-					}
-				}
-				//System.out.println("lastMoveWasFirstMove = "+lastMoveWasFirstMove);
-			}
-		}
-	    
+		if( (Mouse.wk || Mouse.lastPiece == id) &&
+			(Mouse.mousePressed || Mouse.mouseRealesed) &&
+			(gameState.whiteTurn)) super.update();
 	}
 
 

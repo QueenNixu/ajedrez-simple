@@ -84,10 +84,14 @@ public class Pawn extends MovingObject {
 	                    lastMoveWasFirstMove = false;
 	                }
 	            }
-	            //System.out.println("lastMoveWasFirstMove = "+lastMoveWasFirstMove);
+	            System.out.println("lastMoveWasFirstMove = "+lastMoveWasFirstMove);
 	        }
 	    }
-	    if (gameState.turn > firstMoveTurn+1) {
+	    
+	}
+	
+	public void updateTurn() {
+		if (gameState.turn > firstMoveTurn+1) {
 	        lastMoveWasFirstMove = false;
 	    }
 	}

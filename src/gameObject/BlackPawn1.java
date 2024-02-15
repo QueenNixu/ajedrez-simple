@@ -22,5 +22,6 @@ public class BlackPawn1 extends Pawn {
 		if( (Mouse.bp1 || Mouse.lastPiece == id) &&
 			(Mouse.mousePressed || Mouse.mouseRealesed) &&
 			(gameState.blackTurn)) super.update();
+		else super.updateTurn();
 	}
 }

@@ -22,5 +22,6 @@ public class WhitePawn7 extends Pawn {
 		if( (Mouse.wp7 || Mouse.lastPiece == id) &&
 			(Mouse.mousePressed || Mouse.mouseRealesed) &&
 			(gameState.whiteTurn)) super.update();
+		else super.updateTurn();
 	}
 }
