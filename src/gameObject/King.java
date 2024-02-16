@@ -31,7 +31,7 @@ public class King extends MovingObject {
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
 			Vector2D originalPos = Mouse.originalPos;
-			Cell.calcAllowedCells(originalPos, id, firstMove, gameState);
+			Cell.calcAllowedCells(originalPos, id, firstMove, gameState, -1);
 			//System.out.println("uwu -1");
 			
 		} else {
@@ -70,7 +70,7 @@ public class King extends MovingObject {
 				}
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
-				Cell.deAllowCells(originalPos, id, firstMove, gameState);
+				Cell.deAllowCells(originalPos, id, firstMove, gameState, -1);
 				if(valida) {
 					gameState.nextTurn();
 					if(firstMove) {

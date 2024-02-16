@@ -40,6 +40,7 @@ import gameObject.WhitePawn6;
 import gameObject.WhitePawn7;
 import graphics.Assets;
 import input.Mouse;
+import main.Window;
 import math.Cell;
 import math.Vector2D;
 
@@ -70,7 +71,11 @@ public class GameState {
 	public boolean whiteTurn;
 	public boolean blackTurn;
 
-    public GameState() {
+	public Window window;
+
+    public GameState(Window window) {
+    	
+    	this.window = window;
     	
     	whiteTurn = true;
     	blackTurn = false;
@@ -273,7 +278,7 @@ public class GameState {
 	}
 	
 	public void nextTurn() {
-		System.out.println("NEXT TURN");
+		//System.out.println("NEXT TURN");
 		turnPlayed = true;
 	}
 	

@@ -25,7 +25,7 @@ public class Bishop extends MovingObject {
 			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
 			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
 			Vector2D originalPos = Mouse.originalPos;
-			Cell.calcAllowedCells(originalPos, id, false, gameState);
+			Cell.calcAllowedCells(originalPos, id, false, gameState, -1);
 			//System.out.println("uwu -1");
 			
 		} else {
@@ -56,7 +56,7 @@ public class Bishop extends MovingObject {
 				}
 				Mouse.mouseRealesed = false;
 				Vector2D originalPos = Mouse.originalPos;
-				Cell.deAllowCells(originalPos, id, false, gameState);
+				Cell.deAllowCells(originalPos, id, false, gameState, -1);
 			}
 		}
 	    

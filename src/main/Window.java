@@ -35,6 +35,8 @@ public class Window extends JFrame implements Runnable {
 	private GameState gameState;
 	
 	private Mouse mouse;
+	
+	private boolean paused = false;
 
 	public static void main(String[] args) {
 		new Window().start();
@@ -61,7 +63,7 @@ public class Window extends JFrame implements Runnable {
 	
 	private void init() {
 		Assets.init();
-		gameState = new GameState();
+		gameState = new GameState(this);
 		mouse = new Mouse(gameState);
 		canvas.addMouseListener(mouse);
 		canvas.addMouseMotionListener(mouse);
@@ -133,18 +135,22 @@ public class Window extends JFrame implements Runnable {
 			delta += (now - lastTime)/TARGETTIME;
 			time += (now - lastTime);
 			lastTime = now;
-			
-			if(delta >= 1) {
-				update();
-				draw();
-				delta--;
-				frames++;
-			}
-			if(time >=1000000000) {
-				AVARAGEFPS = frames;
-				frames = 0;
-				time = 0;
-			}
+			if(!paused) {
+				if (delta >= 1) {
+	                update();
+	                draw();
+	                delta--;
+	                frames++;
+	            }
+	            if (time >= 1000000000) {
+	                AVARAGEFPS = frames;
+	                frames = 0;
+	                time = 0;
+	            }
+			} else {
+	            // Si la ventana está pausada, esperar hasta que se reanude
+	            waitForResume();
+	        }
 			
 		}
 		
@@ -164,6 +170,25 @@ public class Window extends JFrame implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void pause() {
+	    paused = true;
+	    System.out.println("PAUSE");
+	}
+
+	public void resume() {
+	    paused = false;
+	}
+	
+	private synchronized void waitForResume() {
+	    while (paused) {
+	        try {
+	            wait();
+	        } catch (InterruptedException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
 	
 }
