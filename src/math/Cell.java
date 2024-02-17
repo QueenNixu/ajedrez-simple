@@ -137,8 +137,8 @@ public class Cell {
 		
 		switch (piece) {
 		case 0:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART,Constants.BLACKSTART, 1, firstMove, gameState, idCoronado);
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 1, gameState, idCoronado);
+			towerAllowedCells(originalPos, piece, Constants.WHITESTART,Constants.BLACKSTART, 1, firstMove, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 1, gameState);
         	
         	WhiteTowerRight wtr = (WhiteTowerRight) gameState.getMovingObject(7);
         	if(firstMove && wtr.getFirstMove()
@@ -161,36 +161,56 @@ public class Cell {
         	}
             break;
 		case 1:
-			/*
 			if(idCoronado == -1) {
-				towerAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState, idCoronado);
-	        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState, idCoronado);
+				towerAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState);
+	        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
 			} else {
-				towerAllowedCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState, piece);
-	        	bishopAllowedCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState, piece);
+				towerAllowedCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState);
+	        	bishopAllowedCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
 			}
-			*/
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState, idCoronado);
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState, idCoronado);
 			
             break;
 		case 2:
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 8, gameState, idCoronado);
+			if(idCoronado == -1) {
+				bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 8, gameState);
+			} else {
+				bishopAllowedCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 8, gameState);
+			}
             break;
 		case 3:
-        	horseAllowedCells(originalPos, piece, Constants.WHITESTART, gameState, idCoronado);
+			if(idCoronado == -1) {
+				horseAllowedCells(originalPos, piece, Constants.WHITESTART, gameState);
+			} else {
+				horseAllowedCells(originalPos, idCoronado, Constants.WHITESTART, gameState);
+			}
             break;
 		case 4:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState, idCoronado);
+			if(idCoronado == -1) {
+				towerAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState);
+			} else {
+				towerAllowedCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState);
+			}
             break;
 		case 5:
-        	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState, idCoronado);
+			if(idCoronado == -1) {
+				bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			} else {
+				bishopAllowedCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			}
             break;
 		case 6:
-        	horseAllowedCells(originalPos, piece, Constants.WHITESTART, gameState, idCoronado);
+			if(idCoronado == -1) {
+				horseAllowedCells(originalPos, piece, Constants.WHITESTART, gameState);
+			} else {
+				horseAllowedCells(originalPos, idCoronado, Constants.WHITESTART, gameState);
+			}
             break;
 		case 7:
-			towerAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState, idCoronado);
+			if(idCoronado == -1) {
+				towerAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState);
+			} else {
+				towerAllowedCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, firstMove, gameState);
+			}
             break;
 		case 8:
 			if(idCoronado == -1) {
@@ -249,8 +269,8 @@ public class Cell {
 			}
             break;
 		case 16:
-			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, firstMove, gameState, idCoronado);
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, gameState, idCoronado);
+			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, firstMove, gameState);
+        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, gameState);
         	
         	BlackTowerRight btr = (BlackTowerRight) gameState.getMovingObject(23);
         	if(firstMove && btr.getFirstMove()
@@ -274,26 +294,55 @@ public class Cell {
         	
             break;
 		case 17:
-			towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState, idCoronado);
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState, idCoronado);
+			if(idCoronado == -1) {
+				towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState);
+	        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			} else {
+				towerAllowedCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState);
+	        	bishopAllowedCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			}
             break;
         case 18:
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState, idCoronado);
+        	if(idCoronado == -1) {
+        		bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			} else {
+				bishopAllowedCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			}
             break;
         case 19:
-        	horseAllowedCells(originalPos, piece, Constants.BLACKSTART, gameState, idCoronado);
+        	if(idCoronado == -1) {
+        		horseAllowedCells(originalPos, piece, Constants.BLACKSTART, gameState);
+			} else {
+				horseAllowedCells(originalPos, idCoronado, Constants.BLACKSTART, gameState);
+			}
             break;
         case 20:
-        	towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState, idCoronado);
+        	if(idCoronado == -1) {
+        		towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState);
+			} else {
+				towerAllowedCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState);
+			}
             break;
         case 21:
-        	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState, idCoronado);
+        	if(idCoronado == -1) {
+        		bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			} else {
+				bishopAllowedCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			}
             break;
         case 22:
-        	horseAllowedCells(originalPos, piece, Constants.BLACKSTART, gameState, idCoronado);
+        	if(idCoronado == -1) {
+        		horseAllowedCells(originalPos, piece, Constants.BLACKSTART, gameState);
+			} else {
+				horseAllowedCells(originalPos, idCoronado, Constants.BLACKSTART, gameState);
+			}
             break;
         case 23:
-        	towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState, idCoronado);
+        	if(idCoronado == -1) {
+        		towerAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState);
+			} else {
+				towerAllowedCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.WHITESTART, 7, firstMove, gameState);
+			}
             break;
         case 24:
         	if(idCoronado == -1) {
@@ -360,8 +409,8 @@ public class Cell {
 		
 		switch (piece) {
 		case 0:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 1, gameState, idCoronado);
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 1, gameState, idCoronado);
+			towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 1, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 1, gameState);
 			//WhiteTowerRight wtr = (WhiteTowerRight) gameState.getMovingObject(7);
 			if(firstMove) {
         		gameState.allowedCellsBool[6][7] = false;
@@ -374,26 +423,47 @@ public class Cell {
         	}
             break;
 		case 1:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState, idCoronado);
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState, idCoronado);
+			if(idCoronado == -1) {
+				towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+				bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			} else {
+				towerDeallowCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+				bishopDeallowCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			}
             break;
 		case 2:
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState, idCoronado);
+			if(idCoronado == -1) {
+				bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			} else {
+				bishopDeallowCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);;
+			}
             break;
 		case 3:
 			horseDeallowCells(originalPos, gameState);
             break;
 		case 4:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState, idCoronado);
+			if(idCoronado == -1) {
+				towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			} else {
+				towerDeallowCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			}
             break;
 		case 5:
-			bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState, idCoronado);
+			if(idCoronado == -1) {
+				bishopDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			} else {
+				bishopDeallowCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			}
             break;
 		case 6:
 			horseDeallowCells(originalPos, gameState);
             break;
 		case 7:
-			towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState, idCoronado);
+			if(idCoronado == -1) {
+				towerDeallowCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			} else {
+				towerDeallowCells(originalPos, idCoronado, Constants.WHITESTART, Constants.BLACKSTART, 7, gameState);
+			}
             break;
 		case 8:
 			if(idCoronado == -1) {
@@ -452,30 +522,51 @@ public class Cell {
 			}
             break;
 		case 16:
-			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 1, gameState, idCoronado);
-			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, gameState, idCoronado);
+			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 1, gameState);
+			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, gameState);
             break;
 		case 17:
-			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 7, gameState, idCoronado);
-			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState, idCoronado);
+			if(idCoronado == -1) {
+				towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 7, gameState);
+				bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			} else {
+				towerDeallowCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.BLACKSTART, 7, gameState);
+				bishopDeallowCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			}
             break;
         case 18:
-        	bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState, idCoronado);
+        	if(idCoronado == -1) {
+        		bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			} else {
+				bishopDeallowCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			}
             break;
         case 19:
         	horseDeallowCells(originalPos, gameState);
             break;
         case 20:
-        	towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 7, gameState, idCoronado);
+        	if(idCoronado == -1) {
+        		towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			} else {
+				towerDeallowCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			}
             break;
         case 21:
-        	bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState, idCoronado);
+        	if(idCoronado == -1) {
+        		bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			} else {
+				bishopDeallowCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.WHITESTART, 7, gameState);
+			}
             break;
         case 22:
         	horseDeallowCells(originalPos, gameState);
             break;
         case 23:
-        	towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 7, gameState, idCoronado);
+        	if(idCoronado == -1) {
+        		towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 7, gameState);
+			} else {
+				towerDeallowCells(originalPos, idCoronado, Constants.BLACKSTART, Constants.BLACKSTART, 7, gameState);
+			}
             break;
         case 24:
         	if(idCoronado == -1) {
@@ -538,7 +629,7 @@ public class Cell {
 	}
 	
 
-	private static void bishopAllowedCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, GameState gameState, int idCoronado) {
+	private static void bishopAllowedCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
@@ -546,236 +637,127 @@ public class Cell {
 		//System.out.println(i);
 		//System.out.println(j);
 		//gameState.allowedCellsBool[3][3] = true;
-		if(idCoronado == -1) {
-			int i = iAux;
-			int j = jAux;
-			int iter = 0;
-			while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i-1)+","+(j-1));
-				gameState.allowedCellsBool[i-1][j - 1] = true;
-				if(allyCell(i-1,j-1, exception, enemyStart, gameState)) {
-					break;
-				}
-				j--;
-				i--;
-				iter++;
+		
+		int i = iAux;
+		int j = jAux;
+		int iter = 0;
+		while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("PINTANDO: "+(i-1)+","+(j-1));
+			gameState.allowedCellsBool[i-1][j - 1] = true;
+			if(allyCell(i-1,j-1, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i+1 <= 7 && j-1 >= 0 && !allyCell(i+1,j-1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i+1)+","+(j-1));
-				gameState.allowedCellsBool[i+1][j-1] = true;
-				if(allyCell(i+1,j-1, exception, enemyStart, gameState)) {
-					break;
-				}
-				i++;
-				j--;
-				iter++;
+			j--;
+			i--;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(i+1 <= 7 && j-1 >= 0 && !allyCell(i+1,j-1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("PINTANDO: "+(i+1)+","+(j-1));
+			gameState.allowedCellsBool[i+1][j-1] = true;
+			if(allyCell(i+1,j-1, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i+1)+","+(j+1));
-				gameState.allowedCellsBool[i+1][j+1] = true;
-				if(allyCell(i+1,j+1, exception, enemyStart, gameState)) {
-					break;
-				}
-				j++;
-				i++;
-				iter++;
+			i++;
+			j--;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("PINTANDO: "+(i+1)+","+(j+1));
+			gameState.allowedCellsBool[i+1][j+1] = true;
+			if(allyCell(i+1,j+1, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i-1)+","+(j+1));
-				gameState.allowedCellsBool[i-1][j+1] = true;
-				if(allyCell(i-1,j+1, exception, enemyStart, gameState)) {
-					break;
-				}
-				i--;
-				j++;
-				iter++;
+			j++;
+			i++;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("PINTANDO: "+(i-1)+","+(j+1));
+			gameState.allowedCellsBool[i-1][j+1] = true;
+			if(allyCell(i-1,j+1, exception, enemyStart, gameState)) {
+				break;
 			}
-		} else {
-			int i = iAux;
-			int j = jAux;
-			int iter = 0;
-			while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i-1)+","+(j-1));
-				gameState.allowedCellsBool[i-1][j - 1] = true;
-				if(allyCell(i-1,j-1, exception, enemyStart, gameState)) {
-					break;
-				}
-				j--;
-				i--;
-				iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i+1 <= 7 && j-1 >= 0 && !allyCell(i+1,j-1, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i+1)+","+(j-1));
-				gameState.allowedCellsBool[i+1][j-1] = true;
-				if(allyCell(i+1,j-1, exception, enemyStart, gameState)) {
-					break;
-				}
-				i++;
-				j--;
-				iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i+1)+","+(j+1));
-				gameState.allowedCellsBool[i+1][j+1] = true;
-				if(allyCell(i+1,j+1, exception, enemyStart, gameState)) {
-					break;
-				}
-				j++;
-				i++;
-				iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i-1)+","+(j+1));
-				gameState.allowedCellsBool[i-1][j+1] = true;
-				if(allyCell(i-1,j+1, exception, enemyStart, gameState)) {
-					break;
-				}
-				i--;
-				j++;
-				iter++;
-			}
+			i--;
+			j++;
+			iter++;
 		}
 		
 		
 	}
 
-	private static void bishopDeallowCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, GameState gameState, int idCoronado) {
+	private static void bishopDeallowCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
 		
 		//System.out.println(i);
 		//System.out.println(j);
-		if(idCoronado == -1) {
-			int i = iAux;
-			int j = jAux;
-			int iter = 0;
-			while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("DESPINTANDO: "+(i-1)+","+(j-1));
-				gameState.allowedCellsBool[i-1][j - 1] = false;
-				if(allyCell(i-1,j-1, exception, enemyStart, gameState)) {
-					break;
-				}
-				j--;
-				i--;
-				iter++;
+		int i = iAux;
+		int j = jAux;
+		int iter = 0;
+		while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("DESPINTANDO: "+(i-1)+","+(j-1));
+			gameState.allowedCellsBool[i-1][j - 1] = false;
+			if(allyCell(i-1,j-1, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i+1 <= 7 && j-1 >= 0&& !allyCell(i+1,j-1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("DESPINTANDO: "+(i+1)+","+(j-1));
-				gameState.allowedCellsBool[i+1][j-1] = false;
-				if(allyCell(i+1,j-1, exception, enemyStart, gameState)) {
-					break;
-				}
-				i++;
-				j--;
-				iter++;
+			j--;
+			i--;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(i+1 <= 7 && j-1 >= 0&& !allyCell(i+1,j-1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("DESPINTANDO: "+(i+1)+","+(j-1));
+			gameState.allowedCellsBool[i+1][j-1] = false;
+			if(allyCell(i+1,j-1, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("DESPINTANDO: "+(i+1)+","+(j+1));
-				gameState.allowedCellsBool[i+1][j+1] = false;
-				if(allyCell(i+1,j+1, exception, enemyStart, gameState)) {
-					break;
-				}
-				j++;
-				i++;
-				iter++;
+			i++;
+			j--;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("DESPINTANDO: "+(i+1)+","+(j+1));
+			gameState.allowedCellsBool[i+1][j+1] = false;
+			if(allyCell(i+1,j+1, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("DESPINTANDO: "+(i-1)+","+(j+1));
-				gameState.allowedCellsBool[i-1][j+1] = false;
-				if(allyCell(i-1,j+1, exception, enemyStart, gameState)) {
-					break;
-				}
-				i--;
-				j++;
-				iter++;
+			j++;
+			i++;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("DESPINTANDO: "+(i-1)+","+(j+1));
+			gameState.allowedCellsBool[i-1][j+1] = false;
+			if(allyCell(i-1,j+1, exception, enemyStart, gameState)) {
+				break;
 			}
-		} else {
-			int i = iAux;
-			int j = jAux;
-			int iter = 0;
-			while(j-1 >= 0 && i-1 >= 0 && !allyCell(i-1,j-1, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.print("\nDESPINTANDO: "+(i-1)+","+(j-1));
-				gameState.allowedCellsBool[i-1][j - 1] = false;
-				if(allyCell(i-1,j-1, idCoronado, enemyStart, gameState)) {
-					break;
-				}
-				j--;
-				i--;
-				iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i+1 <= 7 && j-1 >= 0 && !allyCell(i+1,j-1, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.print("\nDESPINTANDO: "+(i+1)+","+(j-1));
-				gameState.allowedCellsBool[i+1][j-1] = false;
-				if(allyCell(i+1,j-1, idCoronado, enemyStart, gameState)) {
-					break;
-				}
-				i++;
-				j--;
-				iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(j+1 <= 7 && i+1 <= 7 && !allyCell(i+1,j+1, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.print("\nDESPINTANDO: "+(i+1)+","+(j+1));
-				gameState.allowedCellsBool[i+1][j+1] = false;
-				if(allyCell(i+1,j+1, idCoronado, enemyStart, gameState)) {
-					break;
-				}
-				j++;
-				i++;
-				iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i-1 >= 0 && j+1 <= 7 && !allyCell(i-1,j+1, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.print("\nDESPINTANDO: "+(i-1)+","+(j+1));
-				gameState.allowedCellsBool[i-1][j+1] = false;
-				if(allyCell(i-1,j+1, idCoronado, enemyStart, gameState)) {
-					break;
-				}
-				i--;
-				j++;
-				iter++;
-			}
+			i--;
+			j++;
+			iter++;
 		}
 		
 		
 	}
 
-	private static void horseAllowedCells(Vector2D originalPos, int exception, int allyStart, GameState gameState, int idCoronado) {
+	private static void horseAllowedCells(Vector2D originalPos, int exception, int allyStart, GameState gameState) {
 		
 		int i = getZ((int)originalPos.getX());
 		int j = getZ((int)originalPos.getY());
@@ -783,70 +765,36 @@ public class Cell {
 		//System.out.println(i);
 		//System.out.println(j);
 		
-		if(idCoronado == -1) {
-			if (i - 1 >= 0 && j - 2 >= 0 && !allyCell(i-1,j-2, exception, allyStart, gameState)) {
-				gameState.allowedCellsBool[i - 1][j - 2] = true;
-			}
+		if (i - 1 >= 0 && j - 2 >= 0 && !allyCell(i-1,j-2, exception, allyStart, gameState)) {
+			gameState.allowedCellsBool[i - 1][j - 2] = true;
+		}
 
-			if (i + 1 <= 7 && j - 2 >= 0 && !allyCell(i+1,j-2, exception, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i + 1][j - 2] = true;
-			}
+		if (i + 1 <= 7 && j - 2 >= 0 && !allyCell(i+1,j-2, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i + 1][j - 2] = true;
+		}
 
-			if (i - 2 >= 0 && j - 1 >= 0 && !allyCell(i-2,j-1, exception, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i - 2][j - 1] = true;
-			}
+		if (i - 2 >= 0 && j - 1 >= 0 && !allyCell(i-2,j-1, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i - 2][j - 1] = true;
+		}
 
-			if (i - 2 >= 0 && j + 1 <= 7 && !allyCell(i-2,j+1, exception, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i - 2][j + 1] = true;
-			}
+		if (i - 2 >= 0 && j + 1 <= 7 && !allyCell(i-2,j+1, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i - 2][j + 1] = true;
+		}
 
-			if (i - 1 >= 0 && j + 2 <= 7 && !allyCell(i-1,j+2, exception, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i - 1][j + 2] = true;
-			}
+		if (i - 1 >= 0 && j + 2 <= 7 && !allyCell(i-1,j+2, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i - 1][j + 2] = true;
+		}
 
-			if (i + 1 <= 7 && j + 2 <= 7 && !allyCell(i+1,j+2, exception, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i + 1][j + 2] = true;
-			}
+		if (i + 1 <= 7 && j + 2 <= 7 && !allyCell(i+1,j+2, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i + 1][j + 2] = true;
+		}
 
-			if (i + 2 <= 7 && j - 1 >= 0 && !allyCell(i+2,j-1, exception, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i + 2][j - 1] = true;
-			}
+		if (i + 2 <= 7 && j - 1 >= 0 && !allyCell(i+2,j-1, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i + 2][j - 1] = true;
+		}
 
-			if (i + 2 <= 7 && j + 1 <= 7 && !allyCell(i+2,j+1, exception, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i + 2][j + 1] = true;
-			}
-		} else {
-			if (i - 1 >= 0 && j - 2 >= 0 && !allyCell(i-1,j-2, idCoronado, allyStart, gameState)) {
-				gameState.allowedCellsBool[i - 1][j - 2] = true;
-			}
-
-			if (i + 1 <= 7 && j - 2 >= 0 && !allyCell(i+1,j-2, idCoronado, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i + 1][j - 2] = true;
-			}
-
-			if (i - 2 >= 0 && j - 1 >= 0 && !allyCell(i-2,j-1, idCoronado, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i - 2][j - 1] = true;
-			}
-
-			if (i - 2 >= 0 && j + 1 <= 7 && !allyCell(i-2,j+1, idCoronado, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i - 2][j + 1] = true;
-			}
-
-			if (i - 1 >= 0 && j + 2 <= 7 && !allyCell(i-1,j+2, idCoronado, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i - 1][j + 2] = true;
-			}
-
-			if (i + 1 <= 7 && j + 2 <= 7 && !allyCell(i+1,j+2, idCoronado, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i + 1][j + 2] = true;
-			}
-
-			if (i + 2 <= 7 && j - 1 >= 0 && !allyCell(i+2,j-1, idCoronado, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i + 2][j - 1] = true;
-			}
-
-			if (i + 2 <= 7 && j + 1 <= 7 && !allyCell(i+2,j+1, idCoronado, allyStart, gameState)) {
-			    gameState.allowedCellsBool[i + 2][j + 1] = true;
-			}
+		if (i + 2 <= 7 && j + 1 <= 7 && !allyCell(i+2,j+1, exception, allyStart, gameState)) {
+		    gameState.allowedCellsBool[i + 2][j + 1] = true;
 		}
 
 		
@@ -894,7 +842,7 @@ public class Cell {
 		
 	}
 
-	private static void towerAllowedCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, boolean firstMove, GameState gameState, int idCoronado) {
+	private static void towerAllowedCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, boolean firstMove, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
@@ -910,113 +858,60 @@ public class Cell {
 		}
 		*/
 		
-		if(idCoronado == -1) {
-			int i = iAux;
-			int j = jAux;
-			int iter = 0;
-			while(j-1 >= 0 && !allyCell(i,j-1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+i+","+(j-1));
-				gameState.allowedCellsBool[i][j - 1] = true;
-				if(allyCell(i,j-1, exception, enemyStart, gameState)) {
-					break;
-				}
-				j--;
-				iter++;
-				
+		int i = iAux;
+		int j = jAux;
+		int iter = 0;
+		while(j-1 >= 0 && !allyCell(i,j-1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("PINTANDO: "+i+","+(j-1));
+			gameState.allowedCellsBool[i][j - 1] = true;
+			if(allyCell(i,j-1, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i+1 <= 7 && !allyCell(i+1,j, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i+1)+","+j);
-				gameState.allowedCellsBool[i+1][j] = true;
-				if(allyCell(i+1,j, exception, enemyStart, gameState)) {
-					break;
-				}
-				i++;
-				iter++;
+			j--;
+			iter++;
+			
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(i+1 <= 7 && !allyCell(i+1,j, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("PINTANDO: "+(i+1)+","+j);
+			gameState.allowedCellsBool[i+1][j] = true;
+			if(allyCell(i+1,j, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(j+1 <= 7 && !allyCell(i,j+1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i)+","+(j+1));
-				gameState.allowedCellsBool[i][j+1] = true;
-				if(allyCell(i,j+1, exception, enemyStart, gameState)) {
-					break;
-				}
-				j++;
-				iter++;
+			i++;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(j+1 <= 7 && !allyCell(i,j+1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("PINTANDO: "+(i)+","+(j+1));
+			gameState.allowedCellsBool[i][j+1] = true;
+			if(allyCell(i,j+1, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i-1 >= 0 && !allyCell(i-1,j, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i-1)+","+j);
-				gameState.allowedCellsBool[i-1][j] = true;
-				if(allyCell(i-1,j, exception, enemyStart, gameState)) {
-					break;
-				}
-				i--;
-				iter++;
+			j++;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(i-1 >= 0 && !allyCell(i-1,j, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("PINTANDO: "+(i-1)+","+j);
+			gameState.allowedCellsBool[i-1][j] = true;
+			if(allyCell(i-1,j, exception, enemyStart, gameState)) {
+				break;
 			}
-		} else {
-			//System.out.println("idCoronado:"+ idCoronado);
-			int i = iAux;
-			int j = jAux;
-			int iter = 0;
-			while(j-1 >= 0 && !allyCell(i,j-1, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+i+","+(j-1));
-				gameState.allowedCellsBool[i][j - 1] = true;
-				if(allyCell(i,j-1, idCoronado, enemyStart, gameState)) {
-					break;
-				}
-				j--;
-				iter++;
-				
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i+1 <= 7 && !allyCell(i+1,j, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i+1)+","+j);
-				gameState.allowedCellsBool[i+1][j] = true;
-				if(allyCell(i+1,j, idCoronado, enemyStart, gameState)) {
-					break;
-				}
-				i++;
-				iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(j+1 <= 7 && !allyCell(i,j+1, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i)+","+(j+1));
-				gameState.allowedCellsBool[i][j+1] = true;
-				if(allyCell(i,j+1, idCoronado, enemyStart, gameState)) {
-					break;
-				}
-				j++;
-				iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i-1 >= 0 && !allyCell(i-1,j, idCoronado, allyStart, gameState) && iter < end) {
-				//System.out.println("PINTANDO: "+(i-1)+","+j);
-				gameState.allowedCellsBool[i-1][j] = true;
-				if(allyCell(i-1,j, idCoronado, enemyStart, gameState)) {
-					break;
-				}
-				i--;
-				iter++;
-			}
+			i--;
+			iter++;
 		}
 
 		
 	}
 
-	private static void towerDeallowCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, GameState gameState, int idCoronado) {
+	private static void towerDeallowCells(Vector2D originalPos, int exception, int allyStart, int enemyStart, int end, GameState gameState) {
 		
 		int iAux = getZ((int)originalPos.getX());
 		int jAux = getZ((int)originalPos.getY());
@@ -1024,110 +919,53 @@ public class Cell {
 		//System.out.println(i);
 		//System.out.println(j);
 		//System.out.println("idCoronado: "+idCoronado);
-		if(idCoronado == -1) {
-			int i = iAux;
-			int j = jAux;
-			int iter = 0;
-			while(j-1 >= 0 && !allyCell(i,j-1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("DESPINTANDO: "+i+","+(j-1));
-				gameState.allowedCellsBool[i][j - 1] = false;
-				if(allyCell(i,j-1, exception, enemyStart, gameState)) {
-					break;
-				}
-				j--;
-				iter++;
+		int i = iAux;
+		int j = jAux;
+		int iter = 0;
+		while(j-1 >= 0 && !allyCell(i,j-1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("DESPINTANDO: "+i+","+(j-1));
+			gameState.allowedCellsBool[i][j - 1] = false;
+			if(allyCell(i,j-1, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i+1 <= 7 && !allyCell(i+1,j, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("DESPINTANDO: "+(i+1)+","+j);
-				gameState.allowedCellsBool[i+1][j] = false;
-				if(allyCell(i+1,j, exception, enemyStart, gameState)) {
-					break;
-				}
-				i++;
-				iter++;
+			j--;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(i+1 <= 7 && !allyCell(i+1,j, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("DESPINTANDO: "+(i+1)+","+j);
+			gameState.allowedCellsBool[i+1][j] = false;
+			if(allyCell(i+1,j, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(j+1 <= 7 && !allyCell(i,j+1, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("DESPINTANDO: "+(i)+","+(j+1));
-				gameState.allowedCellsBool[i][j+1] = false;
-				if(allyCell(i,j+1, exception, enemyStart, gameState)) {
-					break;
-				}
-				j++;
-				iter++;
+			i++;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(j+1 <= 7 && !allyCell(i,j+1, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("DESPINTANDO: "+(i)+","+(j+1));
+			gameState.allowedCellsBool[i][j+1] = false;
+			if(allyCell(i,j+1, exception, enemyStart, gameState)) {
+				break;
 			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i-1 >= 0 && !allyCell(i-1,j, exception, allyStart, gameState) && iter < end) {
-				//System.out.println("DESPINTANDO: "+(i-1)+","+j);
-				gameState.allowedCellsBool[i-1][j] = false;
-				if(allyCell(i-1,j, exception, enemyStart, gameState)) {
-					break;
-				}
-				i--;
-				iter++;
+			j++;
+			iter++;
+		}
+		i = iAux;
+		j = jAux;
+		iter = 0;
+		while(i-1 >= 0 && !allyCell(i-1,j, exception, allyStart, gameState) && iter < end) {
+			//System.out.println("DESPINTANDO: "+(i-1)+","+j);
+			gameState.allowedCellsBool[i-1][j] = false;
+			if(allyCell(i-1,j, exception, enemyStart, gameState)) {
+				break;
 			}
-		} else {
-			System.out.println("towerDeAllowCells(); | coronado | idCoronado: "+idCoronado);
-			int i = iAux;
-			int j = jAux;
-			int iter = 0;
-			while(j-1 >= 0 && !allyCell(i,j-1, idCoronado, allyStart, gameState) && iter < end) {
-			    //System.out.println("DESPINTANDO: "+i+","+(j-1));
-			    System.out.println("Limpiando "+i+" "+(j-1));
-			    gameState.allowedCellsBool[i][j - 1] = false;
-			    if(allyCell(i,j-1, idCoronado, enemyStart, gameState)) {
-			        break;
-			    }
-			    j--;
-			    iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i+1 <= 7 && !allyCell(i+1,j, idCoronado, allyStart, gameState) && iter < end) {
-			    //System.out.println("DESPINTANDO: "+(i+1)+","+j);
-			    System.out.println("Limpiando "+(i+1)+" "+j);
-			    gameState.allowedCellsBool[i+1][j] = false;
-			    if(allyCell(i+1,j, idCoronado, enemyStart, gameState)) {
-			        break;
-			    }
-			    i++;
-			    iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(j+1 <= 7 && !allyCell(i,j+1, idCoronado, allyStart, gameState) && iter < end) {
-			    //System.out.println("DESPINTANDO: "+(i)+","+(j+1));
-			    System.out.println("Limpiando "+i+" "+(j+1));
-			    gameState.allowedCellsBool[i][j+1] = false;
-			    if(allyCell(i,j+1, idCoronado, enemyStart, gameState)) {
-			        break;
-			    }
-			    j++;
-			    iter++;
-			}
-			i = iAux;
-			j = jAux;
-			iter = 0;
-			while(i-1 >= 0 && !allyCell(i-1,j, idCoronado, allyStart, gameState) && iter < end) {
-			    //System.out.println("DESPINTANDO: "+(i-1)+","+j);
-			    //System.out.println("Limpiando "+(i-1)+" "+j);
-			    gameState.allowedCellsBool[i-1][j] = false;
-			    if(allyCell(i-1,j, idCoronado, enemyStart, gameState)) {
-			        break;
-			    }
-			    i--;
-			    iter++;
-			}
-
+			i--;
+			iter++;
 		}
 		
 	}
