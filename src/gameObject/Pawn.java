@@ -85,23 +85,12 @@ public class Pawn extends MovingObject {
 	            
 	            Cell.deAllowCells(originalPos, id, firstMove, gameState, idCoronado);
 	            
-	            if(valida) {
-	                gameState.nextTurn();
-	                if(firstMove) {
-	                    firstMove = false;
-	                    int reach = (id < 16) ? 4 : 3;
-	                    if(Cell.getZ((int) posicion.getY()) == reach) {
-	                        //System.out.println("Se movio dos casilas");
-	                        firstMoveTurn = gameState.turn;
-	                        lastMoveWasFirstMove = true;
-	                    }
-	                } else {
-	                    lastMoveWasFirstMove = false;
-	                }
-	            }
 	            if (coronado && idCoronado == -1) {
-	            	Scanner scanner = new Scanner(System.in); // Crear el Scanner fuera del condicional
-
+	            	
+	            	VentanaCoronar ventanaCoronar = new VentanaCoronar(gameState.window, this);
+	            	
+	            	//Scanner scanner = new Scanner(System.in); // Crear el Scanner fuera del condicional
+	            	/*
 	                if (id < 16) {
 	                    int numeroElegido;
 
@@ -127,10 +116,26 @@ public class Pawn extends MovingObject {
 
 	                    idCoronado = numeroElegido;
 	                }
+	                */
 
 	                // Cerrar el objeto Scanner después de haber terminado de usarlo
 	                //scanner.close();
 	            	
+	            }
+
+	            if(valida) {
+	                gameState.nextTurn();
+	                if(firstMove) {
+	                    firstMove = false;
+	                    int reach = (id < 16) ? 4 : 3;
+	                    if(Cell.getZ((int) posicion.getY()) == reach) {
+	                        //System.out.println("Se movio dos casilas");
+	                        firstMoveTurn = gameState.turn;
+	                        lastMoveWasFirstMove = true;
+	                    }
+	                } else {
+	                    lastMoveWasFirstMove = false;
+	                }
 	            }
 	            //System.out.println("lastMoveWasFirstMove = "+lastMoveWasFirstMove);
 	        }
