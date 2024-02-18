@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
-import input.Mouse;
+import input.MouseForWindow;
 import main.VentanaCoronar;
 import math.Cell;
 import math.Vector2D;
@@ -20,29 +20,31 @@ public class Pawn extends MovingObject {
 	private int firstMoveTurn = -1;
 	private boolean coronado = false;
 	
+	private boolean ventanaCoronarAbierta = false;
+
 	public Pawn(Vector2D position, BufferedImage texture, GameState gameState, int id) {
 		super(position, texture, gameState);
 		this.id = id;
 	}
 
 	public void update() {
-	    if(Mouse.mousePressed) {
-	        posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
-	        posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
-	        Vector2D originalPos = Mouse.originalPos;
+	    if(MouseForWindow.mousePressed) {
+	        posicion.setX(MouseForWindow.mouseXOnApp - Constants.CELLSIZE/2);
+	        posicion.setY(MouseForWindow.mouseYOnApp - Constants.CELLSIZE/2);
+	        Vector2D originalPos = MouseForWindow.originalPos;
 	        
 	        Cell.calcAllowedCells(originalPos, id, firstMove, gameState, idCoronado);
 	        
 	        //((idCoronado != -1) ? idCoronado : id
 	    } else {
-	        if(Mouse.mouseRealesed) {
+	        if(MouseForWindow.mouseRealesed) {
 	            boolean valida;
-	            int newX = Cell.getZ(Mouse.mouseXOnApp);
-	            int newY = Cell.getZ(Mouse.mouseYOnApp);
+	            int newX = Cell.getZ(MouseForWindow.mouseXOnApp);
+	            int newY = Cell.getZ(MouseForWindow.mouseYOnApp);
 	            if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, id, ((id < 16) ? Constants.WHITESTART : Constants.BLACKSTART), gameState) && gameState.allowedCellsBool[newX][newY] ) {
 	                //System.out.println("Valida");
 	                valida = true;
-	                gameState.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
+	                gameState.posicionesDelTablero[Cell.getZ((int)MouseForWindow.oriPosX)][Cell.getZ((int)MouseForWindow.oriPosY)] = -1;
 	                int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
 	                if ((id < 16 && pieceOnCellId >= 16 && pieceOnCellId <= 31) || (id >= 16 && pieceOnCellId >= 0 && pieceOnCellId <= 15)) {
 	                    //String mensaje = (id < 16) ? "COLISION CON PIEZA NEGRA: " : "COLISION CON PIEZA BLANCA: ";
@@ -51,8 +53,8 @@ public class Pawn extends MovingObject {
 	                }
 
 	                gameState.posicionesDelTablero[newX][newY] = id;
-	                posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
-	                posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
+	                posicion.setX(Cell.getFromCell(MouseForWindow.mouseXOnApp));
+	                posicion.setY(Cell.getFromCell(MouseForWindow.mouseYOnApp));
 	                
 	                if(Cell.getZ( (int) posicion.getY()) == ((id < 16) ? 0 : 7) && !coronado ) {
 	                	System.out.println("CORONAR!");
@@ -60,70 +62,59 @@ public class Pawn extends MovingObject {
 	                	//VentanaCoronar ventanaCoronar = new VentanaCoronar(gameState.window);
 	                }
 	                
-	                pieceOnCellId = gameState.posicionesDelTablero[Cell.getZ((int)posicion.getX())][Cell.getZ((int)posicion.getY()) + ((id < 16) ? 1 : -1)];
-	                int lowPawnPiece = (id < 16) ? 24 : 8;
-	                int highPawnPiece = (id < 16) ? 31 : 15;
-	                if(pieceOnCellId >= lowPawnPiece && pieceOnCellId <= highPawnPiece) {
-	                   // System.out.println("pieceOnCellId: " + pieceOnCellId);
-	                    MovingObject piece = gameState.getMovingObject(pieceOnCellId);
-	                    if(piece.isFirstMove()) {
-	                        //System.out.println("fue su primer movimiento? " + piece.isFirstMove());
-	                        gameState.posicionesDelTablero[Cell.getZ((int)posicion.getX())][Cell.getZ((int)posicion.getY()) + ((id < 16) ? 1 : -1)] = -1;
-	                        piece.destroy();
-	                    }
+	                if(idCoronado == -1) {
+	                	pieceOnCellId = gameState.posicionesDelTablero[Cell.getZ((int)posicion.getX())][Cell.getZ((int)posicion.getY()) + ((id < 16) ? 1 : -1)];
+		                int lowPawnPiece = (id < 16) ? 24 : 8;
+		                int highPawnPiece = (id < 16) ? 31 : 15;
+		                if(pieceOnCellId >= lowPawnPiece && pieceOnCellId <= highPawnPiece) {
+		                   // System.out.println("pieceOnCellId: " + pieceOnCellId);
+		                    MovingObject piece = gameState.getMovingObject(pieceOnCellId);
+		                    if(piece.isFirstMove()) {
+		                        //System.out.println("fue su primer movimiento? " + piece.isFirstMove());
+		                        gameState.posicionesDelTablero[Cell.getZ((int)posicion.getX())][Cell.getZ((int)posicion.getY()) + ((id < 16) ? 1 : -1)] = -1;
+		                        piece.destroy();
+		                    }
+		                }
 	                }
+	                
 	                gameState.piecePosition[id] = new Vector2D(newX * Constants.CELLSIZE, newY * Constants.CELLSIZE);
 	            } else {
 	                valida = false;
-	                if(Mouse.originalPos != null) {
-	                    posicion.setX(Mouse.originalPos.getX());
-	                    posicion.setY(Mouse.originalPos.getY());
+	                if(MouseForWindow.originalPos != null) {
+	                    posicion.setX(MouseForWindow.originalPos.getX());
+	                    posicion.setY(MouseForWindow.originalPos.getY());
 	                }
 	            }
-	            Mouse.mouseRealesed = false;
-	            Vector2D originalPos = Mouse.originalPos;
+	            MouseForWindow.mouseRealesed = false;
+	            Vector2D originalPos = MouseForWindow.originalPos;
 	            
+	            Cell.cellsDeallowed = false;
 	            Cell.deAllowCells(originalPos, id, firstMove, gameState, idCoronado);
+	            
+	            while(!Cell.cellsDeallowed && !coronado) {
+            		try {
+            	        Thread.sleep(100);
+            	        System.out.println("LIMPIANDO");
+            	    } catch (InterruptedException e) {
+            	        e.printStackTrace();
+            	    }
+            	}
 	            
 	            if (coronado && idCoronado == -1) {
 	            	
-	            	VentanaCoronar ventanaCoronar = new VentanaCoronar(gameState.window, this);
-	            	
-	            	//Scanner scanner = new Scanner(System.in); // Crear el Scanner fuera del condicional
+	            	//gameState.window.pause();
+
+	            	//ventanaCoronarAbierta = true;
+	            	VentanaCoronar ventanaCoronar = new VentanaCoronar(this);
 	            	/*
-	                if (id < 16) {
-	                    int numeroElegido;
-
-	                    do {
-	                        System.out.print("Por favor, ingresa qué pieza quieres (1, 2, 3 o 4): ");
-	                        numeroElegido = scanner.nextInt();
-	                        if (numeroElegido < 1 || numeroElegido > 4) {
-	                            System.out.println("Por favor, ingresa un número válido (1, 2, 3 o 4).");
-	                        }
-	                    } while (numeroElegido < 1 || numeroElegido > 4);
-
-	                    idCoronado = numeroElegido;
-	                } else {
-	                    int numeroElegido;
-
-	                    do {
-	                        System.out.print("Por favor, ingresa qué pieza quieres (17, 18, 19 o 20): ");
-	                        numeroElegido = scanner.nextInt();
-	                        if (numeroElegido < 17 || numeroElegido > 20) {
-	                            System.out.println("Por favor, ingresa un número válido (17, 18, 19 o 20).");
-	                        }
-	                    } while (numeroElegido < 17 || numeroElegido > 20);
-
-	                    idCoronado = numeroElegido;
-	                }
-	                */
-
-	                // Cerrar el objeto Scanner después de haber terminado de usarlo
-	                //scanner.close();
-	            	
+	            	this.setVentanaCoronarAbierta(false);
+	            	gameState.window.resume();
+	            	*/
+	            	//gameState.window.resume();
 	            }
-
+	            
 	            if(valida) {
+	            	//System.out.println("PASANDO AL SIGUIENTE TURNO");
 	                gameState.nextTurn();
 	                if(firstMove) {
 	                    firstMove = false;
@@ -173,6 +164,18 @@ public class Pawn extends MovingObject {
 	
 	public int getIdCoronado() {
 		return idCoronado;
+	}
+
+	public void setIdCoronado(int idCoronado) {
+		this.idCoronado = idCoronado;
+	}
+	
+	public boolean isVentanaCoronarAbierta() {
+		return ventanaCoronarAbierta;
+	}
+
+	public void setVentanaCoronarAbierta(boolean ventanaCoronarAbierta) {
+		this.ventanaCoronarAbierta = ventanaCoronarAbierta;
 	}
 
 }

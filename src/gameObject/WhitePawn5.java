@@ -2,7 +2,7 @@ package gameObject;
 
 import java.awt.image.BufferedImage;
 
-import input.Mouse;
+import input.MouseForWindow;
 
 import java.awt.Graphics;
 
@@ -20,8 +20,8 @@ public class WhitePawn5 extends Pawn {
 
 	@Override
 	public void update() {
-		if( (Mouse.wp5 || Mouse.lastPiece == id) &&
-			(Mouse.mousePressed || Mouse.mouseRealesed) &&
+		if( (MouseForWindow.wp5 || MouseForWindow.lastPiece == id) &&
+			(MouseForWindow.mousePressed || MouseForWindow.mouseRealesed) &&
 			(gameState.whiteTurn)) super.update();
 		else super.updateTurn();
 	}

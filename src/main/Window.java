@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import gameObject.Constants;
 import graphics.Assets;
-import input.Mouse;
+import input.MouseForWindow;
 import states.GameState;
 
 public class Window extends JFrame implements Runnable {
@@ -34,7 +34,7 @@ public class Window extends JFrame implements Runnable {
 	
 	private GameState gameState;
 	
-	private Mouse mouse;
+	private MouseForWindow mouse;
 	
 	private boolean paused = false;
 
@@ -64,7 +64,7 @@ public class Window extends JFrame implements Runnable {
 	private void init() {
 		Assets.init();
 		gameState = new GameState(this);
-		mouse = new Mouse(gameState);
+		mouse = new MouseForWindow(gameState);
 		canvas.addMouseListener(mouse);
 		canvas.addMouseMotionListener(mouse);
 	}
@@ -130,7 +130,7 @@ public class Window extends JFrame implements Runnable {
 		init();
 		
 		while(running) {
-			
+			//System.out.print("RUNNING");
 			now = System.nanoTime();
 			delta += (now - lastTime)/TARGETTIME;
 			time += (now - lastTime);
@@ -148,8 +148,9 @@ public class Window extends JFrame implements Runnable {
 	                time = 0;
 	            }
 			} else {
-	            // Si la ventana está pausada, esperar hasta que se reanude
+				System.out.print("PAUSED");
 	            waitForResume();
+	            System.out.print("RESUMED");
 	        }
 			
 		}
@@ -178,7 +179,9 @@ public class Window extends JFrame implements Runnable {
 	}
 
 	public void resume() {
+		//System.out.print("paused: "+paused);
 	    paused = false;
+	    //System.out.print("paused: "+paused);
 	}
 	
 	private synchronized void waitForResume() {

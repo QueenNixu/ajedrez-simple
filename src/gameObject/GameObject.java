@@ -26,6 +26,12 @@ public abstract class GameObject {
 	public void setPosicion(Vector2D posicion) {
 		this.posicion = posicion;
 	}
+
+	public void setTextura(BufferedImage textura) {
+		this.textura = textura;
+	}
+	
+	
 	
 	
 

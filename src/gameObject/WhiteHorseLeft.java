@@ -2,7 +2,7 @@ package gameObject;
 
 import java.awt.image.BufferedImage;
 
-import input.Mouse;
+import input.MouseForWindow;
 
 import java.awt.Graphics;
 
@@ -20,8 +20,8 @@ public class WhiteHorseLeft extends Horse {
 
 		@Override
 		public void update() {
-			if( (Mouse.whl || Mouse.lastPiece == id) &&
-				(Mouse.mousePressed || Mouse.mouseRealesed) &&
+			if( (MouseForWindow.whl || MouseForWindow.lastPiece == id) &&
+				(MouseForWindow.mousePressed || MouseForWindow.mouseRealesed) &&
 				(gameState.whiteTurn)) super.update();
 		}
 }

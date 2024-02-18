@@ -9,7 +9,9 @@ import gameObject.WhiteTowerRight;
 import states.GameState;
 
 public class Cell {
-	
+
+	public static boolean cellsDeallowed;
+
 	public static int getFromCell(int originalPos) {
 		if(originalPos >= 0 && originalPos < Constants.CELLSIZE*1) {
 			return 0;
@@ -1081,6 +1083,7 @@ public class Cell {
 		default:
 		}
 		
+		cellsDeallowed = true;
 	}
 
 	

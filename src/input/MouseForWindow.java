@@ -7,7 +7,7 @@ import java.awt.event.MouseMotionListener;
 import math.Vector2D;
 import states.GameState;
 
-public class Mouse implements MouseListener, MouseMotionListener {
+public class MouseForWindow implements MouseListener, MouseMotionListener {
 	
 	public static int mouseXOnApp;
 	public static int mouseYOnApp;
@@ -59,7 +59,7 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	protected GameState gameState;
 	
 	
-	public Mouse(GameState gameState) {
+	public MouseForWindow(GameState gameState) {
 		this.gameState = gameState;
 		for(int i = 0; i < piece.length; i++) {
 	        piece[i] = false;

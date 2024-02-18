@@ -3,7 +3,7 @@ package gameObject;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import input.Mouse;
+import input.MouseForWindow;
 import math.Cell;
 import math.Vector2D;
 import states.GameState;
@@ -26,23 +26,23 @@ public class King extends MovingObject {
 		//posicion.setY(id);
 		
 	    // Según la pieza agarrada, permitir y prohibir posiciones
-		if(Mouse.mousePressed) {
+		if(MouseForWindow.mousePressed) {
 			//System.out.println("UWU");
-			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
-			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
-			Vector2D originalPos = Mouse.originalPos;
+			posicion.setX(MouseForWindow.mouseXOnApp - Constants.CELLSIZE/2);
+			posicion.setY(MouseForWindow.mouseYOnApp - Constants.CELLSIZE/2);
+			Vector2D originalPos = MouseForWindow.originalPos;
 			Cell.calcAllowedCells(originalPos, id, firstMove, gameState, -1);
 			//System.out.println("uwu -1");
 			
 		} else {
-			if(Mouse.mouseRealesed) {
+			if(MouseForWindow.mouseRealesed) {
 				boolean valida;
-				int newX = Cell.getZ(Mouse.mouseXOnApp);
-				int newY = Cell.getZ(Mouse.mouseYOnApp);
+				int newX = Cell.getZ(MouseForWindow.mouseXOnApp);
+				int newY = Cell.getZ(MouseForWindow.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, id, ((id < 16) ? Constants.WHITESTART : Constants.BLACKSTART), gameState) && gameState.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
 					valida = true;
-					gameState.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
+					gameState.posicionesDelTablero[Cell.getZ((int)MouseForWindow.oriPosX)][Cell.getZ((int)MouseForWindow.oriPosY)] = -1;
 					int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
 					if ((id < 16 && pieceOnCellId >= 16 && pieceOnCellId <= 31) || (id >= 16 && pieceOnCellId >= 0 && pieceOnCellId <= 15)) {
 	                    String mensaje = (id < 16) ? "COLISION CON PIEZA NEGRA: " : "COLISION CON PIEZA BLANCA: ";
@@ -50,8 +50,8 @@ public class King extends MovingObject {
 	                    gameState.getMovingObject(pieceOnCellId).destroy();
 	                }
 					gameState.posicionesDelTablero[newX][newY] = id;
-					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
-					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
+					posicion.setX(Cell.getFromCell(MouseForWindow.mouseXOnApp));
+					posicion.setY(Cell.getFromCell(MouseForWindow.mouseYOnApp));
 					if(firstMove && Cell.getZ((int)posicion.getX()) == 6) {
 						((Tower)gameState.getMovingObject(((id < 16) ? 7 : 23))).enroque(id);
 					} else {
@@ -63,13 +63,13 @@ public class King extends MovingObject {
 					
 				} else {
 					valida = false;
-					if(Mouse.originalPos != null) {
-						posicion.setX(Mouse.originalPos.getX());
-						posicion.setY(Mouse.originalPos.getY());
+					if(MouseForWindow.originalPos != null) {
+						posicion.setX(MouseForWindow.originalPos.getX());
+						posicion.setY(MouseForWindow.originalPos.getY());
 					}
 				}
-				Mouse.mouseRealesed = false;
-				Vector2D originalPos = Mouse.originalPos;
+				MouseForWindow.mouseRealesed = false;
+				Vector2D originalPos = MouseForWindow.originalPos;
 				Cell.deAllowCells(originalPos, id, firstMove, gameState, -1);
 				if(valida) {
 					gameState.nextTurn();

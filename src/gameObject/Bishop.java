@@ -3,7 +3,7 @@ package gameObject;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import input.Mouse;
+import input.MouseForWindow;
 import math.Cell;
 import math.Vector2D;
 import states.GameState;
@@ -20,21 +20,21 @@ public class Bishop extends MovingObject {
 	}
 
 	public void update() {
-		if(Mouse.mousePressed) {
+		if(MouseForWindow.mousePressed) {
 			//System.out.println("UWU");
-			posicion.setX(Mouse.mouseXOnApp - Constants.CELLSIZE/2);
-			posicion.setY(Mouse.mouseYOnApp - Constants.CELLSIZE/2);
-			Vector2D originalPos = Mouse.originalPos;
+			posicion.setX(MouseForWindow.mouseXOnApp - Constants.CELLSIZE/2);
+			posicion.setY(MouseForWindow.mouseYOnApp - Constants.CELLSIZE/2);
+			Vector2D originalPos = MouseForWindow.originalPos;
 			Cell.calcAllowedCells(originalPos, id, false, gameState, -1);
 			//System.out.println("uwu -1");
 			
 		} else {
-			if(Mouse.mouseRealesed) {
-				int newX = Cell.getZ(Mouse.mouseXOnApp);
-				int newY = Cell.getZ(Mouse.mouseYOnApp);
+			if(MouseForWindow.mouseRealesed) {
+				int newX = Cell.getZ(MouseForWindow.mouseXOnApp);
+				int newY = Cell.getZ(MouseForWindow.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, id, ((id < 16) ? Constants.WHITESTART : Constants.BLACKSTART), gameState) && gameState.allowedCellsBool[newX][newY] ) {
 					System.out.println("Valida");
-					gameState.posicionesDelTablero[Cell.getZ((int)Mouse.oriPosX)][Cell.getZ((int)Mouse.oriPosY)] = -1;
+					gameState.posicionesDelTablero[Cell.getZ((int)MouseForWindow.oriPosX)][Cell.getZ((int)MouseForWindow.oriPosY)] = -1;
 					// llamar a object collision modificado para destruir enemigo
 					int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
 					
@@ -44,18 +44,18 @@ public class Bishop extends MovingObject {
 	                    gameState.getMovingObject(pieceOnCellId).destroy();
 	                }
 					gameState.posicionesDelTablero[newX][newY] = id;
-					posicion.setX(Cell.getFromCell(Mouse.mouseXOnApp));
-					posicion.setY(Cell.getFromCell(Mouse.mouseYOnApp));
+					posicion.setX(Cell.getFromCell(MouseForWindow.mouseXOnApp));
+					posicion.setY(Cell.getFromCell(MouseForWindow.mouseYOnApp));
 					gameState.piecePosition[id] = new Vector2D(newX*Constants.CELLSIZE, newY*Constants.CELLSIZE);
 					gameState.nextTurn();
 				} else {
-					if(Mouse.originalPos != null) {
-						posicion.setX(Mouse.originalPos.getX());
-						posicion.setY(Mouse.originalPos.getY());
+					if(MouseForWindow.originalPos != null) {
+						posicion.setX(MouseForWindow.originalPos.getX());
+						posicion.setY(MouseForWindow.originalPos.getY());
 					}
 				}
-				Mouse.mouseRealesed = false;
-				Vector2D originalPos = Mouse.originalPos;
+				MouseForWindow.mouseRealesed = false;
+				Vector2D originalPos = MouseForWindow.originalPos;
 				Cell.deAllowCells(originalPos, id, false, gameState, -1);
 			}
 		}

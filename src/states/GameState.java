@@ -39,7 +39,7 @@ import gameObject.WhitePawn5;
 import gameObject.WhitePawn6;
 import gameObject.WhitePawn7;
 import graphics.Assets;
-import input.Mouse;
+import input.MouseForWindow;
 import main.Window;
 import math.Cell;
 import math.Vector2D;
@@ -180,6 +180,7 @@ public class GameState {
             turn = 1;
             turnPlayed = false;
         
+            System.out.println("CURRENT TURN: "+turn);
     }
 
     // Métodos de actualización y dibujo
@@ -197,7 +198,7 @@ public class GameState {
 			
 		}
         
-        if(Mouse.mousePressed) {
+        if(MouseForWindow.mousePressed) {
         	for (int i = 0; i <= 7; i++) {
             	for (int j = 0; j <= 7; j++) {
             		if(allowedCellsBool[i][j]) {
@@ -212,6 +213,7 @@ public class GameState {
         	whiteTurn = !whiteTurn;
         	blackTurn = !blackTurn;
         	turnPlayed = false;
+        	System.out.println("CURRENT TURN: "+turn);
         }
         
         
@@ -223,7 +225,7 @@ public class GameState {
         for(int i = 0; i < movingObjects.size(); i++)
 			movingObjects.get(i).draw(g);
         
-        if(Mouse.mousePressed) {
+        if(MouseForWindow.mousePressed) {
 
         	for (int i = 0; i <= 7; i++) {
             	for (int j = 0; j <= 7; j++) {

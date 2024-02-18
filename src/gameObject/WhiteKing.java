@@ -2,7 +2,7 @@ package gameObject;
 
 import java.awt.image.BufferedImage;
 
-import input.Mouse;
+import input.MouseForWindow;
 
 import java.awt.Graphics;
 
@@ -21,8 +21,8 @@ public class WhiteKing extends King {
 
 	@Override
 	public void update() {
-		if( (Mouse.wk || Mouse.lastPiece == id) &&
-			(Mouse.mousePressed || Mouse.mouseRealesed) &&
+		if( (MouseForWindow.wk || MouseForWindow.lastPiece == id) &&
+			(MouseForWindow.mousePressed || MouseForWindow.mouseRealesed) &&
 			(gameState.whiteTurn)) super.update();
 	}
 
