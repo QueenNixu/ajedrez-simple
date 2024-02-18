@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import main.Window;
 import math.Vector2D;
 import states.GameState;
 
@@ -146,6 +147,8 @@ public class MouseForWindow implements MouseListener, MouseMotionListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
+		//System.out.println("window.paused = "+Window.paused);
+		
 		if (e.getButton() == MouseEvent.BUTTON1) {
 	        mouseXOnApp = e.getX();
 	        mouseYOnApp = e.getY();
@@ -156,6 +159,7 @@ public class MouseForWindow implements MouseListener, MouseMotionListener {
 	        lastPiece = pieceId;
 	        
 	        System.out.println("pieceId: "+pieceId);
+	        //System.out.println("paused: "+gameState.paused);
 	        /*
 	        System.out.print("Turno: "+gameState.turn+" | juega: ");
 	        if(gameState.turn % 2 != 0) {

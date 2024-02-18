@@ -20,6 +20,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class VentanaCoronar extends JFrame {
 	
@@ -28,7 +30,7 @@ public class VentanaCoronar extends JFrame {
 	protected int windowX;
 	protected int windowY;
 
-	public VentanaCoronar(Pawn pawn) {
+	public VentanaCoronar(Window window, Pawn pawn) {
 		
 		System.out.println("pawn.idCoronado: "+pawn.getIdCoronado());
 		
@@ -119,6 +121,8 @@ public class VentanaCoronar extends JFrame {
 				pawn.setIdCoronado( ((pawn.getId() < 16) ? 1 : 17) );
 				pawn.setTextura( ((pawn.getId() < 16) ? Assets.whiteQueen : Assets.blackQueen));
 				System.out.println("pawn.idCoronado: "+pawn.getIdCoronado());
+				window.resume();
+				//pawn.setVentanaCoronarAbierta(false);
 				exit();
 			}
 		});
@@ -148,6 +152,8 @@ public class VentanaCoronar extends JFrame {
 				pawn.setIdCoronado( ((pawn.getId() < 16) ? 2 : 18) );
 				pawn.setTextura( ((pawn.getId() < 16) ? Assets.whiteBishop : Assets.blackBishop));
 				System.out.println("pawn.idCoronado: "+pawn.getIdCoronado());
+				window.resume();
+				//pawn.setVentanaCoronarAbierta(false);
 				exit();
 			}
 		});
@@ -177,6 +183,8 @@ public class VentanaCoronar extends JFrame {
 				pawn.setIdCoronado( ((pawn.getId() < 16) ? 3 : 19) );
 				pawn.setTextura( ((pawn.getId() < 16) ? Assets.whiteHorse: Assets.blackHorse) );
 				System.out.println("pawn.idCoronado: "+pawn.getIdCoronado());
+				window.resume();
+				//pawn.setVentanaCoronarAbierta(false);
 				exit();
 			}
 		});
@@ -206,6 +214,8 @@ public class VentanaCoronar extends JFrame {
 				pawn.setIdCoronado( ((pawn.getId() < 16) ? 4 : 20) );
 				pawn.setTextura( ((pawn.getId() < 16) ? Assets.whiteTower: Assets.blackTower) );
 				System.out.println("pawn.idCoronado: "+pawn.getIdCoronado());
+				window.resume();
+				//pawn.setVentanaCoronarAbierta(false);
 				exit();
 			}
 		});

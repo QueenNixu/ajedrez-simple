@@ -148,9 +148,7 @@ public class Window extends JFrame implements Runnable {
 	                time = 0;
 	            }
 			} else {
-				System.out.print("PAUSED");
 	            waitForResume();
-	            System.out.print("RESUMED");
 	        }
 			
 		}
@@ -174,13 +172,16 @@ public class Window extends JFrame implements Runnable {
 	}
 	
 	public void pause() {
+		System.out.print("Pause() called");
 	    paused = true;
-	    System.out.println("PAUSE");
 	}
 
 	public void resume() {
-		//System.out.print("paused: "+paused);
-	    paused = false;
+		System.out.print("Resume() called");
+	    this.paused = false;
+	    synchronized (this) {
+	        notify(); // Notificar al hilo en espera que la pausa ha terminado
+	    }
 	    //System.out.print("paused: "+paused);
 	}
 	
@@ -188,6 +189,7 @@ public class Window extends JFrame implements Runnable {
 	    while (paused) {
 	        try {
 	            wait();
+	            //System.out.print("waitForResume() processing");
 	        } catch (InterruptedException e) {
 	            e.printStackTrace();
 	        }

@@ -101,16 +101,8 @@ public class Pawn extends MovingObject {
             	}
 	            
 	            if (coronado && idCoronado == -1) {
-	            	
-	            	//gameState.window.pause();
-
-	            	//ventanaCoronarAbierta = true;
-	            	VentanaCoronar ventanaCoronar = new VentanaCoronar(this);
-	            	/*
-	            	this.setVentanaCoronarAbierta(false);
-	            	gameState.window.resume();
-	            	*/
-	            	//gameState.window.resume();
+	            	VentanaCoronar ventanaCoronar = new VentanaCoronar(gameState.window, this);
+	            	gameState.window.pause();
 	            }
 	            
 	            if(valida) {
