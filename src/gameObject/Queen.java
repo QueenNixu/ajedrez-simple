@@ -31,7 +31,7 @@ public class Queen extends MovingObject {
 				int newX = Cell.getZ(MouseForWindow.mouseXOnApp);
 				int newY = Cell.getZ(MouseForWindow.mouseYOnApp);
 				if(newX >= 0 && newY >= 0 && !Cell.allyCell(newX, newY, id, ((id < 16) ? Constants.WHITESTART : Constants.BLACKSTART), gameState) && gameState.allowedCellsBool[newX][newY] ) {
-					System.out.println("Valida");
+					//System.out.println("Valida");
 					gameState.posicionesDelTablero[Cell.getZ((int)MouseForWindow.oriPosX)][Cell.getZ((int)MouseForWindow.oriPosY)] = -1;
 					int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
 					if ((id < 16 && pieceOnCellId >= 16 && pieceOnCellId <= 31) || (id >= 16 && pieceOnCellId >= 0 && pieceOnCellId <= 15)) {

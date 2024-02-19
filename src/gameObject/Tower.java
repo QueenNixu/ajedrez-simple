@@ -98,7 +98,7 @@ public class Tower extends MovingObject {
 		
 		gameState.posicionesDelTablero[Cell.getZ((int)posicion.getX())][Cell.getZ((int)posicion.getY())] = -1;
 		if(id == 0) {
-			System.out.println("REy BLanco");
+			//System.out.println("REy BLanco");
 			if(this.id == 7) {
 				gameState.posicionesDelTablero[5][7] = this.id;
 				posicion.setX(Cell.getFromCell(300));
@@ -109,15 +109,15 @@ public class Tower extends MovingObject {
 				gameState.piecePosition[this.id] = new Vector2D(3*Constants.CELLSIZE, 7*Constants.CELLSIZE);
 			}
 		} else {
-			System.out.println("REy Negro");
+			//System.out.println("REy Negro");
 			if(this.id == 23) {
-				gameState.posicionesDelTablero[5][1] = this.id;
+				gameState.posicionesDelTablero[5][0] = this.id;
 				posicion.setX(Cell.getFromCell(300));
-				gameState.piecePosition[this.id] = new Vector2D(5*Constants.CELLSIZE, 1*Constants.CELLSIZE);
+				gameState.piecePosition[this.id] = new Vector2D(5*Constants.CELLSIZE, 0*Constants.CELLSIZE);
 			} else {
-				gameState.posicionesDelTablero[3][1] = this.id;
+				gameState.posicionesDelTablero[3][0] = this.id;
 				posicion.setX(Cell.getFromCell(180));
-				gameState.piecePosition[this.id] = new Vector2D(3*Constants.CELLSIZE, 1*Constants.CELLSIZE);
+				gameState.piecePosition[this.id] = new Vector2D(3*Constants.CELLSIZE, 0*Constants.CELLSIZE);
 			}
 		}
 		firstMove = false;

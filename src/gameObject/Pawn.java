@@ -23,6 +23,8 @@ public class Pawn extends MovingObject {
 	
 	private int j = 0;
 
+	private boolean kingDead = false;
+
 	public Pawn(Vector2D position, BufferedImage texture, GameState gameState, int id) {
 		super(position, texture, gameState);
 		this.id = id;
@@ -52,6 +54,7 @@ public class Pawn extends MovingObject {
 	                    String mensaje = (id < 16) ? "COLISION CON PIEZA NEGRA: " : "COLISION CON PIEZA BLANCA: ";
 	                    System.out.println(mensaje + pieceOnCellId);
 	                    gameState.getMovingObject(pieceOnCellId).destroy();
+	                    if(pieceOnCellId == 0 || pieceOnCellId == 16) kingDead  = true;
 	                }
 
 	                gameState.posicionesDelTablero[newX][newY] = id;
@@ -59,7 +62,7 @@ public class Pawn extends MovingObject {
 	                posicion.setY(Cell.getFromCell(MouseForWindow.mouseYOnApp));
 	                
 	                if(gameState.window.ganador == -1 && Cell.getZ( (int) posicion.getY()) == ((id < 16) ? 0 : 7) && !coronado ) {
-	                	System.out.println("CORONAR!");
+	                	//System.out.println("CORONAR!");
 	                	coronado = true;
 	                	//VentanaCoronar ventanaCoronar = new VentanaCoronar(gameState.window);
 	                }
@@ -102,7 +105,7 @@ public class Pawn extends MovingObject {
             	    }
             	}
 	            
-	            if (coronado && idCoronado == -1) {
+	            if (coronado && idCoronado == -1 && !kingDead) {
 	            	VentanaCoronar ventanaCoronar = new VentanaCoronar(gameState.window, this);
 	            	gameState.window.pause();
 	            }

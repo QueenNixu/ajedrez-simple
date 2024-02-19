@@ -77,7 +77,7 @@ public class GameState {
 
     public GameState(Window window) {
     	
-    	System.out.println("LLAMANDO A GAMESTATE");
+    	//System.out.println("LLAMANDO A GAMESTATE");
     	
     	this.window = window;
     	
@@ -198,7 +198,7 @@ public class GameState {
         	whiteTurn = !whiteTurn;
         	blackTurn = !blackTurn;
         	turnPlayed = false;
-        	System.out.println("CURRENT TURN: "+turn);
+        	//System.out.println("CURRENT TURN: "+turn);
         }
         
         
@@ -318,7 +318,7 @@ public class GameState {
 	}
 	
 	public void setPositions() {
-		System.out.println("UWU");
+		//System.out.println("UWU");
 		for(int i = 0; i < movingObjects.size(); i++) {
 			movingObjects.get(i).iniciarPos();
 		}

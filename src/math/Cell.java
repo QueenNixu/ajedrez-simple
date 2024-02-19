@@ -525,6 +525,16 @@ public class Cell {
 		case 16:
 			towerDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.BLACKSTART, 1, gameState);
 			bishopDeallowCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, gameState);
+			//WhiteTowerRight wtr = (WhiteTowerRight) gameState.getMovingObject(7);
+			if(firstMove) {
+        		gameState.allowedCellsBool[6][0] = false;
+        		gameState.allowedCellsBool[5][0] = false;
+        	}
+        	//WhiteTowerLeft wtl = (WhiteTowerLeft) gameState.getMovingObject(4);
+        	if(firstMove) {
+        		gameState.allowedCellsBool[2][0] = false;
+        		gameState.allowedCellsBool[3][0] = false;
+        	}
             break;
 		case 17:
 			if(idCoronado == -1) {
