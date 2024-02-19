@@ -48,6 +48,12 @@ public class Piece extends MovingObject {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void iniciarPos() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

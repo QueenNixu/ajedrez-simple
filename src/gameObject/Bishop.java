@@ -12,8 +12,6 @@ public class Bishop extends MovingObject {
 	
 	private int id;
 	
-	private int firstMoveTurn = -1;
-	
 	public Bishop(Vector2D position, BufferedImage texture, GameState gameState, int id) {
 		super(position, texture, gameState);
 		this.id = id;
@@ -84,5 +82,9 @@ public class Bishop extends MovingObject {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	@Override
+	public void iniciarPos() {
+		posicion.setX(gameState.getDefaultPos(id).getX());
+		posicion.setY(gameState.getDefaultPos(id).getY());
+	}
 }

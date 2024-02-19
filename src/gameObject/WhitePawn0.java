@@ -4,9 +4,6 @@ import java.awt.image.BufferedImage;
 
 import input.MouseForWindow;
 
-import java.awt.Graphics;
-
-import math.Cell;
 import math.Vector2D;
 import states.GameState;
 
@@ -24,6 +21,8 @@ public class WhitePawn0 extends Pawn {
 			(MouseForWindow.mousePressed || MouseForWindow.mouseRealesed) &&
 			(gameState.whiteTurn)) super.update();
 		else super.updateTurn();
+		
+		
 	}
 	
 }

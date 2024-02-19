@@ -17,6 +17,7 @@ public abstract class MovingObject extends GameObject{
 		super(position, texture);
 		this.gameState = gameState;
 		Dead = false;
+		//System.out.println("posicion X: "+posicion.getX()+" posicion y: "+posicion.getY());
 	}
 	
 	public void destroy(){
@@ -28,5 +29,7 @@ public abstract class MovingObject extends GameObject{
 	public abstract int getId();
 
 	public abstract boolean isFirstMove();
+
+	public abstract void iniciarPos();
 	
 }

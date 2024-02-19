@@ -2,8 +2,6 @@ package gameObject;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
-
 import input.MouseForWindow;
 import main.VentanaCoronar;
 import math.Cell;
@@ -13,6 +11,7 @@ import states.GameState;
 public class Pawn extends MovingObject {
 	
 	private int id;
+	
 	private int idCoronado = -1;
 	private boolean firstMove = true;
 	private boolean lastMoveWasFirstMove = false;
@@ -21,6 +20,8 @@ public class Pawn extends MovingObject {
 	private boolean coronado = false;
 	
 	private boolean ventanaCoronarAbierta = false;
+	
+	private int j = 0;
 
 	public Pawn(Vector2D position, BufferedImage texture, GameState gameState, int id) {
 		super(position, texture, gameState);
@@ -28,6 +29,7 @@ public class Pawn extends MovingObject {
 	}
 
 	public void update() {
+		
 	    if(MouseForWindow.mousePressed) {
 	        posicion.setX(MouseForWindow.mouseXOnApp - Constants.CELLSIZE/2);
 	        posicion.setY(MouseForWindow.mouseYOnApp - Constants.CELLSIZE/2);
@@ -47,8 +49,8 @@ public class Pawn extends MovingObject {
 	                gameState.posicionesDelTablero[Cell.getZ((int)MouseForWindow.oriPosX)][Cell.getZ((int)MouseForWindow.oriPosY)] = -1;
 	                int pieceOnCellId = gameState.posicionesDelTablero[newX][newY];
 	                if ((id < 16 && pieceOnCellId >= 16 && pieceOnCellId <= 31) || (id >= 16 && pieceOnCellId >= 0 && pieceOnCellId <= 15)) {
-	                    //String mensaje = (id < 16) ? "COLISION CON PIEZA NEGRA: " : "COLISION CON PIEZA BLANCA: ";
-	                    //System.out.println(mensaje + pieceOnCellId);
+	                    String mensaje = (id < 16) ? "COLISION CON PIEZA NEGRA: " : "COLISION CON PIEZA BLANCA: ";
+	                    System.out.println(mensaje + pieceOnCellId);
 	                    gameState.getMovingObject(pieceOnCellId).destroy();
 	                }
 
@@ -56,7 +58,7 @@ public class Pawn extends MovingObject {
 	                posicion.setX(Cell.getFromCell(MouseForWindow.mouseXOnApp));
 	                posicion.setY(Cell.getFromCell(MouseForWindow.mouseYOnApp));
 	                
-	                if(Cell.getZ( (int) posicion.getY()) == ((id < 16) ? 0 : 7) && !coronado ) {
+	                if(gameState.window.ganador == -1 && Cell.getZ( (int) posicion.getY()) == ((id < 16) ? 0 : 7) && !coronado ) {
 	                	System.out.println("CORONAR!");
 	                	coronado = true;
 	                	//VentanaCoronar ventanaCoronar = new VentanaCoronar(gameState.window);
@@ -135,6 +137,12 @@ public class Pawn extends MovingObject {
 
 	@Override
 	public void draw(Graphics g) {
+		/*
+		if(j % 1000 == 0) {
+			System.out.println("Soy peon con id "+id+" | posicion.getX(): "+posicion.getX()+" | posicion.getY(): "+posicion.getY());
+		}
+		j++;
+		*/
 		g.drawImage(textura, (int)posicion.getX(), (int)posicion.getY(), null);
 	}
 	
@@ -168,6 +176,12 @@ public class Pawn extends MovingObject {
 
 	public void setVentanaCoronarAbierta(boolean ventanaCoronarAbierta) {
 		this.ventanaCoronarAbierta = ventanaCoronarAbierta;
+	}
+	
+	@Override
+	public void iniciarPos() {
+		posicion.setX(gameState.getDefaultPos(id).getX());
+		posicion.setY(gameState.getDefaultPos(id).getY());
 	}
 
 }

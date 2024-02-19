@@ -3,7 +3,6 @@ package math;
 import gameObject.BlackTowerLeft;
 import gameObject.BlackTowerRight;
 import gameObject.Constants;
-import gameObject.Pawn;
 import gameObject.WhiteTowerLeft;
 import gameObject.WhiteTowerRight;
 import states.GameState;
@@ -143,7 +142,7 @@ public class Cell {
         	bishopAllowedCells(originalPos, piece, Constants.WHITESTART, Constants.BLACKSTART, 1, gameState);
         	
         	WhiteTowerRight wtr = (WhiteTowerRight) gameState.getMovingObject(7);
-        	if(firstMove && wtr.getFirstMove()
+        	if(firstMove && wtr != null && wtr.getFirstMove()
         			&& !Cell.allyCell(5, 7, piece, Constants.WHITESTART, gameState)
         			&& !Cell.allyCell(6, 7, piece, Constants.WHITESTART, gameState)
         			&& !Cell.allyCell(5, 7, piece, Constants.BLACKSTART, gameState)
@@ -152,7 +151,7 @@ public class Cell {
         	}
         	
         	WhiteTowerLeft wtl = (WhiteTowerLeft) gameState.getMovingObject(4);
-        	if(firstMove && wtl.getFirstMove()
+        	if(firstMove && wtl != null && wtl.getFirstMove()
         			&& !Cell.allyCell(1, 7, piece, Constants.WHITESTART, gameState)
         			&& !Cell.allyCell(2, 7, piece, Constants.WHITESTART, gameState)
         			&& !Cell.allyCell(3, 7, piece, Constants.WHITESTART, gameState)
@@ -275,7 +274,7 @@ public class Cell {
         	bishopAllowedCells(originalPos, piece, Constants.BLACKSTART, Constants.WHITESTART, 1, gameState);
         	
         	BlackTowerRight btr = (BlackTowerRight) gameState.getMovingObject(23);
-        	if(firstMove && btr.getFirstMove()
+        	if(firstMove && btr != null && btr.getFirstMove()
         			&& !Cell.allyCell(5, 0, piece, Constants.WHITESTART, gameState)
         			&& !Cell.allyCell(6, 0, piece, Constants.WHITESTART, gameState)
         			&& !Cell.allyCell(5, 0, piece, Constants.BLACKSTART, gameState)
@@ -284,7 +283,7 @@ public class Cell {
         	}
         	
         	BlackTowerLeft btl = (BlackTowerLeft) gameState.getMovingObject(20);
-        	if(firstMove && btl.getFirstMove()
+        	if(firstMove && btl != null &&  btl.getFirstMove()
         			&& !Cell.allyCell(1, 0, piece, Constants.WHITESTART, gameState)
         			&& !Cell.allyCell(2, 0, piece, Constants.WHITESTART, gameState)
         			&& !Cell.allyCell(3, 0, piece, Constants.WHITESTART, gameState)

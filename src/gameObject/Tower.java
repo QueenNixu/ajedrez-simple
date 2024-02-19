@@ -127,5 +127,11 @@ public class Tower extends MovingObject {
 	public boolean getFirstMove() {
 		return firstMove;
 	}
-
+	
+	@Override
+	public void iniciarPos() {
+		posicion.setX(gameState.getDefaultPos(id).getX());
+		posicion.setY(gameState.getDefaultPos(id).getY());
+	}
+	
 }

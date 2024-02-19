@@ -21,6 +21,7 @@ import gameObject.BlackQueen;
 import gameObject.BlackTowerLeft;
 import gameObject.BlackTowerRight;
 import gameObject.Constants;
+import gameObject.King;
 import gameObject.MovingObject;
 import gameObject.WhiteBishopLeft;
 import gameObject.WhiteBishopRight;
@@ -41,7 +42,6 @@ import gameObject.WhitePawn7;
 import graphics.Assets;
 import input.MouseForWindow;
 import main.Window;
-import math.Cell;
 import math.Vector2D;
 
 public class GameState {
@@ -50,9 +50,9 @@ public class GameState {
 
     // PASAR A CONSTANTS
     
-    public static AllowedCells[][] allowedCells = new AllowedCells[8][8];
+    public AllowedCells[][] allowedCells = new AllowedCells[8][8];
 	
-	public static ArrayList<MovingObject> movingObjects = new ArrayList<MovingObject>();
+	public ArrayList<MovingObject> movingObjects;
 	
 	//-1 = vacio
 	//0-15 blancas
@@ -72,51 +72,19 @@ public class GameState {
 	public boolean blackTurn;
 
 	public Window window;
+	
+	private King k;
 
     public GameState(Window window) {
+    	
+    	System.out.println("LLAMANDO A GAMESTATE");
     	
     	this.window = window;
     	
     	whiteTurn = true;
     	blackTurn = false;
     	
-        // Inicialización de las piezas blancas
-    	movingObjects.add(new WhiteKing(Constants.wkPos, Assets.whiteKing, this));
-    	movingObjects.add(new WhiteQueen(Constants.wqPos, Assets.whiteQueen, this));
-    	movingObjects.add(new WhiteBishopLeft(Constants.wblPos, Assets.whiteBishop, this));
-    	movingObjects.add(new WhiteHorseLeft(Constants.whlPos, Assets.whiteHorse, this));
-    	movingObjects.add(new WhiteTowerLeft(Constants.wtlPos, Assets.whiteTower, this));
-    	movingObjects.add(new WhiteBishopRight(Constants.wbrPos, Assets.whiteBishop, this));
-    	movingObjects.add(new WhiteHorseRight(Constants.whrPos, Assets.whiteHorse, this));
-    	movingObjects.add(new WhiteTowerRight(Constants.wtrPos, Assets.whiteTower, this));
-    	
-    	movingObjects.add(new WhitePawn0(Constants.wp0Pos, Assets.whitePawn, this));
-    	movingObjects.add(new WhitePawn1(Constants.wp1Pos, Assets.whitePawn, this));
-    	movingObjects.add(new WhitePawn2(Constants.wp2Pos, Assets.whitePawn, this));
-    	movingObjects.add(new WhitePawn3(Constants.wp3Pos, Assets.whitePawn, this));
-    	movingObjects.add(new WhitePawn4(Constants.wp4Pos, Assets.whitePawn, this));
-    	movingObjects.add(new WhitePawn5(Constants.wp5Pos, Assets.whitePawn, this));
-    	movingObjects.add(new WhitePawn6(Constants.wp6Pos, Assets.whitePawn, this));
-    	movingObjects.add(new WhitePawn7(Constants.wp7Pos, Assets.whitePawn, this));
-
-        // Inicialización de las piezas negras
-    	movingObjects.add(new BlackKing(Constants.bkPos, Assets.blackKing, this));
-    	movingObjects.add(new BlackQueen(Constants.bqPos, Assets.blackQueen, this));
-    	movingObjects.add(new BlackBishopLeft(Constants.bblPos, Assets.blackBishop, this));
-    	movingObjects.add(new BlackHorseLeft(Constants.bhlPos, Assets.blackHorse, this));
-    	movingObjects.add(new BlackTowerLeft(Constants.btlPos, Assets.blackTower, this));
-    	movingObjects.add(new BlackBishopRight(Constants.bbrPos, Assets.blackBishop, this));
-    	movingObjects.add(new BlackHorseRight(Constants.bhrPos, Assets.blackHorse, this));
-    	movingObjects.add(new BlackTowerRight(Constants.btrPos, Assets.blackTower, this));
-    	
-    	movingObjects.add(new BlackPawn0(Constants.bp0Pos, Assets.blackPawn, this));
-    	movingObjects.add(new BlackPawn1(Constants.bp1Pos, Assets.blackPawn, this));
-    	movingObjects.add(new BlackPawn2(Constants.bp2Pos, Assets.blackPawn, this));
-    	movingObjects.add(new BlackPawn3(Constants.bp3Pos, Assets.blackPawn, this));
-    	movingObjects.add(new BlackPawn4(Constants.bp4Pos, Assets.blackPawn, this));
-    	movingObjects.add(new BlackPawn5(Constants.bp5Pos, Assets.blackPawn, this));
-    	movingObjects.add(new BlackPawn6(Constants.bp6Pos, Assets.blackPawn, this));
-    	movingObjects.add(new BlackPawn7(Constants.bp7Pos, Assets.blackPawn, this));
+    	restart();
 
         for (int i = 0; i <= 7; i++) {
         	for (int j = 0; j <= 7; j++) {
@@ -180,18 +148,35 @@ public class GameState {
             turn = 1;
             turnPlayed = false;
         
-            System.out.println("CURRENT TURN: "+turn);
+            //System.out.println("CURRENT TURN: "+turn);
     }
 
     // Métodos de actualización y dibujo
     public void update() {
     	
+    	/*
+		k = (King) getMovingObject(0);
+		k.update();
+		if(k.isDead()) {
+			window.ganador = k.getId();
+			movingObjects.remove(0);
+		}
+		k = (King) getMovingObject(16);
+		k.update();
+		if(k.isDead()) {
+			window.ganador = k.getId();
+			movingObjects.remove(16);
+		}
+    	*/
     	for(int i = 0; i < movingObjects.size(); i++) {
+    		
+    		//if(i == 16) continue;
 			
 			MovingObject mo = movingObjects.get(i);
 			
 			mo.update();
 			if(mo.isDead()) {
+				if(mo.getId() == 0 || mo.getId() == 16) window.ganador = mo.getId();
 				movingObjects.remove(i);
 				i--;
 			}
@@ -288,5 +273,60 @@ public class GameState {
 		posicionesDelTablero[i][j] = id;
 	}
 	
+	public void restart() {
+		movingObjects = new ArrayList<MovingObject>();
+				 
+		movingObjects.clear();
+    	
+        // Inicialización de las piezas blancas
+    	movingObjects.add(new WhiteKing(Constants.wkPos, Assets.whiteKing, this));
+    	movingObjects.add(new WhiteQueen(Constants.wqPos, Assets.whiteQueen, this));
+    	movingObjects.add(new WhiteBishopLeft(Constants.wblPos, Assets.whiteBishop, this));
+    	movingObjects.add(new WhiteHorseLeft(Constants.whlPos, Assets.whiteHorse, this));
+    	movingObjects.add(new WhiteTowerLeft(Constants.wtlPos, Assets.whiteTower, this));
+    	movingObjects.add(new WhiteBishopRight(Constants.wbrPos, Assets.whiteBishop, this));
+    	movingObjects.add(new WhiteHorseRight(Constants.whrPos, Assets.whiteHorse, this));
+    	movingObjects.add(new WhiteTowerRight(Constants.wtrPos, Assets.whiteTower, this));
+    	
+    	movingObjects.add(new WhitePawn0(Constants.wp0Pos, Assets.whitePawn, this));
+    	movingObjects.add(new WhitePawn1(Constants.wp1Pos, Assets.whitePawn, this));
+    	movingObjects.add(new WhitePawn2(Constants.wp2Pos, Assets.whitePawn, this));
+    	movingObjects.add(new WhitePawn3(Constants.wp3Pos, Assets.whitePawn, this));
+    	movingObjects.add(new WhitePawn4(Constants.wp4Pos, Assets.whitePawn, this));
+    	movingObjects.add(new WhitePawn5(Constants.wp5Pos, Assets.whitePawn, this));
+    	movingObjects.add(new WhitePawn6(Constants.wp6Pos, Assets.whitePawn, this));
+    	movingObjects.add(new WhitePawn7(Constants.wp7Pos, Assets.whitePawn, this));
+
+        // Inicialización de las piezas negras
+    	movingObjects.add(new BlackKing(Constants.bkPos, Assets.blackKing, this));
+    	movingObjects.add(new BlackQueen(Constants.bqPos, Assets.blackQueen, this));
+    	movingObjects.add(new BlackBishopLeft(Constants.bblPos, Assets.blackBishop, this));
+    	movingObjects.add(new BlackHorseLeft(Constants.bhlPos, Assets.blackHorse, this));
+    	movingObjects.add(new BlackTowerLeft(Constants.btlPos, Assets.blackTower, this));
+    	movingObjects.add(new BlackBishopRight(Constants.bbrPos, Assets.blackBishop, this));
+    	movingObjects.add(new BlackHorseRight(Constants.bhrPos, Assets.blackHorse, this));
+    	movingObjects.add(new BlackTowerRight(Constants.btrPos, Assets.blackTower, this));
+    	
+    	movingObjects.add(new BlackPawn0(Constants.bp0Pos, Assets.blackPawn, this));
+    	movingObjects.add(new BlackPawn1(Constants.bp1Pos, Assets.blackPawn, this));
+    	movingObjects.add(new BlackPawn2(Constants.bp2Pos, Assets.blackPawn, this));
+    	movingObjects.add(new BlackPawn3(Constants.bp3Pos, Assets.blackPawn, this));
+    	movingObjects.add(new BlackPawn4(Constants.bp4Pos, Assets.blackPawn, this));
+    	movingObjects.add(new BlackPawn5(Constants.bp5Pos, Assets.blackPawn, this));
+    	movingObjects.add(new BlackPawn6(Constants.bp6Pos, Assets.blackPawn, this));
+    	movingObjects.add(new BlackPawn7(Constants.bp7Pos, Assets.blackPawn, this));
+	}
+	
+	public void setPositions() {
+		System.out.println("UWU");
+		for(int i = 0; i < movingObjects.size(); i++) {
+			movingObjects.get(i).iniciarPos();
+		}
+		
+	}
+
+	public Vector2D getDefaultPos(int id) {
+		return piecePosition[id];
+	}
 }
 

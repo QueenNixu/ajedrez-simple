@@ -4,9 +4,6 @@ import java.awt.image.BufferedImage;
 
 import input.MouseForWindow;
 
-import java.awt.Graphics;
-
-import math.Cell;
 import math.Vector2D;
 import states.GameState;
 

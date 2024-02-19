@@ -6,11 +6,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import gameObject.Constants;
+import gameObject.MovingObject;
 import graphics.Assets;
 import input.MouseForWindow;
 import states.GameState;
@@ -22,7 +24,7 @@ public class Window extends JFrame implements Runnable {
 	private double delta = 0;
 	private int AVARAGEFPS = FPS;
 	
-	public JPanel[][] field = new JPanel[8][8];
+	//public JPanel[][] field = new JPanel[8][8];
 	
 	private Canvas canvas;
 	
@@ -37,7 +39,10 @@ public class Window extends JFrame implements Runnable {
 	private MouseForWindow mouse;
 	
 	private boolean paused = false;
-
+	public int ganador = -1;
+	private boolean parar = false;
+	//private int i = 0;
+	
 	public static void main(String[] args) {
 		new Window().start();
 	}
@@ -47,10 +52,16 @@ public class Window extends JFrame implements Runnable {
 		setTitle("Ajedrez");
 		setSize(Constants.WIDTH, Constants.HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
 		setResizable(false);
 		
+		setLocationRelativeTo(null);
+		
+		canvasInit();
+		
 		setVisible(true);
+	}
+	
+	private void canvasInit() {
 		
 		canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(Constants.WIDTH, Constants.HEIGHT));
@@ -59,16 +70,20 @@ public class Window extends JFrame implements Runnable {
 		canvas.setFocusable(true);
 		
 		add(canvas);
+		
 	}
-	
+
 	private void init() {
 		Assets.init();
+		//gameState = null;
 		gameState = new GameState(this);
+		
 		mouse = new MouseForWindow(gameState);
 		canvas.addMouseListener(mouse);
 		canvas.addMouseMotionListener(mouse);
+		//gameState.setPositions();
 	}
-	
+
 	private void generarTablero() {
 	    for (int i = 0; i <= 7; i++) {
 	        for (int j = 0; j <= 7; j++) {
@@ -102,11 +117,14 @@ public class Window extends JFrame implements Runnable {
 		bs = canvas.getBufferStrategy();
 		
 		if(bs == null) {
+			System.out.println("bs = null");
 			canvas.createBufferStrategy(2);
 			return;
 		}
 		
 		g = bs.getDrawGraphics();
+		
+		g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		
 		// dibujo arranca aqui
 		generarTablero();
@@ -129,8 +147,12 @@ public class Window extends JFrame implements Runnable {
 
 		init();
 		
+		//gameState.restart();
+		gameState.setPositions();
+		
 		while(running) {
-			//System.out.print("RUNNING");
+			//if(!parar) System.out.println("RUNNING "+i);
+			//i++;
 			now = System.nanoTime();
 			delta += (now - lastTime)/TARGETTIME;
 			time += (now - lastTime);
@@ -151,12 +173,19 @@ public class Window extends JFrame implements Runnable {
 	            waitForResume();
 	        }
 			
+			if(ganador != -1) {
+				running = false;
+			}
+			
 		}
+		
+		VentanaGanador vg = new VentanaGanador(ganador, this);
+		System.out.println("El ganador son las piezas "+( (ganador == 0) ? "BLANCAS" : "NEGRAS"));
 		
 		stop();
 	}
 	
-	private void start() {
+	void start() {
 		thread = new Thread(this);
 		thread.start();
 		running = true;
@@ -172,12 +201,12 @@ public class Window extends JFrame implements Runnable {
 	}
 	
 	public void pause() {
-		System.out.print("Pause() called");
+		//System.out.print("Pause() called");
 	    paused = true;
 	}
 
 	public void resume() {
-		System.out.print("Resume() called");
+		//System.out.print("Resume() called");
 	    this.paused = false;
 	    synchronized (this) {
 	        notify(); // Notificar al hilo en espera que la pausa ha terminado
@@ -194,6 +223,16 @@ public class Window extends JFrame implements Runnable {
 	            e.printStackTrace();
 	        }
 	    }
+	}
+
+	public void restart() {
+		
+		//remove(canvas);
+		//gameState.restart();
+		dispose();
+		Window w = new Window();
+		w.start();
+		
 	}
 	
 }

@@ -82,5 +82,10 @@ public class Horse extends MovingObject {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	@Override
+	public void iniciarPos() {
+		posicion.setX(gameState.getDefaultPos(id).getX());
+		posicion.setY(gameState.getDefaultPos(id).getY());
+	}
 
 }
